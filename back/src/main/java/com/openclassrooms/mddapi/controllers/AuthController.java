@@ -2,7 +2,6 @@ package com.openclassrooms.mddapi.controllers;
 
 
 import com.openclassrooms.mddapi.dtos.UserDto;
-import com.openclassrooms.mddapi.mappers.UserMapper;
 import com.openclassrooms.mddapi.models.User;
 
 import com.openclassrooms.mddapi.payloads.request.LoginRequest;
@@ -19,6 +18,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -42,6 +42,8 @@ public class AuthController {
 
   @Autowired
   private JwtUtils jwtUtils;
+  @Autowired
+  private ModelMapper modelMapper;
 
   @Autowired
   private PasswordEncoder passwordEncoder;
@@ -49,8 +51,6 @@ public class AuthController {
   @Autowired
   private UserRepository userRepository;
 
-  @Autowired
-  private UserMapper userMapper;
 
   @Operation(summary = "Authentifier l'utilisateur", description = "Authentifie l'utilisateur et retourne un token JWT.")
   @ApiResponses(value = {
@@ -117,7 +117,11 @@ public class AuthController {
     try {
       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
       final Optional<User> user = this.userRepository.findByEmail(auth.getName());
-      return ResponseEntity.ok().body(user.map(this.userMapper::toDto));
+
+      // Map User to UserDto using modelMapper
+      Optional<UserDto> userDto = user.map(u -> modelMapper.map(u, UserDto.class));
+
+      return ResponseEntity.ok().body(userDto);
     } catch (Exception e) {
       return ResponseEntity.badRequest().build();
     }

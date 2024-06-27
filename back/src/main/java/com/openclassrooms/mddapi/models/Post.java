@@ -13,16 +13,8 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@Entity
 @Document(collection = "posts")
 @Data
-@Accessors(chain = true)
-@EntityListeners(AuditingEntityListener.class)
-@EqualsAndHashCode(of = {"id"})
-@Builder
-@NoArgsConstructor
-@RequiredArgsConstructor
-@AllArgsConstructor
 public class Post {
     @Id
     private Long id;

@@ -11,16 +11,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
-@Entity
 @Document(collection = "users")
 @Data
-@Accessors(chain = true)
-@EntityListeners(AuditingEntityListener.class)
-@EqualsAndHashCode(of = {"id"})
-@Builder
-@NoArgsConstructor
-@RequiredArgsConstructor
-@AllArgsConstructor
 public class User {
     @Id
     private Long id;

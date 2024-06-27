@@ -3,7 +3,6 @@ package com.openclassrooms.mddapi.services;
 import com.openclassrooms.mddapi.dtos.UserCreateDto;
 import com.openclassrooms.mddapi.dtos.UserDto;
 import com.openclassrooms.mddapi.dtos.UserUpdateDto;
-import com.openclassrooms.mddapi.mappers.UserMapper;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -17,8 +16,7 @@ import java.util.stream.Collectors;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private UserMapper userMapper;
+
     @Autowired
     private ModelMapper modelMapper;
 

@@ -4,7 +4,6 @@ package com.openclassrooms.mddapi.controllers;
 import com.openclassrooms.mddapi.dtos.UserCreateDto;
 import com.openclassrooms.mddapi.dtos.UserDto;
 import com.openclassrooms.mddapi.dtos.UserUpdateDto;
-import com.openclassrooms.mddapi.mappers.UserMapper;
 import com.openclassrooms.mddapi.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -29,8 +28,6 @@ public class UserController {
   @Autowired
   private UserService userService;
 
-  @Autowired
-  private UserMapper userMapper;
 
   @Operation(summary = "Obtenir un utilisateur par ID", description = "Retourne un utilisateur spécifique basé sur l'ID fourni.")
   @ApiResponses(value = {

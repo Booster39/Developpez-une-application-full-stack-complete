@@ -11,13 +11,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
 @Document(collection = "comments")
 @Data
-@Accessors(chain = true)
-@EntityListeners(AuditingEntityListener.class)
-@EqualsAndHashCode(of = {"id"})
-@Builder
 public class Comment {
     @Id
     private Long id;

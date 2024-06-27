@@ -10,16 +10,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
-@Entity
 @Document(collection = "subjects")
 @Data
-@Accessors(chain = true)
-@EntityListeners(AuditingEntityListener.class)
-@EqualsAndHashCode(of = {"id"})
-@Builder
-@NoArgsConstructor
-@RequiredArgsConstructor
-@AllArgsConstructor
 public class Subject {
     @Id
     private Long id;
