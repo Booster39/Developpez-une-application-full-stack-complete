@@ -6,6 +6,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Set;
+
 @Entity
 @Table(name = "SUBJECTS")
 @Data
@@ -21,7 +23,12 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
-    @Size(max = 255)
-    private String topic;
+    @Column(unique = true, nullable = false)
+    private String name;
+
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Post> posts;
+
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Subscription> subscriptions;
 }
