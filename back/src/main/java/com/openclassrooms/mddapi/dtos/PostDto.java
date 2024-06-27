@@ -6,34 +6,18 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class PostDto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @CreatedDate
-    @Column(name = "created_at", updatable = false)
-    private LocalDateTime created_at;
-
-    @NonNull
-    @Size(max = 255)
+    private Long authorId;
+    private Long subjectId;
     private String title;
-
-    /*private Subject topic;*/
-
-    @NonNull
-    @Size(max = 255)
-    private String author;
-
-    @NonNull
-    @Size(max = 255)
-    private String comment;
-
-    @NonNull
-    @Size(max = 2000)
     private String content;
+    private LocalDateTime createdAt;
+    private Set<CommentDto> comments;
 }
+

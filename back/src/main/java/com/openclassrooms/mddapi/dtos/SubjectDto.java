@@ -4,15 +4,16 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Set;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class SubjectDto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
+    private Set<PostDto> posts;
+    private Set<SubscriptionDto> subscriptions;
 
-    @NonNull
-    @Size(max = 255)
-    private String topic;
 }
+

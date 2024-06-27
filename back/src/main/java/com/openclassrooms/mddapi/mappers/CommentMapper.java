@@ -1,23 +1,21 @@
 package com.openclassrooms.mddapi.mappers;
 
-import com.openclassrooms.mddapi.dtos.FeedDto;
-import com.openclassrooms.mddapi.dtos.FeedDto;
-import com.openclassrooms.mddapi.models.Feed;
-import com.openclassrooms.mddapi.models.Feed;
+import com.openclassrooms.mddapi.dtos.CommentDto;
+import com.openclassrooms.mddapi.models.Comment;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class FeedMapper  implements EntityMapper<FeedDto, Feed> {
+public class CommentMapper  implements EntityMapper<CommentDto, Comment> {
     @Override
-    public Feed toEntity(FeedDto dto) {
+    public Comment toEntity(CommentDto dto) {
         if ( dto == null ) {
             return null;
         }
 
-        Feed.FeedBuilder feed = Feed.builder();
+        Comment.CommentBuilder feed = Comment.builder();
 
         feed.id( dto.getId() );
 
@@ -25,12 +23,12 @@ public class FeedMapper  implements EntityMapper<FeedDto, Feed> {
     }
 
     @Override
-    public FeedDto toDto(Feed entity) {
+    public CommentDto toDto(Comment entity) {
         if ( entity == null ) {
             return null;
         }
 
-        FeedDto feedDto = new FeedDto();
+        CommentDto feedDto = new CommentDto();
 
         feedDto.setId( entity.getId() );
 
@@ -39,7 +37,7 @@ public class FeedMapper  implements EntityMapper<FeedDto, Feed> {
 
 
     @Override
-    public List<Feed> toEntity(List<FeedDto> dtoList) {
+    public List<Comment> toEntity(List<CommentDto> dtoList) {
         if (dtoList == null) {
             return null;
         }
@@ -50,7 +48,7 @@ public class FeedMapper  implements EntityMapper<FeedDto, Feed> {
     }
 
     @Override
-    public List<FeedDto> toDto(List<Feed> entityList) {
+    public List<CommentDto> toDto(List<Comment> entityList) {
         if (entityList == null) {
             return null;
         }

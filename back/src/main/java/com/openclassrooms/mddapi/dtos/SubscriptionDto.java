@@ -8,10 +8,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SubscriptionDto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long userId;
+    private Long subjectId;
 
-    @NonNull
-    private boolean isSubscribed;
 }
+
