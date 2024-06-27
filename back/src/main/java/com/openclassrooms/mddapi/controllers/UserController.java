@@ -1,7 +1,9 @@
 package com.openclassrooms.mddapi.controllers;
 
 
+import com.openclassrooms.mddapi.dtos.UserCreateDto;
 import com.openclassrooms.mddapi.dtos.UserDto;
+import com.openclassrooms.mddapi.dtos.UserUpdateDto;
 import com.openclassrooms.mddapi.mappers.UserMapper;
 import com.openclassrooms.mddapi.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,10 +16,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
@@ -51,5 +52,30 @@ public class UserController {
     } catch (Exception e) {
       return ResponseEntity.badRequest().build();
     }
+  }
+
+  @GetMapping("/{id}")
+  public UserDto getUser(@PathVariable Long id) {
+    return userService.getUserById(id);
+  }
+
+  @PostMapping
+  public UserDto createUser(@RequestBody UserCreateDto userCreateDto) {
+    return userService.createUser(userCreateDto);
+  }
+
+  @PutMapping("/{id}")
+  public UserDto updateUser(@PathVariable Long id, @RequestBody UserUpdateDto userUpdateDto) {
+    return userService.updateUser(id, userUpdateDto);
+  }
+
+  @DeleteMapping("/{id}")
+  public void deleteUser(@PathVariable Long id) {
+    userService.deleteUser(id);
+  }
+
+  @GetMapping
+  public List<UserDto> getAllUsers() {
+    return userService.getAllUsers();
   }
 }
