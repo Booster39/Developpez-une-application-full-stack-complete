@@ -23,18 +23,6 @@ public class UserService {
     private ModelMapper modelMapper;
 
 
-    public User findById(Long id) {
-        return userRepository.findById(id).orElse(null);
-    }
-
-    public UserDto findUserDtoById(Long id) {
-        User user = findById(id);
-        if (user == null) {
-            return null;
-        }
-        return userMapper.toDto(user);
-    }
-
     public UserDto getUserById(Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         return modelMapper.map(user, UserDto.class);

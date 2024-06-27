@@ -44,7 +44,7 @@ public class UserController {
   @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<UserDto> findById(@PathVariable("id") String id) {
     try {
-      UserDto userDto = userService.findUserDtoById(Long.valueOf(id));
+      UserDto userDto = userService.getUserById(Long.valueOf(id));
       if (userDto == null) {
         return ResponseEntity.notFound().build();
       }
