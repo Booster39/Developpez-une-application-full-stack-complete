@@ -1,9 +1,6 @@
 package com.openclassrooms.mddapi.services;
 
-import com.openclassrooms.mddapi.models.Subject;
-import com.openclassrooms.mddapi.repositories.SubjectRepository;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import com.openclassrooms.mddapi.repository.SubjectRepository;
 import org.springframework.stereotype.Service;
 
 @Service

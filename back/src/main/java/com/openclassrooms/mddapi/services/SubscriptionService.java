@@ -1,6 +1,6 @@
 package com.openclassrooms.mddapi.services;
 
-import com.openclassrooms.mddapi.repositories.SubscriptionRepository;
+import com.openclassrooms.mddapi.repository.SubscriptionRepository;
 import org.springframework.stereotype.Service;
 
 @Service

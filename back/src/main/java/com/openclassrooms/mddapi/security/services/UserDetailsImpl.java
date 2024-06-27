@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.securities.services;
+package com.openclassrooms.mddapi.security.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

@@ -15,9 +15,6 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 @EqualsAndHashCode(of = {"id"})
 @Builder
-@NoArgsConstructor
-@RequiredArgsConstructor
-@AllArgsConstructor
 public class Feed {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

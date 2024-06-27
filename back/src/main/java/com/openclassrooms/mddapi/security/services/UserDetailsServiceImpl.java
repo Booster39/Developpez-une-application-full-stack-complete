@@ -1,9 +1,8 @@
-package com.openclassrooms.mddapi.securities.services;
+package com.openclassrooms.mddapi.security.services;
 
 
 import com.openclassrooms.mddapi.models.User;
-import com.openclassrooms.mddapi.repositories.UserRepository;
-
+import com.openclassrooms.mddapi.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

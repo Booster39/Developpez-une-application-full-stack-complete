@@ -1,6 +1,6 @@
-package com.openclassrooms.mddapi.securities.jwt;
+package com.openclassrooms.mddapi.security.jwt;
 
-import com.openclassrooms.mddapi.securities.services.UserDetailsServiceImpl;
+import com.openclassrooms.mddapi.security.services.UserDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

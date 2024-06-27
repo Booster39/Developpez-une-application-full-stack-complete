@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.securities.jwt;
+package com.openclassrooms.mddapi.security.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;

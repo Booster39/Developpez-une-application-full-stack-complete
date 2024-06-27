@@ -1,8 +1,8 @@
-package com.openclassrooms.mddapi.securities;
+package com.openclassrooms.mddapi.configuration;
 
 
-import com.openclassrooms.mddapi.securities.jwt.AuthEntryPointJwt;
-import com.openclassrooms.mddapi.securities.jwt.AuthTokenFilter;
+import com.openclassrooms.mddapi.security.jwt.AuthEntryPointJwt;
+import com.openclassrooms.mddapi.security.jwt.AuthTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -64,8 +64,9 @@ public class WebSecurityConfig {
         .antMatchers("/auth/welcome", "/auth/register", "/auth/login").permitAll()
         .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
         .antMatchers("/api/auth/**").permitAll()
-        .antMatchers("/api/**").permitAll()
-        .anyRequest().authenticated())
+        .antMatchers("/public/**", "/uploads/**", "/images/**").permitAll()
+        .anyRequest().authenticated()
+      )
       .exceptionHandling(exception -> exception
         .authenticationEntryPoint(authEntryPointJwt));
 
@@ -78,5 +79,6 @@ public class WebSecurityConfig {
     authenticationProvider.setPasswordEncoder(passwordEncoder());
     return authenticationProvider;
   }
+
 
 }
