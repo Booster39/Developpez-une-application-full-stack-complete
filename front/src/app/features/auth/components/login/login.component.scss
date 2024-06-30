@@ -1,8 +1,15 @@
+.container {
+    position: relative;
+}
 .login {
-    margin-top: 30px;
+    margin-top: 300px;
     mat-card {
-        margin: 20px;
-        max-width: 600px;
-        width: 100%;
+        //margin: 20px;
+        //max-width: 600px;
+        //width: 100%;
     }
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }

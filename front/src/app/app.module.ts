@@ -5,16 +5,38 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { SessionService } from './services/session.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+
+const materialModule = [
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule,
+  //MatToolbarModule,
+]
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+     HomeComponent,
+     NotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,
+    MatGridListModule,
+    //FlexLayoutModule,
+    HttpClientModule,
+    ...materialModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true,  },
+    SessionService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
