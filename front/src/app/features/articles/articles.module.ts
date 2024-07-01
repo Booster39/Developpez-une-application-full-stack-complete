@@ -1,6 +1,6 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RentalRoutingModule } from './rental-routing.module';
+import { ArticleRoutingModule } from './article-routing.module';
 import { ListComponent } from './components/list/list.component';
 import { FormComponent } from './components/form/form.component';
 import { DetailComponent } from './components/detail/detail.component';
@@ -14,7 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { SharedModule } from 'src/app/shared/shared.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-//import { MaterialFileInputModule } from 'ngx-material-file-input';
+
 registerLocaleData(localeFr);
 
 const materialModules = [
@@ -35,9 +35,8 @@ const materialModules = [
   imports: [
     CommonModule,
     FormsModule,
-   // MaterialFileInputModule,
     ReactiveFormsModule,
-    RentalRoutingModule,
+    ArticleRoutingModule,
    // SharedModule,
     ...materialModules
   ],
@@ -48,4 +47,4 @@ const materialModules = [
     },
   ]
 })
-export class RentalsModule { }
+export class ArticlesModule { }

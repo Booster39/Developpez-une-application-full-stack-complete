@@ -9,9 +9,9 @@ import { UnauthGuard } from './guards/unauth.guard';
 // to manage unauthenticated user to access private routes
 const routes: Routes = [{ path: '', component: HomeComponent },
   {
-    path: 'rentals',
+    path: 'articles',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./features/rentals/rentals.module').then(m => m.RentalsModule)
+    loadChildren: () => import('./features/articles/articles.module').then(m => m.ArticlesModule)
   },
   {
     path: '',

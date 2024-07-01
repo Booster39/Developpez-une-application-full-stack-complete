@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from 'src/app/interfaces/user.interface';
 import { SessionService } from 'src/app/services/session.service';
-import { RentalsService } from '../../services/rentals.service';
+import { ArticlesService } from '../../services/articles.service';
 
 @Component({
   selector: 'app-list',
@@ -10,11 +10,11 @@ import { RentalsService } from '../../services/rentals.service';
 })
 export class ListComponent {
 
-  public rentals$ = this.rentalsService.all();
+  public articles$ = this.articlesService.all();
 
   constructor(
     private sessionService: SessionService,
-    private rentalsService: RentalsService
+    private articlesService: ArticlesService
   ) { }
 
   get user(): User | undefined {

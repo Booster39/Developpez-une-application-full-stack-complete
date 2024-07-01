@@ -12,12 +12,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const materialModule = [
   MatButtonModule,
   MatCardModule,
   MatIconModule,
-  //MatToolbarModule,
+  MatToolbarModule,
 ]
 
 @NgModule({
@@ -30,7 +32,7 @@ const materialModule = [
     AppRoutingModule,
     BrowserAnimationsModule,
     MatGridListModule,
-    //FlexLayoutModule,
+    FlexLayoutModule,
     HttpClientModule,
     ...materialModule
   ],

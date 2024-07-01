@@ -1,43 +1,43 @@
 <div class="detail">
-    <mat-card *ngIf="rental">
+    <mat-card *ngIf="article">
         <mat-card-title>
             <div fxLayout="row" fxLayoutAlign="space-between center">
                 <div fxLayout="row" fxLayoutAlign="start center">
                     <button mat-icon-button (click)="back()">
                         <mat-icon>arrow_back</mat-icon>
                     </button>
-                    <h1>{{rental.name | titlecase}}</h1>
+                    <h1>{{article.title | titlecase}}</h1>
                 </div>
             </div>
             <mat-card-subtitle class="owner">
-               <!-- <app-owner-info [ownerId]="rental.owner_id"></app-owner-info>-->
+               <!-- <app-owner-info [ownerId]="article.owner_id"></app-owner-info>-->
             </mat-card-subtitle>
         </mat-card-title>
         <mat-card-content>
             <div fxLayout="column" fxLayoutAlign="start center">
-                <img class="fit" [src]="rental.picture" alt="house picture">
+                <img class="fit" [src]="article.author" alt="house picture">
             </div>
             <div class="my2" fxLayout="row" fxLayoutAlign="space-between center">
                 <div fxLayout="center">
                     <mat-icon>
                         straighten
                     </mat-icon>
-                    <span class="ml1">{{ rental.surface}} m2</span>
+                    <span class="ml1">{{ article.author}} m2</span>
                 </div>
                 <div fxLayout="center">
                     <mat-icon>
                         nights_stay
                     </mat-icon>
-                    <span class="ml1">{{ rental.price | currency:'EUR':'symbol':'.2-2'}} / by night</span>
+                    <span class="ml1">{{ article.theme| currency:'EUR':'symbol':'.2-2'}} / by night</span>
                 </div>
             </div>
             <div class="description">
                 <p>Description:</p>
-                {{ rental.description }}
+                {{ article.content }}
             </div>
             <div class="date" class="my2" fxLayout="row" fxLayoutAlign="space-between center">
-                <div class="created"><i>Create at: </i> {{ rental.created_at| date: 'longDate'}}</div>
-                <div class="updated"><i>Last update: </i> {{ rental.updated_at| date: 'longDate'}}</div>
+                <div class="created"><i>Create at: </i> {{ article.created_at| date: 'longDate'}}</div>
+                <div class="updated"><i>Last update: </i> {{ article.updated_at| date: 'longDate'}}</div>
             </div>
         </mat-card-content>
     </mat-card>

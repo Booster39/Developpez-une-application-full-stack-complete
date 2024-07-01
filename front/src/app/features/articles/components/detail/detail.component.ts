@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { Rental } from 'src/app/features/rentals/interfaces/rental.interface';
+import { Article } from 'src/app/features/articles/interfaces/article.interface';
 import { SessionService } from 'src/app/services/session.service';
 import { MessageRequest } from '../../interfaces/api/messageRequest.interface';
 import { MessageResponse } from '../../interfaces/api/messageResponse.interface';
 import { MessagesService } from '../../services/messages.service';
-import { RentalsService } from '../../services/rentals.service';
+import { ArticlesService } from '../../services/articles.service';
 
 @Component({
   selector: 'app-detail',
@@ -17,13 +17,13 @@ import { RentalsService } from '../../services/rentals.service';
 export class DetailComponent implements OnInit {
 
   public messageForm!: FormGroup;
-  public rental: Rental | undefined;
+  public article: Article | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private messagesService: MessagesService,
-    private rentalsService: RentalsService,
+    private articlesService: ArticlesService,
     private sessionService: SessionService,
     private matSnackBar: MatSnackBar) {
     this.initMessageForm();
@@ -32,9 +32,9 @@ export class DetailComponent implements OnInit {
   public ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')!
 
-    this.rentalsService
+    this.articlesService
       .detail(id)
-      .subscribe((rental: Rental) => this.rental = rental);
+      .subscribe((article: Article) => this.article = article);
   }
 
   public back() {
@@ -43,7 +43,7 @@ export class DetailComponent implements OnInit {
 
   public sendMessage(): void {
     const message = {
-      rental_id: this.rental!.id,
+      article_id: this.article!.id,
       user_id: this.sessionService.user?.id,
       message: this.messageForm.value.message
     } as MessageRequest;
