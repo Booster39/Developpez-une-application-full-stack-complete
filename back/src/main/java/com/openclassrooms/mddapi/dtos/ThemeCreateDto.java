@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubjectCreateDto {
+public class ThemeCreateDto {
 
     private String name;
 

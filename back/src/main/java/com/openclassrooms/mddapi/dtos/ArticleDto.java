@@ -1,17 +1,14 @@
 package com.openclassrooms.mddapi.dtos;
 
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostDto {
+public class ArticleDto {
     private Long id;
     private Long authorId;
     private Long subjectId;

@@ -1,10 +1,8 @@
 package com.openclassrooms.mddapi.models;
 
 import lombok.*;
-import lombok.experimental.Accessors;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -21,7 +19,7 @@ public class Comment {
     private User author;
 
     @DBRef
-    private Post post;
+    private Article article;
 
     private String content;
 

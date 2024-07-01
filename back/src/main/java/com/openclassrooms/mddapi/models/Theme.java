@@ -1,18 +1,15 @@
 package com.openclassrooms.mddapi.models;
 
 import lombok.*;
-import lombok.experimental.Accessors;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.util.Set;
 
-@Document(collection = "subjects")
+@Document(collection = "themes")
 @Data
-public class Subject {
+public class Theme {
     @Id
     private Long id;
 
@@ -20,7 +17,7 @@ public class Subject {
     private String name;
 
     @DBRef
-    private Set<Post> posts;
+    private Set<Article> articles;
 
     @DBRef
     private Set<Subscription> subscriptions;

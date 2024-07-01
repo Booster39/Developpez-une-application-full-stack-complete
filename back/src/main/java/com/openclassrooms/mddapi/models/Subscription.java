@@ -1,8 +1,6 @@
 package com.openclassrooms.mddapi.models;
 
 import lombok.*;
-import lombok.experimental.Accessors;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,5 +16,5 @@ public class Subscription {
     private User user;
 
     @DBRef
-    private Subject subject;
+    private Theme theme;
 }

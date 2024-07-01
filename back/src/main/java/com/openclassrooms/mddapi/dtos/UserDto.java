@@ -2,9 +2,6 @@ package com.openclassrooms.mddapi.dtos;
 
 import lombok.*;
 
-import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Data
@@ -15,7 +12,7 @@ public class UserDto {
     private String email;
     private String username;
     private Set<SubscriptionDto> subscriptions;
-    private Set<PostDto> posts;
+    private Set<ArticleDto> posts;
     private Set<CommentDto> comments;
 }
 

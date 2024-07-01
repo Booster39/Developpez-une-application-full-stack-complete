@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostCreateDto {
+public class ArticleCreateDto {
 
     private Long authorId;
     private Long subjectId;
