@@ -42,17 +42,17 @@ export class DetailComponent implements OnInit {
   }
 
   public sendMessage(): void {
-    const message = {
+    /*const message = {
       article_id: this.article!.id,
       user_id: this.sessionService.user?.id,
-      message: this.messageForm.value.message
+      //message: this.messageForm.value.message
     } as MessageRequest;
 
     this.messagesService.send(message).subscribe(
       (messageResponse: MessageResponse) => {
         this.initMessageForm();
-        this.matSnackBar.open(messageResponse.message, "Close", { duration: 3000 });
-      });
+        this.matSnackBar.open(messageResponse.messages, "Close", { duration: 3000 });
+      });*/
   }
 
   private initMessageForm() {

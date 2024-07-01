@@ -81,7 +81,7 @@ export class FormComponent implements OnInit {
   }
 
   private exitPage(articleResponse: ArticleResponse): void {
-    this.matSnackBar.open(articleResponse.message, "Close", { duration: 3000 });
+    //this.matSnackBar.open(articleResponse.messages, "Close", { duration: 3000 });
     this.router.navigate(['articles']);
   }
 }

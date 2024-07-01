@@ -32,7 +32,7 @@ const materialModule = [
     AppRoutingModule,
     BrowserAnimationsModule,
     MatGridListModule,
-    FlexLayoutModule,
+    //FlexLayoutModule,
     HttpClientModule,
     ...materialModule
   ],
