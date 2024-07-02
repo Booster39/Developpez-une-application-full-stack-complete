@@ -8,6 +8,7 @@ import javax.persistence.*;
 
 @Document(collection = "subscriptions")
 @Data
+@Builder
 public class Subscription {
     @Id
     private Long id;

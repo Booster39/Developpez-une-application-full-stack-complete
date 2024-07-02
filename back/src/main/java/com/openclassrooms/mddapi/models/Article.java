@@ -12,6 +12,7 @@ import java.util.Set;
 
 @Document(collection = "posts")
 @Data
+@Builder
 public class Article {
     @Id
     private Long id;

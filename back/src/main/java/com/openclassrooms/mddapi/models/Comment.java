@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Document(collection = "comments")
 @Data
+@Builder
 public class Comment {
     @Id
     private Long id;

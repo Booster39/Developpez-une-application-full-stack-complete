@@ -3,6 +3,7 @@ package com.openclassrooms.mddapi.controllers;
 import com.openclassrooms.mddapi.dtos.ArticleCreateDto;
 import com.openclassrooms.mddapi.dtos.ArticleDto;
 import com.openclassrooms.mddapi.models.Article;
+import com.openclassrooms.mddapi.models.Theme;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.payloads.response.StringResponse;
 import com.openclassrooms.mddapi.repository.UserRepository;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -34,30 +36,47 @@ public class ArticleController {
 
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ArticleDto> getAllPosts() {
-        return articleService.getAllPosts();
+    public ResponseEntity<HashMap<String, List<ArticleDto>>> getAllPosts()
+    {
+        try {
+            List<ArticleDto> articleDtos = articleService.getAllPosts();
+            var response = new HashMap<String, List<ArticleDto>>();
+            response.put("articles", articleDtos);
+            return ResponseEntity.ok().body(response);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
-    @GetMapping("/{id}")
-    public ArticleDto getPost(@PathVariable Long id) {
-        return articleService.getPostById(id);
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ArticleDto> getPost(@PathVariable("id") String id)
+    {
+        try {
+            ArticleDto articleDto = articleService.getPostById(Long.valueOf(id));
+            if (articleDto == null) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok().body(articleDto);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
-
-  /*  @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ArticleDto createPost(@RequestBody ArticleCreateDto articleCreateDto) {
-        return articleService.createPost(articleCreateDto);
-    }*/
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void createPost(
+    public ResponseEntity<StringResponse> createPost(
             @RequestParam("title") @NotBlank @Size(max = 63) String title,
-            @RequestParam("author") @Min(0) String author,
-            @RequestParam("theme") @Min(0) String theme,
+            @RequestParam("theme") @Min(0) Theme theme,
             @RequestParam("content") @Size(max = 2000) String content,
             @RequestHeader(value = "Authorization", required = false) String jwt
     ) {
-        String username = jwtUtils.getUserNameFromJwtToken(jwt.substring(7));
-        User owner = this.userRepository.findByEmail(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+        try {
+            String username = jwtUtils.getUserNameFromJwtToken(jwt.substring(7));
+            User author = this.userRepository.findByEmail(username)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+            ArticleDto articleDto = articleService.createPost(title, theme, content, author);
+            return ResponseEntity.ok().body(new StringResponse("Article created !"));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

@@ -9,6 +9,7 @@ import java.util.Set;
 
 @Document(collection = "subjects")
 @Data
+@Builder
 public class Theme {
     @Id
     private Long id;

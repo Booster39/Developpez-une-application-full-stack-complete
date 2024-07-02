@@ -11,6 +11,7 @@ import java.util.Set;
 
 @Document(collection = "users")
 @Data
+@Builder
 public class User {
     @Id
     private Long id;
