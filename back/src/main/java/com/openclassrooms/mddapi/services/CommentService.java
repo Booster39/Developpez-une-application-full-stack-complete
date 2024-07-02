@@ -3,7 +3,9 @@ package com.openclassrooms.mddapi.services;
 import com.openclassrooms.mddapi.dtos.CommentCreateDto;
 import com.openclassrooms.mddapi.dtos.CommentDto;
 import com.openclassrooms.mddapi.models.Comment;
+import com.openclassrooms.mddapi.repository.ArticleRepository;
 import com.openclassrooms.mddapi.repository.CommentRepository;
+import com.openclassrooms.mddapi.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,28 +22,26 @@ public class CommentService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public CommentDto getCommentById(Long id) {
-        Comment comment = commentRepository.findById(id).orElseThrow(() -> new RuntimeException("Comment not found"));
-        return modelMapper.map(comment, CommentDto.class);
-    }
+    @Autowired
+    private UserService userService;
 
-    public CommentDto createComment(CommentCreateDto commentCreateDto) {
-        Comment comment = modelMapper.map(commentCreateDto, Comment.class);
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private ArticleRepository articleRepository;
+
+    public CommentDto createComment(Long authorId, Long postId, String content) {
+        Comment comment = Comment.builder()
+                .article(articleRepository.findById(postId).orElseThrow(() -> new RuntimeException("Article not found")))
+                .author(userRepository.findById(postId).orElseThrow(() -> new RuntimeException("Author not found")))
+                .content(content)
+                .build();
         comment.setCreated_at(LocalDateTime.now());
         commentRepository.save(comment);
         return modelMapper.map(comment, CommentDto.class);
     }
 
-    public CommentDto updateComment(Long id, CommentDto commentUpdateDto) {
-        Comment comment = commentRepository.findById(id).orElseThrow(() -> new RuntimeException("Comment not found"));
-        modelMapper.map(commentUpdateDto, comment);
-        commentRepository.save(comment);
-        return modelMapper.map(comment, CommentDto.class);
-    }
-
-    public void deleteComment(Long id) {
-        commentRepository.deleteById(id);
-    }
 
     public List<CommentDto> getAllComments() {
         List<Comment> comments = commentRepository.findAll();

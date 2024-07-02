@@ -11,8 +11,8 @@ public class UserDto {
     private Long id;
     private String email;
     private String username;
-    private Set<SubscriptionDto> subscriptions;
+   /* private Set<SubscriptionDto> subscriptions;
     private Set<ArticleDto> posts;
-    private Set<CommentDto> comments;
+    private Set<CommentDto> comments;*/
 }
 

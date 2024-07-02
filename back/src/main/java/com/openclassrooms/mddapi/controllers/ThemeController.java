@@ -1,11 +1,15 @@
 package com.openclassrooms.mddapi.controllers;
 
 
+import com.openclassrooms.mddapi.dtos.ArticleDto;
 import com.openclassrooms.mddapi.dtos.ThemeCreateDto;
 import com.openclassrooms.mddapi.dtos.ThemeDto;
 import com.openclassrooms.mddapi.services.ThemeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -16,27 +20,30 @@ public class ThemeController {
     private ThemeService themeService;
 
     @GetMapping("/{id}")
-    public ThemeDto getSubject(@PathVariable Long id) {
-        return themeService.getSubjectById(id);
+    public ResponseEntity<ThemeDto> getSubject(@PathVariable("id") String id)
+    {
+        try {
+            ThemeDto themeDto = themeService.getSubjectById(Long.valueOf(id));
+            if (themeDto == null) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok().body(themeDto);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
-    @PostMapping
-    public ThemeDto createSubject(@RequestBody ThemeCreateDto subjectCreateDto) {
-        return themeService.createSubject(subjectCreateDto);
-    }
 
-    @PutMapping("/{id}")
-    public ThemeDto updateSubject(@PathVariable Long id, @RequestBody ThemeCreateDto subjectUpdateDto) {
-        return themeService.updateSubject(id, subjectUpdateDto);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteSubject(@PathVariable Long id) {
-        themeService.deleteSubject(id);
-    }
 
     @GetMapping
-    public List<ThemeDto> getAllSubjects() {
-        return themeService.getAllSubjects();
+    public  ResponseEntity<HashMap<String, List<ThemeDto>>> getAllSubjects() {
+        try {
+            List<ThemeDto> themeDtos = themeService.getAllSubjects();
+            var response = new HashMap<String, List<ThemeDto>>();
+            response.put("themes", themeDtos);
+            return ResponseEntity.ok().body(response);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

@@ -12,6 +12,9 @@ import java.util.Set;
 @Document(collection = "users")
 @Data
 @Builder
+@NoArgsConstructor
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
     private Long id;
@@ -29,12 +32,12 @@ public class User {
     @Size(min = 8, max = 255)
     private String password;
 
-    @DBRef
+    /*@DBRef
     private Set<Subscription> subscriptions;
 
     @DBRef
     private Set<Article> articles;
 
     @DBRef
-    private Set<Comment> comments;
+    private Set<Comment> comments;*/
 }
