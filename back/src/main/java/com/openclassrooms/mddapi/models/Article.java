@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@Document(collection = "articles")
+@Document(collection = "posts")
 @Data
 public class Article {
     @Id

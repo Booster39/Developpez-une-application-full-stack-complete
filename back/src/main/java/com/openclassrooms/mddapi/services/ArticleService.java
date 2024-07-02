@@ -19,6 +19,7 @@ public class ArticleService {
     @Autowired
     private ModelMapper modelMapper;
 
+
     public ArticleDto getPostById(Long id) {
         Article article = articleRepository.findById(id).orElseThrow(() -> new RuntimeException("Article not found"));
         return modelMapper.map(article, ArticleDto.class);
@@ -31,16 +32,6 @@ public class ArticleService {
         return modelMapper.map(article, ArticleDto.class);
     }
 
-    public ArticleDto updatePost(Long id, ArticleDto postUpdateDto) {
-        Article article = articleRepository.findById(id).orElseThrow(() -> new RuntimeException("Article not found"));
-        modelMapper.map(postUpdateDto, article);
-        articleRepository.save(article);
-        return modelMapper.map(article, ArticleDto.class);
-    }
-
-    public void deletePost(Long id) {
-        articleRepository.deleteById(id);
-    }
 
     public List<ArticleDto> getAllPosts() {
         List<Article> articles = articleRepository.findAll();

@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.*;
 import java.util.Set;
 
-@Document(collection = "themes")
+@Document(collection = "subjects")
 @Data
 public class Theme {
     @Id
