@@ -1,6 +1,6 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ArticleRoutingModule } from './article-routing.module';
+import { ThemeRoutingModule } from './theme-routing.module';
 import { ListComponent } from './components/list/list.component';
 import { FormComponent } from './components/form/form.component';
 import { DetailComponent } from './components/detail/detail.component';
@@ -15,6 +15,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ArticleRoutingModule } from '../articles/article-routing.module';
 
 registerLocaleData(localeFr);
 
@@ -49,4 +50,4 @@ const materialModules = [
     },
   ],
 })
-export class ArticlesModule { }
+export class ThemesModule { }
