@@ -15,8 +15,8 @@ public class SubscriptionController {
     private SubscriptionService subscriptionService;
 
     @GetMapping("/{id}")
-    public SubscriptionDto getSubscription(@PathVariable Long id) {
-        return subscriptionService.getSubscriptionById(id);
+    public SubscriptionDto getSubscription(@PathVariable String id) {
+        return subscriptionService.getSubscriptionById(Long.valueOf(id));
     }
 
     @PostMapping
@@ -25,13 +25,13 @@ public class SubscriptionController {
     }
 
     @PutMapping("/{id}")
-    public SubscriptionDto updateSubscription(@PathVariable Long id, @RequestBody SubscriptionDto subscriptionUpdateDto) {
-        return subscriptionService.updateSubscription(id, subscriptionUpdateDto);
+    public SubscriptionDto updateSubscription(@PathVariable String id, @RequestBody SubscriptionDto subscriptionUpdateDto) {
+        return subscriptionService.updateSubscription(Long.valueOf(id), subscriptionUpdateDto);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteSubscription(@PathVariable Long id) {
-        subscriptionService.deleteSubscription(id);
+    public void deleteSubscription(@PathVariable String id) {
+        subscriptionService.deleteSubscription((Long.valueOf(id)));
     }
 
     @GetMapping

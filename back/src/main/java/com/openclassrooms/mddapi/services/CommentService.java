@@ -31,7 +31,7 @@ public class CommentService {
     @Autowired
     private ArticleRepository articleRepository;
 
-    public CommentDto createComment(Long authorId, Long postId, String content) {
+    public CommentDto createComment(String authorId, String postId, String content) {
         Comment comment = Comment.builder()
                 .article(articleRepository.findById(postId).orElseThrow(() -> new RuntimeException("Article not found")))
                 .author(userRepository.findById(postId).orElseThrow(() -> new RuntimeException("Author not found")))

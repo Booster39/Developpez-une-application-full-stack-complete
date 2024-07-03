@@ -1,6 +1,8 @@
 package com.openclassrooms.mddapi.dtos;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -9,9 +11,11 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ArticleDto {
-    private Long id;
-    private Long authorId;
-    private Long subjectId;
+    @MongoId
+    @Id
+    private String id;
+    private String authorId;
+    private String subjectId;
     private String title;
     private String content;
     private LocalDateTime createdAt;

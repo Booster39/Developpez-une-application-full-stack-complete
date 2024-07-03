@@ -21,9 +21,9 @@ public class OpenApiConfig {
     public OpenAPI OpenAPI() {
 
         Info info = new Info()
-                .title("API Chatop")
+                .title("API mdd")
                 .version("1.0")
-                .description("This API exposes endpoints for Chatop webapp.").termsOfService("https://chatop.test.com");
+                .description("This API exposes endpoints for mdd webapp.").termsOfService("https://mdd.test.com");
 
         return new OpenAPI().addSecurityItem(new SecurityRequirement().
                         addList("Bearer Authentication"))

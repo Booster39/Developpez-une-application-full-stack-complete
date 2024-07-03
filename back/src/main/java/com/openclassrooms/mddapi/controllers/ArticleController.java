@@ -49,7 +49,7 @@ public class ArticleController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ArticleDto> getPost(@PathVariable("id") String id)
+    public ResponseEntity<ArticleDto> getPost(@PathVariable String id)
     {
         try {
             ArticleDto articleDto = articleService.getPostById(Long.valueOf(id));

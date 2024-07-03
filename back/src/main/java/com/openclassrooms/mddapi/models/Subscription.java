@@ -1,17 +1,20 @@
 package com.openclassrooms.mddapi.models;
 
 import lombok.*;
+
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import javax.persistence.*;
 
 @Document(collection = "subscriptions")
 @Data
 @Builder
 public class Subscription {
+    @MongoId
     @Id
-    private Long id;
+    private String id;
 
     @DBRef
     private User user;

@@ -1,16 +1,19 @@
 package com.openclassrooms.mddapi.dtos;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class SubscriptionDto {
-    private Long id;
-    private Long userId;
-    private Long subjectId;
+    @MongoId
+    @Id
+    private String id;
+    private String userId;
+    private String subjectId;
 
 }
 

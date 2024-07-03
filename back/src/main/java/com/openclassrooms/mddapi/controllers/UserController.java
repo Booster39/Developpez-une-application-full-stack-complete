@@ -39,7 +39,7 @@ public class UserController {
                   content = @Content)
   })
   @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<UserDto> findById(@PathVariable("id") String id) {
+  public ResponseEntity<UserDto> findById(@PathVariable String id) {
     try {
       UserDto userDto = userService.getUserById(Long.valueOf(id));
       if (userDto == null) {

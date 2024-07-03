@@ -1,10 +1,12 @@
 package com.openclassrooms.mddapi.models;
 
 import lombok.*;
+
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.util.Set;
@@ -17,7 +19,8 @@ import java.util.Set;
 @AllArgsConstructor
 public class User {
     @Id
-    private Long id;
+    @MongoId
+    private String id;
 
     @NonNull
     @Size(max = 255)

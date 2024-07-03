@@ -22,7 +22,7 @@ public class UserService {
 
 
     public UserDto getUserById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userRepository.findById(String.valueOf(id)).orElseThrow(() -> new RuntimeException("User not found"));
         return modelMapper.map(user, UserDto.class);
     }
 
@@ -33,14 +33,14 @@ public class UserService {
     }
 
     public UserDto updateUser(Long id, UserUpdateDto userUpdateDto) {
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userRepository.findById(String.valueOf(id)).orElseThrow(() -> new RuntimeException("User not found"));
         modelMapper.map(userUpdateDto, user);
         userRepository.save(user);
         return modelMapper.map(user, UserDto.class);
     }
 
     public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+        userRepository.deleteById(String.valueOf(id));
     }
 
     public List<UserDto> getAllUsers() {

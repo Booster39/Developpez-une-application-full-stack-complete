@@ -20,7 +20,7 @@ public class ThemeController {
     private ThemeService themeService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<ThemeDto> getSubject(@PathVariable("id") String id)
+    public ResponseEntity<ThemeDto> getSubject(@PathVariable String id)
     {
         try {
             ThemeDto themeDto = themeService.getSubjectById(Long.valueOf(id));

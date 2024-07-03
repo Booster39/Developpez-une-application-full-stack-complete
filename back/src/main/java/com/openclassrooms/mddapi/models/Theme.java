@@ -1,20 +1,22 @@
 package com.openclassrooms.mddapi.models;
 
 import lombok.*;
+
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import javax.persistence.*;
 import java.util.Set;
 
 @Document(collection = "subjects")
 @Data
 @Builder
 public class Theme {
+    @MongoId
     @Id
-    private Long id;
+    private String id;
 
-    @Column(unique = true, nullable = false)
     private String name;
 
     @DBRef

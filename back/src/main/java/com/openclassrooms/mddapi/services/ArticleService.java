@@ -27,7 +27,7 @@ public class ArticleService {
 
 
     public ArticleDto getPostById(Long id) {
-        Article article = articleRepository.findById(id).orElseThrow(() -> new RuntimeException("Article not found"));
+        Article article = articleRepository.findById(String.valueOf(id)).orElseThrow(() -> new RuntimeException("Article not found"));
         return modelMapper.map(article, ArticleDto.class);
     }
 
