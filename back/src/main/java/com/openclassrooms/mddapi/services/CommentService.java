@@ -30,10 +30,10 @@ public class CommentService {
     @Autowired
     private ArticleRepository articleRepository;
 
-    public CommentDto createComment(Long authorId, Long postId, String content) {
+    public CommentDto createComment(Long authorId, Long articleId, String content) {
         Comment comment = Comment.builder()
-                .article(articleRepository.findById(postId).orElseThrow(() -> new RuntimeException("Article not found")))
-                .author(userRepository.findById(postId).orElseThrow(() -> new RuntimeException("Author not found")))
+                .article(articleRepository.findById(articleId).orElseThrow(() -> new RuntimeException("Article not found")))
+                .author(userRepository.findById(authorId).orElseThrow(() -> new RuntimeException("Author not found")))
                 .content(content)
                 .build();
         comment.setCreated_at(LocalDateTime.now());

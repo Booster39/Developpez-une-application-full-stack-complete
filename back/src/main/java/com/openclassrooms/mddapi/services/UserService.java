@@ -25,15 +25,15 @@ public class UserService {
         return modelMapper.map(user, UserDto.class);
     }
 
-    public UserDto createUser(UserCreateDto userCreateDto) {
-        User user = modelMapper.map(userCreateDto, User.class);
+    public UserDto createUser(UserDto userDto) {
+        User user = modelMapper.map(userDto, User.class);
         userRepository.save(user);
         return modelMapper.map(user, UserDto.class);
     }
 
-    public UserDto updateUser(Long id, UserUpdateDto userUpdateDto) {
+    public UserDto updateUser(Long id, UserDto userDto) {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        modelMapper.map(userUpdateDto, user);
+        modelMapper.map(userDto, user);
         userRepository.save(user);
         return modelMapper.map(user, UserDto.class);
     }

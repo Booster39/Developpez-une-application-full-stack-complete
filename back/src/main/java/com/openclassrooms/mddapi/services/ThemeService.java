@@ -22,15 +22,15 @@ public class ThemeService {
         return modelMapper.map(theme, ThemeDto.class);
     }
 
-    public ThemeDto createSubject(ThemeCreateDto subjectCreateDto) {
-        Theme theme = modelMapper.map(subjectCreateDto, Theme.class);
+    public ThemeDto createSubject(ThemeDto themeDto) {
+        Theme theme = modelMapper.map(themeDto, Theme.class);
         themeRepository.save(theme);
         return modelMapper.map(theme, ThemeDto.class);
     }
 
-    public ThemeDto updateSubject(Long id, ThemeCreateDto subjectUpdateDto) {
+    public ThemeDto updateSubject(Long id, ThemeDto themeDto) {
         Theme theme = themeRepository.findById(id).orElseThrow(() -> new RuntimeException("Theme not found"));
-        modelMapper.map(subjectUpdateDto, theme);
+        modelMapper.map(themeDto, theme);
         themeRepository.save(theme);
         return modelMapper.map(theme, ThemeDto.class);
     }
