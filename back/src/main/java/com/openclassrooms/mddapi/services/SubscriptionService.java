@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.services;
 
-import com.openclassrooms.mddapi.dtos.SubscriptionCreateDto;
 import com.openclassrooms.mddapi.dtos.SubscriptionDto;
 import com.openclassrooms.mddapi.models.Subscription;
 import com.openclassrooms.mddapi.repository.SubscriptionRepository;
@@ -23,15 +22,15 @@ public class SubscriptionService {
         return modelMapper.map(subscription, SubscriptionDto.class);
     }
 
-    public SubscriptionDto createSubscription(SubscriptionCreateDto subscriptionCreateDto) {
-        Subscription subscription = modelMapper.map(subscriptionCreateDto, Subscription.class);
+    public SubscriptionDto createSubscription(SubscriptionDto subscriptionDto) {
+        Subscription subscription = modelMapper.map(subscriptionDto, Subscription.class);
         subscriptionRepository.save(subscription);
         return modelMapper.map(subscription, SubscriptionDto.class);
     }
 
-    public SubscriptionDto updateSubscription(Long id, SubscriptionDto subscriptionUpdateDto) {
+    public SubscriptionDto updateSubscription(Long id, SubscriptionDto subscriptionDto) {
         Subscription subscription = subscriptionRepository.findById(id).orElseThrow(() -> new RuntimeException("Subscription not found"));
-        modelMapper.map(subscriptionUpdateDto, subscription);
+        modelMapper.map(subscriptionDto, subscription);
         subscriptionRepository.save(subscription);
         return modelMapper.map(subscription, SubscriptionDto.class);
     }

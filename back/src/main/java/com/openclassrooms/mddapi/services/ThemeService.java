@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.services;
 
-import com.openclassrooms.mddapi.dtos.ThemeCreateDto;
 import com.openclassrooms.mddapi.dtos.ThemeDto;
 import com.openclassrooms.mddapi.models.Theme;
 import com.openclassrooms.mddapi.repository.ThemeRepository;

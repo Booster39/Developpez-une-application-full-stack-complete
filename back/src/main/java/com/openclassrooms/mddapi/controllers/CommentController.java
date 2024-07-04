@@ -1,8 +1,7 @@
 package com.openclassrooms.mddapi.controllers;
 
-import com.openclassrooms.mddapi.dtos.ArticleDto;
-import com.openclassrooms.mddapi.dtos.CommentCreateDto;
 import com.openclassrooms.mddapi.dtos.CommentDto;
+import com.openclassrooms.mddapi.payloads.response.CommentResponse;
 import com.openclassrooms.mddapi.payloads.response.StringResponse;
 import com.openclassrooms.mddapi.services.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +15,16 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/comment")
+@RequestMapping("/api/comments")
 public class CommentController {
 
     @Autowired
     private CommentService commentService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createComment(@Valid @RequestBody CommentCreateDto commentCreateDto) {
+    public ResponseEntity<?> createComment(@Valid @RequestBody CommentResponse commentResponse) {
         try {
-            CommentDto commentDto = commentService.createComment(commentCreateDto.getAuthor_id(), commentCreateDto.getPost_id(), commentCreateDto.getContent());
+            CommentDto commentDto = commentService.createComment(commentResponse.getAuthorId(), commentResponse.getArticleId(), commentResponse.getContent());
             return new ResponseEntity<>(new StringResponse("Message sent with success"), HttpStatus.CREATED);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();

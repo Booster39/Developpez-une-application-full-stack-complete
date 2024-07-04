@@ -7,10 +7,9 @@ import org.springframework.data.annotation.Id;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class SubscriptionDto {
     private Long id;
-    private String user_id;
-    private String subject_id;
-
+    private Long userId;
+    private Long themeId;
 }
-

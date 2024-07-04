@@ -9,13 +9,13 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class ArticleDto {
     private Long id;
-    private Long author_id;
-    private Long subject_id;
+    private Long authorId;
+    private Long themeId;
     private String title;
     private String content;
     private LocalDateTime createdAt;
-    private Set<CommentDto> comments;
+    private LocalDateTime updatedAt;
 }
-

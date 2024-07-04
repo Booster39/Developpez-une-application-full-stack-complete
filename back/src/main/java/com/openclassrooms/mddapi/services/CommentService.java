@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.services;
 
-import com.openclassrooms.mddapi.dtos.CommentCreateDto;
 import com.openclassrooms.mddapi.dtos.CommentDto;
 import com.openclassrooms.mddapi.models.Comment;
 import com.openclassrooms.mddapi.repository.ArticleRepository;

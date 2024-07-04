@@ -10,13 +10,12 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class CommentDto {
-
-
     private Long id;
-    private Long author_id;
-    private Long post_id;
+    private Long authorId;
+    private Long articleId;
     private String content;
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }
-

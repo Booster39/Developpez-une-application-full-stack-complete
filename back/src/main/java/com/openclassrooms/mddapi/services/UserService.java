@@ -2,7 +2,6 @@ package com.openclassrooms.mddapi.services;
 
 import com.openclassrooms.mddapi.dtos.UserCreateDto;
 import com.openclassrooms.mddapi.dtos.UserDto;
-import com.openclassrooms.mddapi.dtos.UserUpdateDto;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import org.modelmapper.ModelMapper;

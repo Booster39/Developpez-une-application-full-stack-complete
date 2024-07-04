@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.controllers;
 
-import com.openclassrooms.mddapi.dtos.SubscriptionCreateDto;
 import com.openclassrooms.mddapi.dtos.SubscriptionDto;
 import com.openclassrooms.mddapi.services.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/subscription")
+@RequestMapping("/api/subscriptions")
 public class SubscriptionController {
 
     @Autowired
@@ -20,8 +19,8 @@ public class SubscriptionController {
     }
 
     @PostMapping
-    public SubscriptionDto createSubscription(@RequestBody SubscriptionCreateDto subscriptionCreateDto) {
-        return subscriptionService.createSubscription(subscriptionCreateDto);
+    public SubscriptionDto createSubscription(@RequestBody SubscriptionDto subscriptionDto) {
+        return subscriptionService.createSubscription(subscriptionDto);
     }
 
     @PutMapping("/{id}")

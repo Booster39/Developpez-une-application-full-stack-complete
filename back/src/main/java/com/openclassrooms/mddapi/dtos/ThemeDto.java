@@ -8,11 +8,9 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class ThemeDto {
     private Long id;
     private String name;
-    private Set<ArticleDto> posts;
-    private Set<SubscriptionDto> subscriptions;
-
 }
 

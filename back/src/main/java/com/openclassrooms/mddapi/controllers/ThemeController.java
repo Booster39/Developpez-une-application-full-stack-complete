@@ -1,8 +1,6 @@
 package com.openclassrooms.mddapi.controllers;
 
 
-import com.openclassrooms.mddapi.dtos.ArticleDto;
-import com.openclassrooms.mddapi.dtos.ThemeCreateDto;
 import com.openclassrooms.mddapi.dtos.ThemeDto;
 import com.openclassrooms.mddapi.services.ThemeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/theme")
+@RequestMapping("/api/themes")
 public class ThemeController {
 
     @Autowired
