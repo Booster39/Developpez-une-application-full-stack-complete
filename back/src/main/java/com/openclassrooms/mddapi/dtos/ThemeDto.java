@@ -2,7 +2,6 @@ package com.openclassrooms.mddapi.dtos;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.Set;
 
@@ -10,9 +9,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ThemeDto {
-    @MongoId
-    @Id
-    private String id;
+    private Long id;
     private String name;
     private Set<ArticleDto> posts;
     private Set<SubscriptionDto> subscriptions;

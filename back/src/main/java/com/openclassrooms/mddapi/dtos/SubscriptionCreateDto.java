@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SubscriptionCreateDto {
 
-    private String userId;
-    private String subjectId;
+    private Long user_id;
+    private Long subject_id;
 
     // Getters and setters
 }

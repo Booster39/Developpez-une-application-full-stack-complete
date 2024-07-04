@@ -3,7 +3,6 @@ package com.openclassrooms.mddapi.dtos;
 import lombok.*;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.Set;
 
@@ -11,13 +10,9 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDto {
-    @MongoId
-    @Id
-    private String id;
+
+    private Long id;
     private String email;
     private String username;
-   /* private Set<SubscriptionDto> subscriptions;
-    private Set<ArticleDto> posts;
-    private Set<CommentDto> comments;*/
 }
 

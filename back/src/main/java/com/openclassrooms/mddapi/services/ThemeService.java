@@ -19,7 +19,7 @@ public class ThemeService {
     private ModelMapper modelMapper;
 
     public ThemeDto getSubjectById(Long id) {
-        Theme theme = themeRepository.findById(String.valueOf(id)).orElseThrow(() -> new RuntimeException("Theme not found"));
+        Theme theme = themeRepository.findById(id).orElseThrow(() -> new RuntimeException("Theme not found"));
         return modelMapper.map(theme, ThemeDto.class);
     }
 
@@ -30,14 +30,14 @@ public class ThemeService {
     }
 
     public ThemeDto updateSubject(Long id, ThemeCreateDto subjectUpdateDto) {
-        Theme theme = themeRepository.findById(String.valueOf(id)).orElseThrow(() -> new RuntimeException("Theme not found"));
+        Theme theme = themeRepository.findById(id).orElseThrow(() -> new RuntimeException("Theme not found"));
         modelMapper.map(subjectUpdateDto, theme);
         themeRepository.save(theme);
         return modelMapper.map(theme, ThemeDto.class);
     }
 
     public void deleteSubject(Long id) {
-        themeRepository.deleteById(String.valueOf(id));
+        themeRepository.deleteById(id);
     }
 
     public List<ThemeDto> getAllSubjects() {

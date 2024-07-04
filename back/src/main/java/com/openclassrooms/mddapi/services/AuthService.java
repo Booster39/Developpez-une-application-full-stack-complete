@@ -63,7 +63,8 @@ private ModelMapper modelMapper;
         User user = new User(
                 signUpRequest.getEmail(),
                 signUpRequest.getName(),
-                passwordEncoder.encode(signUpRequest.getPassword())
+                //passwordEncoder.encode(signUpRequest.getPassword())
+                signUpRequest.getPassword()
         );
 
         userRepository.save(user);

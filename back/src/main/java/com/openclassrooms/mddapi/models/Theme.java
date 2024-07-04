@@ -1,27 +1,33 @@
 package com.openclassrooms.mddapi.models;
 
 import lombok.*;
+import lombok.experimental.Accessors;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.MongoId;
+import javax.persistence.*;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
-@Document(collection = "subjects")
+@Entity
 @Data
 @Builder
+@Table(name = "THEMES")
+@NoArgsConstructor
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Accessors(chain = true)
+@EntityListeners(AuditingEntityListener.class)
+@EqualsAndHashCode(of = {"id"})
 public class Theme {
-    @MongoId
     @Id
-    private String id;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NonNull
+    @Size(max = 255)
     private String name;
 
-    @DBRef
-    private Set<Article> articles;
-
-    @DBRef
-    private Set<Subscription> subscriptions;
 }

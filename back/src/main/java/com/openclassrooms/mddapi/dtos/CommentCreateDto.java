@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CommentCreateDto {
 
-    private String authorId;
-    private String postId;
+    private Long author_id;
+    private Long post_id;
     private String content;
 
     // Getters and setters

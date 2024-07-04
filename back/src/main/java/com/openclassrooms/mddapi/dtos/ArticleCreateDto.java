@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ArticleCreateDto {
 
-    private String authorId;
-    private String subjectId;
+    private Long author_id;
+    private Long subject_id;
     private String title;
     private String content;
 

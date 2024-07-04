@@ -1,26 +1,32 @@
 package com.openclassrooms.mddapi.models;
 
 import lombok.*;
+import lombok.experimental.Accessors;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.MongoId;
-
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
-import java.util.Set;
+import java.time.LocalDateTime;
 
-@Document(collection = "users")
+
+@Entity
+@Table(name = "USERS", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "email")})
 @Data
+@Accessors(chain = true)
+@EntityListeners(AuditingEntityListener.class)
+@EqualsAndHashCode(of = {"id"})
 @Builder
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class User {
     @Id
-    @MongoId
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NonNull
     @Size(max = 255)
@@ -35,12 +41,11 @@ public class User {
     @Size(min = 8, max = 255)
     private String password;
 
-    /*@DBRef
-    private Set<Subscription> subscriptions;
+    @CreatedDate
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime created_at;
 
-    @DBRef
-    private Set<Article> articles;
-
-    @DBRef
-    private Set<Comment> comments;*/
+    @UpdateTimestamp
+    @Column(name = "updated_at", length = 8)
+    private LocalDateTime updated_at;
 }

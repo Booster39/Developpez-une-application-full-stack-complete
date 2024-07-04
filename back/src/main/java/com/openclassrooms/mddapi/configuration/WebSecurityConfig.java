@@ -6,6 +6,7 @@ import com.openclassrooms.mddapi.security.jwt.AuthTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -43,11 +44,10 @@ public class WebSecurityConfig {
   }
 
 
-  @Bean
+ @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
-
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

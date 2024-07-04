@@ -19,7 +19,7 @@ public class SubscriptionService {
     private ModelMapper modelMapper;
 
     public SubscriptionDto getSubscriptionById(Long id) {
-        Subscription subscription = subscriptionRepository.findById(String.valueOf(id)).orElseThrow(() -> new RuntimeException("Subscription not found"));
+        Subscription subscription = subscriptionRepository.findById(id).orElseThrow(() -> new RuntimeException("Subscription not found"));
         return modelMapper.map(subscription, SubscriptionDto.class);
     }
 
@@ -30,14 +30,14 @@ public class SubscriptionService {
     }
 
     public SubscriptionDto updateSubscription(Long id, SubscriptionDto subscriptionUpdateDto) {
-        Subscription subscription = subscriptionRepository.findById(String.valueOf(id)).orElseThrow(() -> new RuntimeException("Subscription not found"));
+        Subscription subscription = subscriptionRepository.findById(id).orElseThrow(() -> new RuntimeException("Subscription not found"));
         modelMapper.map(subscriptionUpdateDto, subscription);
         subscriptionRepository.save(subscription);
         return modelMapper.map(subscription, SubscriptionDto.class);
     }
 
     public void deleteSubscription(Long id) {
-        subscriptionRepository.deleteById(String.valueOf(id));
+        subscriptionRepository.deleteById(id);
     }
 
     public List<SubscriptionDto> getAllSubscriptions() {
