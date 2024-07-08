@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+/*import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Theme } from 'src/app/features/themes/interfaces/theme.interface';
@@ -31,3 +31,4 @@ export class ThemesService {
     return this.httpClient.put<ThemeResponse>(`${this.pathService}/${id}`, form);
   }
 }
+*/

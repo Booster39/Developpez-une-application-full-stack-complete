@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+/*import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormComponent } from './components/form/form.component';
 import { DetailComponent } from './components/detail/detail.component';
@@ -17,3 +17,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class ThemeRoutingModule { }
+*/

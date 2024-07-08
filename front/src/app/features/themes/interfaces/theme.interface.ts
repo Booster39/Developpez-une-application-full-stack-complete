@@ -1,4 +1,4 @@
-import { Article } from "../../articles/interfaces/article.interface"
+/*import { Article } from "../../articles/interfaces/article.interface"
 
 export interface Theme {
 	id: number,
@@ -9,4 +9,4 @@ export interface Theme {
 	subscribed: boolean
 	created_at: Date,
 	updated_at: Date
-}
+}*/

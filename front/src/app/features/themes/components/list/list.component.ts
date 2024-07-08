@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+/*import { Component } from '@angular/core';
 import { User } from 'src/app/interfaces/user.interface';
 import { SessionService } from 'src/app/services/session.service';
-import { ArticlesService } from '../../services/themes.service';
+import { ThemesService } from '../../services/themes.service';
 
 @Component({
   selector: 'app-list',
@@ -10,14 +10,15 @@ import { ArticlesService } from '../../services/themes.service';
 })
 export class ListComponent {
 
-  public articles$ = this.articlesService.all();
+  public themes$ = this.themesService.all();
 
   constructor(
     private sessionService: SessionService,
-    private articlesService: ArticlesService
+    private themesService: ThemesService
   ) { }
 
   get user(): User | undefined {
     return this.sessionService.user;
   }
 }
+*/

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/*import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
@@ -52,7 +52,7 @@ export class DetailComponent implements OnInit {
       (messageResponse: MessageResponse) => {
         this.initMessageForm();
         this.matSnackBar.open(messageResponse.messages, "Close", { duration: 3000 });
-      });*/
+      });
   }
 
   private initMessageForm() {
@@ -62,3 +62,4 @@ export class DetailComponent implements OnInit {
   }
 
 }
+*/

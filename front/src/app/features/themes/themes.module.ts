@@ -1,4 +1,4 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+/*import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeRoutingModule } from './theme-routing.module';
 import { ListComponent } from './components/list/list.component';
@@ -51,3 +51,4 @@ const materialModules = [
   ],
 })
 export class ThemesModule { }
+*/
