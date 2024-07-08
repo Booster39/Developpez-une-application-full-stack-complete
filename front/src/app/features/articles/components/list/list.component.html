@@ -17,14 +17,14 @@
                 <mat-card-header>
                     <mat-card-title>{{ article.title }}</mat-card-title>
                     <mat-card-subtitle>
-                      <!--<app-owner-info [ownerId]="article.owner_id"></app-owner-info>--> 
+                      <app-owner-info [ownerId]="article.owner_id"></app-owner-info>
                     </mat-card-subtitle>
                 </mat-card-header>
                 
                 <mat-card-content>
                     <p>
-                        Date: {{article.date}}
-                        Auteur: {{article.author}}
+                        Date: {{article.created_at}}
+                        Auteur: {{article.author_id}}
                         Contenu: {{ article.content }}
                     </p>
                 </mat-card-content>

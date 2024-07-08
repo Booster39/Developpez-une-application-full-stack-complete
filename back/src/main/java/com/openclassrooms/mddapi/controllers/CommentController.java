@@ -24,7 +24,7 @@ public class CommentController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createComment(@Valid @RequestBody CommentResponse commentResponse) {
         try {
-            CommentDto commentDto = commentService.createComment(commentResponse.getAuthorId(), commentResponse.getArticleId(), commentResponse.getContent());
+            CommentDto commentDto = commentService.createComment(commentResponse.getAuthor_id(), commentResponse.getArticle_id(), commentResponse.getContent());
             return new ResponseEntity<>(new StringResponse("Message sent with success"), HttpStatus.CREATED);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();

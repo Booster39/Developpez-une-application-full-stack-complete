@@ -44,14 +44,8 @@ export class FormComponent implements OnInit {
 
   public submit(): void {
     const formData = new FormData();
-    formData.append('name', this.articleForm!.get('name')?.value);
-    formData.append('surface', this.articleForm!.get('surface')?.value);
-    formData.append('price', this.articleForm!.get('price')?.value);
-    if (!this.onUpdate) {
-      formData.append('picture', this.articleForm!.get('picture')?.value._files[0]);
-    }
-    formData.append('description', this.articleForm!.get('description')?.value);
-
+    formData.append('title', this.articleForm!.get('title')?.value);
+    formData.append('content', this.articleForm!.get('content')?.value);
     if (!this.onUpdate) {
       this.articlesService
         .create(formData)
@@ -71,17 +65,13 @@ export class FormComponent implements OnInit {
     }
     this.articleForm = this.fb.group({
       tilte: [article ? article.title : '', [Validators.required]],
-      author: [article ? article.author : '', [Validators.required]],
       content: [article ? article.content : '', [Validators.required]],
-      theme: [article ? article.theme : '', [Validators.required]],
+    
     });
-    if (!this.onUpdate) {
-      this.articleForm.addControl('picture', this.fb.control('', [Validators.required]));
-    }
   }
 
   private exitPage(articleResponse: ArticleResponse): void {
-    //this.matSnackBar.open(articleResponse.messages, "Close", { duration: 3000 });
+    this.matSnackBar.open(articleResponse.message, "Close", { duration: 3000 });
     this.router.navigate(['articles']);
   }
 }

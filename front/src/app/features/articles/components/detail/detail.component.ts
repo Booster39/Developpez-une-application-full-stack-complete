@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from 'src/app/features/articles/interfaces/article.interface';
 import { SessionService } from 'src/app/services/session.service';
-import { MessageRequest } from '../../interfaces/api/commentRequest.interface';
+import { CommentRequest } from '../../interfaces/api/commentRequest.interface';
 import { MessageResponse } from '../../interfaces/api/messageResponse.interface';
 import { MessagesService } from '../../services/messages.service';
 import { ArticlesService } from '../../services/articles.service';
@@ -42,17 +42,17 @@ export class DetailComponent implements OnInit {
   }
 
   public sendMessage(): void {
-    /*const message = {
+    const message = {
       article_id: this.article!.id,
-      user_id: this.sessionService.user?.id,
-      //message: this.messageForm.value.message
-    } as MessageRequest;
+      author_id: this.sessionService.user?.id,
+      content: this.messageForm.value.message
+    } as CommentRequest;
 
     this.messagesService.send(message).subscribe(
       (messageResponse: MessageResponse) => {
         this.initMessageForm();
-        this.matSnackBar.open(messageResponse.messages, "Close", { duration: 3000 });
-      });*/
+        this.matSnackBar.open(messageResponse.message, "Close", { duration: 3000 });
+      });
   }
 
   private initMessageForm() {
