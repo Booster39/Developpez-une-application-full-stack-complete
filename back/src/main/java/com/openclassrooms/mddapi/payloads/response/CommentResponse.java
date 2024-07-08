@@ -8,13 +8,13 @@ import lombok.Data;
 @Data
 public class CommentResponse {
 
-  private Long authorId;
-  private Long articleId;
+  private Long author_id;
+  private Long article_id;
   private String content;
-  public CommentResponse(Long authorId, Long articleId, String content)
+  public CommentResponse(Long author_id, Long article_id, String content)
   {
-    this.authorId = authorId;
-    this.articleId = articleId;
+    this.author_id = author_id;
+    this.article_id = article_id;
     this.content = content;
   }
 }

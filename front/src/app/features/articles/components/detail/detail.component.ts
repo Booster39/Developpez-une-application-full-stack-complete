@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from 'src/app/features/articles/interfaces/article.interface';
 import { SessionService } from 'src/app/services/session.service';
-import { MessageRequest } from '../../interfaces/api/messageRequest.interface';
+import { MessageRequest } from '../../interfaces/api/commentRequest.interface';
 import { MessageResponse } from '../../interfaces/api/messageResponse.interface';
 import { MessagesService } from '../../services/messages.service';
 import { ArticlesService } from '../../services/articles.service';

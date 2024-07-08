@@ -13,9 +13,9 @@ import java.util.List;
 @Builder
 public class CommentDto {
     private Long id;
-    private Long authorId;
-    private Long articleId;
+    private Long author_id;
+    private Long article_id;
     private String content;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private LocalDateTime created_at;
+    private LocalDateTime updated_at;
 }
