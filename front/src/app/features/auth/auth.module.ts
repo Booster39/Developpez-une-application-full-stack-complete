@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
 
 const materialModules = [
   MatButtonModule,
@@ -30,6 +31,7 @@ const materialModules = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
     ...materialModules
   ]
 })

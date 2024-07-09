@@ -1,18 +1,3 @@
-
-<div class="center">
-    <img src="/assets/logo_p6.png" alt="logo" />
-    <div>
-    <button routerLink="login" class="homebutton"  mat-raised-button color="primary">Se connecter</button>
-    <button routerLink="register" class="homebutton" mat-raised-button color="primary">S'inscrire</button>
-    </div>
-</div>
-
-<!--<div *ngIf="$isLogged() | async; else notLogged">
-  <span routerLink="articles" class="link">Articles</span>
-  <span routerLink="themes" class="link">Themes</span>
-
-  <span (click)="logout()" class="link">Logout</span>
-</div>-->
 <div>
     <router-outlet></router-outlet>
 </div>
