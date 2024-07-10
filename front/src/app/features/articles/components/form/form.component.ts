@@ -6,7 +6,7 @@ import { SessionService } from 'src/app/services/session.service';
 import { ArticleResponse } from '../../interfaces/api/articleResponse.interface';
 import { Article } from '../../interfaces/article.interface';
 import { ArticlesService } from '../../services/articles.service';
-import { ThemeService } from 'src/app/services/theme.service';
+import { ThemeService } from 'src/app/services/themes.service';
 
 @Component({
   selector: 'app-form',
@@ -26,7 +26,6 @@ export class FormComponent implements OnInit {
     private fb: FormBuilder,
     private matSnackBar: MatSnackBar,
     private articlesService: ArticlesService,
-    private sessionService: SessionService,
     private themeService: ThemeService,
     private router: Router
   ) {
@@ -46,21 +45,27 @@ export class FormComponent implements OnInit {
   }
 
   public submit(): void {
-    const formData = new FormData();
+    const article = this.articleForm?.value as FormData;
+    /*this.articlesService
+    .create(article)
+    .subscribe((_: Article) => this.exitPage('Article created !'));*/
+    /*const formData = new FormData();
     formData.append('title', this.articleForm!.get('title')?.value);
     formData.append('content', this.articleForm!.get('content')?.value);
-    formData.append('theme_id', this.articleForm!.get('theme_id')?.value);
+    formData.append('theme_id', this.articleForm!.get('theme_id')?.value);*/
+    if (!this.onUpdate) {
       this.articlesService
-        .create(formData)
+        .create(article)
         .subscribe((articleResponse: ArticleResponse) => this.exitPage(articleResponse));
+    }
   }
 
   private initForm(article?: Article): void {
-    console.log(article);
+    /*console.log(article);
     console.log(this.sessionService.user!.id);
     if( (article !== undefined) && (article?.owner_id !== this.sessionService.user!.id)) {
       this.router.navigate(['/articles']);
-    }
+    }*/
     this.articleForm = this.fb.group({
       title: [article ? article.title : '', [Validators.required]],
       content: [article ? article.content : '', [Validators.required]],
