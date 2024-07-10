@@ -12,10 +12,10 @@ import java.util.Set;
 @Builder
 public class ArticleDto {
     private Long id;
-    private Long authorId;
-    private Long themeId;
+    private Long author_id;
+    private Long theme_id;
     private String title;
     private String content;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private LocalDateTime created_at;
+    private LocalDateTime updated_at;
 }

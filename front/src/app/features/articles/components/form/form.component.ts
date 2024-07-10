@@ -6,6 +6,7 @@ import { SessionService } from 'src/app/services/session.service';
 import { ArticleResponse } from '../../interfaces/api/articleResponse.interface';
 import { Article } from '../../interfaces/article.interface';
 import { ArticlesService } from '../../services/articles.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-form',
@@ -16,6 +17,7 @@ export class FormComponent implements OnInit {
 
   public onUpdate: boolean = false;
   public articleForm: FormGroup | undefined;
+  public themes$ = this.themeService.all();
 
   private id: string | undefined;
 
@@ -25,6 +27,7 @@ export class FormComponent implements OnInit {
     private matSnackBar: MatSnackBar,
     private articlesService: ArticlesService,
     private sessionService: SessionService,
+    private themeService: ThemeService,
     private router: Router
   ) {
   }
@@ -46,15 +49,10 @@ export class FormComponent implements OnInit {
     const formData = new FormData();
     formData.append('title', this.articleForm!.get('title')?.value);
     formData.append('content', this.articleForm!.get('content')?.value);
-    if (!this.onUpdate) {
+    formData.append('theme_id', this.articleForm!.get('theme_id')?.value);
       this.articlesService
         .create(formData)
         .subscribe((articleResponse: ArticleResponse) => this.exitPage(articleResponse));
-    } else {
-      this.articlesService
-        .update(this.id!, formData)
-        .subscribe((articleResponse: ArticleResponse) => this.exitPage(articleResponse));
-    }
   }
 
   private initForm(article?: Article): void {
@@ -64,14 +62,14 @@ export class FormComponent implements OnInit {
       this.router.navigate(['/articles']);
     }
     this.articleForm = this.fb.group({
-      tilte: [article ? article.title : '', [Validators.required]],
+      title: [article ? article.title : '', [Validators.required]],
       content: [article ? article.content : '', [Validators.required]],
-    
+      theme_id: [article ? article.theme_id : '', [Validators.required]],
     });
   }
 
   private exitPage(articleResponse: ArticleResponse): void {
     this.matSnackBar.open(articleResponse.message, "Close", { duration: 3000 });
-    this.router.navigate(['articles']);
+    this.router.navigate(['/articles']);
   }
 }

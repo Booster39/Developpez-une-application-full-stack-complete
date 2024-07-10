@@ -15,6 +15,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs'; 
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatOptionModule } from '@angular/material/core';
 
 registerLocaleData(localeFr);
 
@@ -26,6 +29,9 @@ const materialModules = [
   MatInputModule,
   MatSnackBarModule,
   MatToolbarModule,
+  MatTabsModule,
+  MatGridListModule,
+  MatOptionModule
 ];
 
 @NgModule({

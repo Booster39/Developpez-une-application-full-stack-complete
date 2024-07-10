@@ -10,6 +10,6 @@ import org.springframework.data.annotation.Id;
 @Builder
 public class SubscriptionDto {
     private Long id;
-    private Long user_id;
+    private Long author_id;
     private Long theme_id;
 }

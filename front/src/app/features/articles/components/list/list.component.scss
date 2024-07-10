@@ -5,3 +5,23 @@
         gap: 2rem;
     }
 }
+
+.link {
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.link + .link {
+    margin-left: 10px;
+}
+
+.img {
+    width: 100px;
+}
+
+.buttons {
+    position:relative; 
+    display:inline-block; 
+    left: 80%;
+}

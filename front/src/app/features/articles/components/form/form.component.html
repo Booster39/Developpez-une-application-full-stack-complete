@@ -10,37 +10,29 @@
                 <button mat-icon-button routerLink="/articles">
                     <mat-icon>arrow_back</mat-icon>
                 </button>
-                <h1 *ngIf="!onUpdate">Create article</h1>
-                <h1 *ngIf="onUpdate">Update article</h1>
+                <h1>Créer un nouvel article</h1>
             </div>
         </mat-card-title>
-        <mat-card-content *ngIf="articleForm">
-            <form class="mt2" fxLayout="column" [formGroup]="articleForm" (ngSubmit)="submit()">
-                <mat-form-field appearance="outline" class="" fxFlex>
-                    <mat-label>Name</mat-label>
-                    <input matInput formControlName="name">
+        <mat-card-content >
+            <form class="mt2" class="example-form"  (ngSubmit)="submit()">
+                <mat-form-field class="example-full-width" fxFlex>
+                    <mat-label>Titre</mat-label>
+                    <input matInput formControlName="title" placeholder="Titre de l'article">
                 </mat-form-field>
-                <mat-form-field appearance="outline" fxFlex>
-                    <mat-label>Surface</mat-label>
-                    <input matInput type="number" formControlName="surface">
-                    <mat-icon matSuffix>straighten</mat-icon>
-                </mat-form-field>
-                <mat-form-field appearance="outline" fxFlex>
-                    <mat-label>Price</mat-label>
-                    <input matInput type="number" formControlName="price">
-                    <mat-icon matSuffix>attach_money</mat-icon>
-                </mat-form-field>
-                <mat-form-field appearance="outline" *ngIf="!this.onUpdate">
-                    <mat-label>Picture</mat-label>
-                    <ngx-mat-file-input placeholder="Select picture" formControlName="picture"></ngx-mat-file-input>
-                    <mat-icon matSuffix>folder</mat-icon>
-                </mat-form-field>
-                <mat-form-field appearance="outline" fxFlex>
-                    <mat-label>Description</mat-label>
-                    <textarea matInput rows="8" formControlName="description"></textarea>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Theme</mat-label>
+                    <mat-select ngDefaultControl formControlName="theme_id" aria-placeholder="Sélectionner un thème">
+                      <mat-option *ngFor="let theme of themes$ | async" [value]="theme.id">
+                        {{theme.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                <mat-form-field class="example-full-width" fxFlex>
+                    <mat-label>Contenu</mat-label>
+                    <textarea matInput rows="8" formControlName="content" placeholder="Contenu de l'article"></textarea>
                 </mat-form-field>
                 <div fxLayout="row" fxLayoutAlign="center center">
-                    <button mat-raised-button color="primary" type="submit" [disabled]="articleForm.invalid">
+                    <button mat-raised-button color="primary" type="submit" >
                         Save
                     </button>
                 </div>

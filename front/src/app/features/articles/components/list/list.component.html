@@ -1,17 +1,26 @@
-<mat-toolbar>
+<mat-toolbar fxLayout="row">
     <img class="img" src="/assets/logo_p6.png" routerLink="" alt="logo" />
+    
+    <div class="buttons">
+        <span routerLink="" class="link">Articles</span>
+        <span routerLink="me" class="link">Thèmes</span>
+        <span  class="link">Compte</span>
+      </div>
 </mat-toolbar>
+    
 <hr />
 <div class="list">
     <mat-card>
+
         <mat-card-header fxLayout="row" fxLayoutAlign="space-between center">
 
             <button mat-raised-button color="primary" routerLink="create">
                 <mat-icon>add</mat-icon>
                 <span class="ml1">Créer un article</span>
             </button>
-
         </mat-card-header>
+
+
         <div class="items mt2" fxLayout="row" fxLayout.lt-md="column">
             <mat-card class="item" *ngFor="let article of (articles$ | async)?.articles" fxFlex>
                 <mat-card-header>
@@ -30,5 +39,12 @@
                 </mat-card-content>
             </mat-card>
         </div>
+
+        <mat-grid-list cols="2" rowHeight="2:1">
+            <mat-grid-tile>1</mat-grid-tile>
+            <mat-grid-tile>2</mat-grid-tile>
+            <mat-grid-tile>3</mat-grid-tile>
+            <mat-grid-tile>4</mat-grid-tile>
+        </mat-grid-list>
     </mat-card>
 </div>

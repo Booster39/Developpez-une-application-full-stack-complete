@@ -36,7 +36,7 @@ public class Article {
     private LocalDateTime updated_at;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "author_id")
     private User author;
 
     @ManyToOne
