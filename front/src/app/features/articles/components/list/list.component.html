@@ -1,50 +1,41 @@
-<mat-toolbar fxLayout="row">
+<mat-toolbar>
     <img class="img" src="/assets/logo_p6.png" routerLink="" alt="logo" />
     
-    <div class="buttons">
+    <div class="buttons" fxLayout="row" fxLayoutAlign="space-between center">
         <span routerLink="" class="link">Articles</span>
         <span routerLink="me" class="link">Thèmes</span>
         <span  class="link">Compte</span>
       </div>
 </mat-toolbar>
-    
-<hr />
-<div class="list">
-    <mat-card>
 
-        <mat-card-header fxLayout="row" fxLayoutAlign="space-between center">
+<hr />
+<div class="list" fxLayout="row" fxLayoutAlign="space-between center">
+
 
             <button mat-raised-button color="primary" routerLink="create">
                 <mat-icon>add</mat-icon>
                 <span class="ml1">Créer un article</span>
             </button>
-        </mat-card-header>
-
-
-        <div class="items mt2" fxLayout="row" fxLayout.lt-md="column">
-            <mat-card class="item" *ngFor="let article of (articles$ | async)?.articles" fxFlex>
-                <mat-card-header>
-                    <mat-card-title>{{ article.title }}</mat-card-title>
-                    <mat-card-subtitle>
-                      <app-owner-info [ownerId]="article.owner_id"></app-owner-info>
-                    </mat-card-subtitle>
-                </mat-card-header>
-                
-                <mat-card-content>
-                    <p>
-                        Date: {{article.created_at}}
-                        Auteur: {{article.author_id}}
-                        Contenu: {{ article.content }}
-                    </p>
-                </mat-card-content>
-            </mat-card>
         </div>
-
-        <mat-grid-list cols="2" rowHeight="2:1">
-            <mat-grid-tile>1</mat-grid-tile>
-            <mat-grid-tile>2</mat-grid-tile>
-            <mat-grid-tile>3</mat-grid-tile>
-            <mat-grid-tile>4</mat-grid-tile>
-        </mat-grid-list>
-    </mat-card>
+        <div class="list" fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-grid-list cols="2" rowHeight="2:1">
+                <mat-grid-tile *ngFor="let article of (articles$ | async)?.articles">
+                    <div >
+                <mat-grid-tile-header class="card">
+                    {{ article.title }}
+                      <app-owner-info [authorId]="article.author_id"></app-owner-info>
+                </mat-grid-tile-header>
+                <div class="da">
+                    
+                        <p class="date">
+                        Date: {{article.created_at}}
+                        </p>
+                
+                        <div class="content">
+                        Contenu: {{ article.content }}
+                        </div>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>

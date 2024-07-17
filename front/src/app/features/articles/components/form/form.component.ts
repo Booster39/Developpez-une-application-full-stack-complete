@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SessionService } from 'src/app/services/session.service';
+
 import { ArticleResponse } from '../../interfaces/api/articleResponse.interface';
 import { Article } from '../../interfaces/article.interface';
 import { ArticlesService } from '../../services/articles.service';
 import { ThemeService } from 'src/app/services/themes.service';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-form',
@@ -27,6 +28,7 @@ export class FormComponent implements OnInit {
     private matSnackBar: MatSnackBar,
     private articlesService: ArticlesService,
     private themeService: ThemeService,
+    private sessionService: SessionService,
     private router: Router
   ) {
   }
@@ -61,11 +63,11 @@ export class FormComponent implements OnInit {
   }
 
   private initForm(article?: Article): void {
-    /*console.log(article);
+    console.log(article);
     console.log(this.sessionService.user!.id);
-    if( (article !== undefined) && (article?.owner_id !== this.sessionService.user!.id)) {
+    if( (article !== undefined) && (article?.author_id !== this.sessionService.user!.id)) {
       this.router.navigate(['/articles']);
-    }*/
+    }
     this.articleForm = this.fb.group({
       title: [article ? article.title : '', [Validators.required]],
       content: [article ? article.content : '', [Validators.required]],

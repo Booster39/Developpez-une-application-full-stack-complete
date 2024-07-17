@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from 'src/app/interfaces/user.interface';
-import { SessionService } from 'src/app/services/session.service';
 import { ArticlesService } from '../../services/articles.service';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-list',

@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from 'src/app/features/articles/interfaces/article.interface';
-import { SessionService } from 'src/app/services/session.service';
 import { CommentRequest } from '../../interfaces/api/commentRequest.interface';
 import { MessageResponse } from '../../interfaces/api/messageResponse.interface';
 import { MessagesService } from '../../services/messages.service';
 import { ArticlesService } from '../../services/articles.service';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-detail',

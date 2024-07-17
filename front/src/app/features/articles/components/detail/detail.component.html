@@ -14,25 +14,16 @@
                 </div>
             </div>
             <mat-card-subtitle class="owner">
-                <app-owner-info [ownerId]="article.owner_id"></app-owner-info>
+                <app-owner-info [authorId]="article.author_id"></app-owner-info>
             </mat-card-subtitle>
         </mat-card-title>
         <mat-card-content>
-            <div fxLayout="column" fxLayoutAlign="start center">
-                <img class="fit" [src]="article.author_id" alt="house picture">
-            </div>
             <div class="my2" fxLayout="row" fxLayoutAlign="space-between center">
-                <div fxLayout="center">
-                    <mat-icon>
-                        straighten
-                    </mat-icon>
-                    <span class="ml1">{{ article.author_id}} m2</span>
-                </div>
                 <div fxLayout="center">
                     <mat-icon>
                         nights_stay
                     </mat-icon>
-                    <span class="ml1">{{ article.theme_id| currency:'EUR':'symbol':'.2-2'}} / by night</span>
+                    <span class="ml1">{{ article.theme_id | currency:'EUR':'symbol':'.2-2'}} / by night</span>
                 </div>
             </div>
             <div class="description">

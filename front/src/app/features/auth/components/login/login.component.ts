@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user.interface';
-import { SessionService } from 'src/app/services/session.service';
 import { AuthSuccess } from '../../interfaces/authSuccess.interface';
 import { LoginRequest } from '../../interfaces/loginRequest.interface'; 
 import { AuthService } from '../../services/auth.service';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +24,8 @@ export class LoginComponent  {
   constructor(private authService: AuthService, 
     private fb: FormBuilder, 
     private router: Router,
-    private sessionService: SessionService) { }
+    private sessionService: SessionService
+) { }
 
   public submit(): void {
     const loginRequest = this.form.value as LoginRequest;

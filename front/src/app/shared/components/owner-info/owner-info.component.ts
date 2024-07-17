@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 export class OwnerInfoComponent implements OnChanges {
 
   @Input()
-  public ownerId!: number;
+  public authorId!: number;
 
   public name: string | null = null;
 
@@ -18,9 +18,9 @@ export class OwnerInfoComponent implements OnChanges {
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['ownerId'].currentValue !== changes['ownerId'].previousValue) {
+    if (changes['authorId'].currentValue !== changes['authorId'].previousValue) {
       this.userService
-        .getUserById(changes['ownerId'].currentValue)
+        .getUserById(changes['authorId'].currentValue)
         .subscribe((user: User) => this.name = user.name);
     }
 
