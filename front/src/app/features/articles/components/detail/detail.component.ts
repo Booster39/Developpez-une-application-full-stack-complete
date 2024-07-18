@@ -44,7 +44,7 @@ export class DetailComponent implements OnInit {
   public sendMessage(): void {
     const message = {
       article_id: this.article!.id,
-      author_id: this.sessionService.user?.id,
+      author_id: this.sessionService.user?.id,//
       content: this.messageForm.value.message
     } as CommentRequest;
 

@@ -14,28 +14,21 @@
 
             <button mat-raised-button color="primary" routerLink="create">
                 <mat-icon>add</mat-icon>
-                <span class="ml1">Créer un article</span>
+                <span class="ml1">Créer un theme</span>
             </button>
         </div>
         <div class="list" fxLayout="row" fxLayoutAlign="space-between center">
             <mat-grid-list cols="2" rowHeight="2:1">
-                <mat-grid-tile *ngFor="let article of (articles$ | async)?.articles" >
+                <mat-grid-tile *ngFor="let theme of (themes$ | async)?.themes" >
                     <mat-card-actions>
-            <button class="article" mat-raised-button [routerLink]="['detail',article.id]">
+            <button class="theme" mat-raised-button [routerLink]="['detail',theme.id]">
                 <mat-grid-tile-header class="card">
-                    {{ article.title }}
+                    {{ theme.name }}
                 </mat-grid-tile-header>
-                <mat-card-subtitle>
-                    <app-owner-info [authorId]="article.author_id"></app-owner-info>
-                </mat-card-subtitle>
                 <div class="da">
-                    
-                        <p class="date">
-                        Date: {{article.created_at}}
-                        </p>
                 
                         <div class="content">
-                        Contenu: {{ article.content }}
+                        Contenu: {{ theme.description }}
                 </div>
                 </div>
             </button>

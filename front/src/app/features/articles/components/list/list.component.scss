@@ -5,6 +5,14 @@
         gap: 20rem;
     }
 }
+
+.article {
+    width: 900px;
+    height: 450px;
+    background: rgb(236, 236, 236);
+    padding: 0;
+}
+
 mat-toolbar {
     padding: 0;
     .link {
@@ -30,18 +38,13 @@ mat-toolbar {
 }
 
 .da {
-    display: flex;
+    display: block;
 }
 
 .date {
     margin-right: 50px;
 }
 
-
-mat-grid-tile {  
-    background: rgb(236, 236, 236);
-    
-}
 
 mat-grid-tile-header.card {
     color: black;

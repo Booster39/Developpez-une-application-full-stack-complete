@@ -51,10 +51,10 @@ export class FormComponent implements OnInit {
     /*this.articlesService
     .create(article)
     .subscribe((_: Article) => this.exitPage('Article created !'));*/
-    /*const formData = new FormData();
+    const formData = new FormData();
     formData.append('title', this.articleForm!.get('title')?.value);
     formData.append('content', this.articleForm!.get('content')?.value);
-    formData.append('theme_id', this.articleForm!.get('theme_id')?.value);*/
+    formData.append('theme_id', this.articleForm!.get('theme_id')?.value);
     if (!this.onUpdate) {
       this.articlesService
         .create(article)
