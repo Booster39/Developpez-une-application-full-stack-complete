@@ -9,19 +9,11 @@
 </mat-toolbar>
 
 <hr />
-<div class="list" fxLayout="row" fxLayoutAlign="space-between center">
-
-
-            <button mat-raised-button color="primary" routerLink="create">
-                <mat-icon>add</mat-icon>
-                <span class="ml1">Créer un theme</span>
-            </button>
-        </div>
         <div class="list" fxLayout="row" fxLayoutAlign="space-between center">
             <mat-grid-list cols="2" rowHeight="2:1">
                 <mat-grid-tile *ngFor="let theme of (themes$ | async)?.themes" >
                     <mat-card-actions>
-            <button class="theme" mat-raised-button [routerLink]="['detail',theme.id]">
+            <button class="theme">
                 <mat-grid-tile-header class="card">
                     {{ theme.name }}
                 </mat-grid-tile-header>

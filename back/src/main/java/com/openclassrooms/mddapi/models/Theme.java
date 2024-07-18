@@ -29,5 +29,9 @@ public class Theme {
     @NonNull
     @Size(max = 255)
     private String name;
+    @NonNull
+    @Size(max = 2000)
+    @Column(name = "description", insertable = true)
+    private String description;
 
 }

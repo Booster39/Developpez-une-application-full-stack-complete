@@ -3,6 +3,8 @@ package com.openclassrooms.mddapi.dtos;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
+import javax.persistence.Column;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Data
@@ -12,5 +14,6 @@ import java.util.Set;
 public class ThemeDto {
     private Long id;
     private String name;
+    private String description;
 }
 
