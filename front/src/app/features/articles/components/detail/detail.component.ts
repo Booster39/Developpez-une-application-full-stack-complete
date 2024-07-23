@@ -8,6 +8,10 @@ import { MessageResponse } from '../../interfaces/api/messageResponse.interface'
 import { MessagesService } from '../../services/messages.service';
 import { ArticlesService } from '../../services/articles.service';
 import { SessionService } from 'src/app/services/session.service';
+import { Theme } from 'src/app/features/themes/interfaces/theme.interface';
+import { ThemesService } from 'src/app/features/themes/services/themes.service';
+import { User } from 'src/app/interfaces/user.interface';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-detail',
@@ -18,6 +22,8 @@ export class DetailComponent implements OnInit {
 
   public messageForm!: FormGroup;
   public article: Article | undefined;
+  public theme: Theme | undefined;
+  public user: User | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,6 +31,8 @@ export class DetailComponent implements OnInit {
     private messagesService: MessagesService,
     private articlesService: ArticlesService,
     private sessionService: SessionService,
+    private themesService: ThemesService,
+    private userService: UserService,
     private matSnackBar: MatSnackBar) {
     this.initMessageForm();
   }
@@ -35,6 +43,7 @@ export class DetailComponent implements OnInit {
     this.articlesService
       .detail(id)
       .subscribe((article: Article) => this.article = article);
+
   }
 
   public back() {
@@ -44,7 +53,7 @@ export class DetailComponent implements OnInit {
   public sendMessage(): void {
     const message = {
       article_id: this.article!.id,
-      author_id: this.sessionService.user?.id,//
+      author_id: this.article!.author_id,//
       content: this.messageForm.value.message
     } as CommentRequest;
 

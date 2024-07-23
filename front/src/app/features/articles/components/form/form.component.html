@@ -19,20 +19,19 @@
             </div>
         </mat-card-title>
 
-        <mat-form-field appearance="outline" class="example-full-width" fxFlex>
-            <mat-label>Theme</mat-label>
-            <mat-select ngDefaultControl  *ngFor="let theme of themes$ | async" >
-             <mat-option formControlName="theme_id" [value]="theme.id">
-                {{theme.id}}
-                
-              </mat-option>
-             
-            </mat-select>
-        </mat-form-field>
-        
+    
         <mat-card-content *ngIf="articleForm">
             <form class="mt2" class="example-form"  fxLayout="column" [formGroup]="articleForm" (ngSubmit)="submit()">
                 
+                <mat-form-field appearance="outline">
+                    <mat-label>Theme</mat-label>
+                    <mat-select ngDefaultControl formControlName="theme_id">
+                      <mat-option *ngFor="let theme of themes$ | async" [value]="theme.id">
+                        {{theme.id}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
                 <mat-form-field appearance="outline" class="example-full-width" fxFlex>
                     <mat-label>Titre</mat-label>
                     <input matInput formControlName="title" placeholder="Titre de l'article">
@@ -46,7 +45,7 @@
 
                 <div fxLayout="row" fxLayoutAlign="center center">
                     <button mat-raised-button color="primary" type="submit">
-                        Save
+                        Créer
                     </button>
                 </div>
             </form>

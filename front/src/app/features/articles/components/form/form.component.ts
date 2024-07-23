@@ -8,6 +8,8 @@ import { Article } from '../../interfaces/article.interface';
 import { ArticlesService } from '../../services/articles.service';
 import { ThemeService } from 'src/app/services/themes.service';
 import { SessionService } from 'src/app/services/session.service';
+import { Theme } from 'src/app/interfaces/theme.interface';
+import { ThemesService } from 'src/app/features/themes/services/themes.service';
 
 @Component({
   selector: 'app-form',
@@ -19,7 +21,7 @@ export class FormComponent implements OnInit {
   public onUpdate: boolean = false;
   public articleForm: FormGroup | undefined;
   public themes$ = this.themeService.all();
-
+  public theme: Theme | undefined;
   private id: string | undefined;
 
   constructor(
@@ -27,7 +29,9 @@ export class FormComponent implements OnInit {
     private fb: FormBuilder,
     private matSnackBar: MatSnackBar,
     private articlesService: ArticlesService,
+    //private articleApiService: ArticleApiService,
     private themeService: ThemeService,
+    private themesService: ThemesService,
     private sessionService: SessionService,
     private router: Router
   ) {
@@ -41,6 +45,9 @@ export class FormComponent implements OnInit {
       this.articlesService
         .detail(this.id)
         .subscribe((article: Article) => this.initForm(article));
+        this.themeService
+        .detail(this.id)
+        .subscribe((theme: Theme) => this.theme = theme);
     } else {
       this.initForm();
     }
