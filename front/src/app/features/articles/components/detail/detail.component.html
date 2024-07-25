@@ -19,14 +19,16 @@
                     <h1>{{article.title | titlecase}}</h1>
                 </div>
             </div>
-            <mat-card-subtitle class="owner">
-                <app-owner-info [authorId]="article.author_id"></app-owner-info>
-            </mat-card-subtitle>
+            <!--<mat-card-subtitle class="owner">
+                <app-owner-info [authorId]="article.author_id">AuthorInfo : {{article.author_id}}</app-owner-info>
+             </mat-card-subtitle> -->
         </mat-card-title>
         <mat-card-content>
             <div class="my2" fxLayout="row" fxLayoutAlign="space-between center">
                 <div fxLayout="center">
-                    <span class="ml1">Thème : {{article.theme_id}}</span>
+                    <p>Author: {{user?.name}}</p>
+
+                    <span class="ml1">Thème : {{1}}</span>
                 </div>
             </div>
                 <div class="da">

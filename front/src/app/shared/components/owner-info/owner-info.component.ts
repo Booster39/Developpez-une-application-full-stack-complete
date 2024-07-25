@@ -21,10 +21,10 @@ export class OwnerInfoComponent implements OnChanges, OnInit {
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['authorId'].currentValue !== changes['authorId'].previousValue) {
+    //if (changes['authorId'].currentValue !== changes['authorId'].previousValue) {
       this.userService
         .getUserById(changes['authorId'].currentValue)
         .subscribe((user: User) => this.name = user.name);
-    }
+   // }
   }
 }

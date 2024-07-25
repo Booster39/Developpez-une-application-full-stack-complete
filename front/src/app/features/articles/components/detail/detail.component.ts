@@ -22,9 +22,9 @@ export class DetailComponent implements OnInit {
 
   public messageForm!: FormGroup;
   public article: Article | undefined;
-  public theme: Theme | undefined;
-  public user: User | undefined;
-
+  //public theme: Theme | undefined;
+  //public user: User | undefined;
+public theme$ = this.themesService.all();
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
@@ -69,5 +69,9 @@ export class DetailComponent implements OnInit {
       message: ['', [Validators.required, Validators.min(10)]],
     });
   }
+  get user(): User | undefined {
+    return this.sessionService.user;
+  }
+
 
 }
