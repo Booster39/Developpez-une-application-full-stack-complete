@@ -1,0 +1,67 @@
+.detail {
+    margin: 20px;
+}
+
+
+.owner {
+    margin-left: 40px;
+}
+
+.list {
+    margin: 20px;
+
+    .items {
+        gap: 20rem;
+    }
+}
+
+.article {
+    width: 900px;
+    height: 450px;
+    background: rgb(236, 236, 236);
+    padding: 0;
+}
+
+mat-toolbar {
+    padding: 0;
+    .link {
+        cursor: pointer;
+        font-size: 16px;
+        text-decoration: none;
+        
+    }
+    
+    .link + .link {
+        margin-left: 10px;
+    }
+}
+.img {
+    width: 100px;
+}
+
+
+.buttons {
+    position:relative; 
+    display:inline-block; 
+    left:1600px;
+}
+
+.da {
+    display: block;
+}
+
+.date {
+    margin-right: 50px;
+}
+
+
+mat-grid-tile-header.card {
+    color: black;
+    font-weight: 600;
+    font-size: large;
+    background: rgb(236, 236, 236);
+}
+
+hr {
+    margin: 0;
+}

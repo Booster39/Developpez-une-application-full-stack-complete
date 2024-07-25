@@ -1,5 +1,5 @@
 export interface CommentRequest {
-    author_id: number,
-    article_id: number,
-    content: any
+    author: string,
+    article: string,
+    content: string
 }

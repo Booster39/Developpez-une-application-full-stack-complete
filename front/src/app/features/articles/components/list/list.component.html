@@ -17,6 +17,14 @@
                 <span class="ml1">Créer un article</span>
             </button>
         </div>
+        <div >
+            <span>Trier par</span>
+            <mat-icon>{{ 'arrow_upward' && 'arrow_downward' }}</mat-icon>
+          </div>
+          <!--<div *ngIf="posts.length >1" class="sort-section" (click)="toggleSortOrder()">
+            <span>Trier par</span>
+            <mat-icon>{{ isAscending ? 'arrow_upward' : 'arrow_downward' }}</mat-icon>
+          </div>-->
         <div class="list" fxLayout="row" fxLayoutAlign="space-between center">
             <mat-grid-list cols="2" rowHeight="2:1">
                 <mat-grid-tile *ngFor="let article of (articles$ | async)?.articles" >
@@ -33,6 +41,8 @@
                         <p class="date">
                         Date: {{article.created_at}}
                         </p>
+
+                        author:{{ article.author_id }}
                 
                         <div class="content">
                         Contenu: {{ article.content }}

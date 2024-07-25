@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './owner-info.component.html',
   styleUrls: ['./owner-info.component.scss']
 })
-export class OwnerInfoComponent implements OnChanges {
+export class OwnerInfoComponent implements OnChanges, OnInit {
 
   @Input()
   public authorId!: number;
@@ -16,6 +16,9 @@ export class OwnerInfoComponent implements OnChanges {
 
   constructor(private userService: UserService) {
   }
+  ngOnInit(): void {
+    
+  }
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['authorId'].currentValue !== changes['authorId'].previousValue) {
@@ -23,8 +26,5 @@ export class OwnerInfoComponent implements OnChanges {
         .getUserById(changes['authorId'].currentValue)
         .subscribe((user: User) => this.name = user.name);
     }
-
-
-
   }
 }

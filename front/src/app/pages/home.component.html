@@ -1,7 +1,11 @@
 <div class="center">
     <img src="/assets/logo_p6.png" alt="logo" />
     <div>
-    <button mat-raised-button color="primary" (click)="goToPage('/login')" class="homebutton">Se connecter</button>
-    <button (click)="goToPage('/register')" class="homebutton" mat-raised-button color="primary">S'inscrire</button>
+    <button mat-raised-button color="primary" (click)="goToPage('/login')">
+        <span class="ml1">Se connecter</span>
+    </button>
+    <button mat-raised-button color="primary" (click)="goToPage('/register')">
+        <span class="ml1">S'inscrire</span>
+    </button>
     </div>
 </div>
