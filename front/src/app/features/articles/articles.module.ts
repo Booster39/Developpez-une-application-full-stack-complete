@@ -17,7 +17,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs'; 
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatOptionModule } from '@angular/material/core';
+import { MatLineModule, MatOptionModule } from '@angular/material/core';
+import { CommentsComponent } from 'src/app/shared/components/comments/comments.component';
+import {MatListModule} from '@angular/material/list';
+import {MatSelectModule} from '@angular/material/select';
 
 registerLocaleData(localeFr);
 
@@ -31,14 +34,18 @@ const materialModules = [
   MatToolbarModule,
   MatTabsModule,
   MatGridListModule,
-  MatOptionModule
+  MatOptionModule,
+  MatLineModule,
+  MatListModule,
+  MatSelectModule,
+  FormsModule
 ];
 
 @NgModule({
   declarations: [
     ListComponent,
     FormComponent,
-    DetailComponent
+    DetailComponent,
   ],
   imports: [
     CommonModule,

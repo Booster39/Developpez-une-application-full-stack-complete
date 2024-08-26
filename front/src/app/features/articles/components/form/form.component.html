@@ -23,7 +23,7 @@
         <mat-card-content *ngIf="articleForm">
             <form class="mt2" class="example-form"  fxLayout="column" [formGroup]="articleForm" (ngSubmit)="submit()">
                 
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" class="example-full-width" fxFlex>
                     <mat-label>Theme</mat-label>
                     <mat-select ngDefaultControl formControlName="theme_id">
                       <mat-option *ngFor="let theme of themes$ | async" [value]="theme.id">
@@ -40,7 +40,7 @@
 
                 <mat-form-field appearance="outline" class="example-full-width" fxFlex>
                     <mat-label>Contenu</mat-label>
-                    <textarea matInput rows="8" formControlName="content" placeholder="Contenu de l'article"></textarea>
+                    <textarea matInput formControlName="content" placeholder="Contenu de l'article"></textarea>
                 </mat-form-field>
 
                 <div fxLayout="row" fxLayoutAlign="center center">
