@@ -1,6 +1,9 @@
 package com.openclassrooms.mddapi.configuration;
 
+import com.openclassrooms.mddapi.dtos.ArticleDto;
+import com.openclassrooms.mddapi.models.Article;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,6 +12,17 @@ public class ModelMapperConfig {
 
     @Bean
     public ModelMapper modelMapper() {
-        return new ModelMapper();
+        ModelMapper modelMapper = new ModelMapper();
+
+        // Mapping for Article to ArticleDto
+       /* modelMapper.addMappings(new PropertyMap<Article, ArticleDto>() {
+            @Override
+            protected void configure() {
+                map().setAuthor_id(source.getAuthor() != null ? source.getAuthor().getId() : null);
+                map().setTheme_id(source.getTheme() != null ? source.getTheme().getId() : null);
+            }
+        });*/
+
+        return modelMapper;
     }
 }
