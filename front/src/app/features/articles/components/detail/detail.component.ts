@@ -25,9 +25,8 @@ export class DetailComponent implements OnInit {
   comments: { commentAuthorUsername: string; content: string }[] = [];
   newCommentText: string = '';
   public article: Article | undefined;
-  //public theme: Theme | undefined;
-  //public user: User | undefined;
-public theme$ = this.themesService.all();
+  public theme: Theme | undefined;
+
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
@@ -45,8 +44,13 @@ public theme$ = this.themesService.all();
 
     this.articlesService
       .detail(id)
-      .subscribe((article: Article) => this.article = article);
+      .subscribe((article: Article) => {
+        this.article = article
+      });
 
+      this.themesService.detail(id).subscribe(theme => {
+        this.theme = theme;
+      })
   }
 
   public back() {
@@ -56,7 +60,7 @@ public theme$ = this.themesService.all();
   public sendMessage(): void {
     const message = {
       article_id: this.article!.id,
-      author_id: this.article!.author_id,//
+      author_id: this.article!.author_id,
       content: this.messageForm.value.message
     } as CommentRequest;
 

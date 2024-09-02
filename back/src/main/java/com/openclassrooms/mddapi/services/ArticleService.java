@@ -1,13 +1,12 @@
 package com.openclassrooms.mddapi.services;
 
 import com.openclassrooms.mddapi.dtos.ArticleDto;
-import com.openclassrooms.mddapi.dtos.ThemeDto;
+import com.openclassrooms.mddapi.mapper.ArticleMapper;
 import com.openclassrooms.mddapi.models.Article;
 import com.openclassrooms.mddapi.models.Theme;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.repository.ArticleRepository;
 import com.openclassrooms.mddapi.repository.ThemeRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,18 +16,20 @@ import java.util.stream.Collectors;
 
 @Service
 public class ArticleService {
+
     @Autowired
     private ArticleRepository articleRepository;
+
     @Autowired
-    private ModelMapper modelMapper;
+    private ArticleMapper articleMapper;
 
     @Autowired
     private ThemeRepository themeRepository;
 
-
     public ArticleDto getPostById(Long id) {
-        Article article = articleRepository.findById((id)).orElseThrow(() -> new RuntimeException("Article not found"));
-        return modelMapper.map(article, ArticleDto.class);
+        Article article = articleRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Article not found"));
+        return articleMapper.toDto(article);
     }
 
     public ArticleDto createPost(String title, Long theme_id, String content, User author) {
@@ -38,17 +39,16 @@ public class ArticleService {
                 .theme(theme)
                 .author(author)
                 .content(content)
+                .created_at(LocalDateTime.now())
                 .build();
-        article.setCreated_at(LocalDateTime.now());
         articleRepository.save(article);
-        return modelMapper.map(article, ArticleDto.class);
+        return articleMapper.toDto(article);
     }
-
 
     public List<ArticleDto> getAllPosts() {
         List<Article> articles = articleRepository.findAll();
         return articles.stream()
-                .map(post -> modelMapper.map(post, ArticleDto.class))
+                .map(articleMapper::toDto)
                 .collect(Collectors.toList());
     }
 }

@@ -1,6 +1,7 @@
 package com.openclassrooms.mddapi.services;
 
 import com.openclassrooms.mddapi.dtos.UserDto;
+import com.openclassrooms.mddapi.mapper.UserMapper;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.payloads.request.LoginRequest;
 import com.openclassrooms.mddapi.payloads.request.SignupRequest;
@@ -8,7 +9,6 @@ import com.openclassrooms.mddapi.payloads.response.JwtResponse;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import com.openclassrooms.mddapi.security.jwt.JwtUtils;
 import com.openclassrooms.mddapi.security.services.UserDetailsImpl;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -34,9 +34,8 @@ public class AuthService {
     @Autowired
     private UserRepository userRepository;
 
-@Autowired
-private ModelMapper modelMapper;
-
+    @Autowired
+    private UserMapper userMapper;
 
     public JwtResponse authenticateUser(LoginRequest loginRequest) throws Exception {
         Authentication authentication = authenticationManager.authenticate(
@@ -59,12 +58,10 @@ private ModelMapper modelMapper;
             throw new Exception("User already exists");
         }
 
-        // Create new user's account
         User user = new User(
                 signUpRequest.getEmail(),
                 signUpRequest.getName(),
                 passwordEncoder.encode(signUpRequest.getPassword())
-                //signUpRequest.getPassword()
         );
 
         userRepository.save(user);
@@ -73,6 +70,6 @@ private ModelMapper modelMapper;
 
     public Optional<UserDto> getCurrentUser(Authentication auth) {
         final Optional<User> user = this.userRepository.findByEmail(auth.getName());
-        return user.map(u -> modelMapper.map(u, UserDto.class));
+        return user.map(userMapper::toDto);
     }
 }

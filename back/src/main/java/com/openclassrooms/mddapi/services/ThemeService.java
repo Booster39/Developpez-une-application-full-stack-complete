@@ -1,38 +1,43 @@
 package com.openclassrooms.mddapi.services;
 
+
 import com.openclassrooms.mddapi.dtos.ThemeDto;
+import com.openclassrooms.mddapi.mapper.ThemeMapper;
 import com.openclassrooms.mddapi.models.Theme;
 import com.openclassrooms.mddapi.repository.ThemeRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 @Service
 public class ThemeService {
+
     @Autowired
     private ThemeRepository themeRepository;
 
     @Autowired
-    private ModelMapper modelMapper;
+    private ThemeMapper themeMapper;
 
     public ThemeDto getSubjectById(Long id) {
-        Theme theme = themeRepository.findById(id).orElseThrow(() -> new RuntimeException("Theme not found"));
-        return modelMapper.map(theme, ThemeDto.class);
+        Theme theme = themeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Theme not found"));
+        return themeMapper.toDto(theme);
     }
 
     public ThemeDto createSubject(ThemeDto themeDto) {
-        Theme theme = modelMapper.map(themeDto, Theme.class);
+        Theme theme = themeMapper.toEntity(themeDto);
         themeRepository.save(theme);
-        return modelMapper.map(theme, ThemeDto.class);
+        return themeMapper.toDto(theme);
     }
 
     public ThemeDto updateSubject(Long id, ThemeDto themeDto) {
-        Theme theme = themeRepository.findById(id).orElseThrow(() -> new RuntimeException("Theme not found"));
-        modelMapper.map(themeDto, theme);
+        Theme theme = themeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Theme not found"));
+        themeMapper.toEntity(themeDto);
         themeRepository.save(theme);
-        return modelMapper.map(theme, ThemeDto.class);
+        return themeMapper.toDto(theme);
     }
 
     public void deleteSubject(Long id) {
@@ -42,7 +47,7 @@ public class ThemeService {
     public List<ThemeDto> getAllSubjects() {
         List<Theme> themes = themeRepository.findAll();
         return themes.stream()
-                .map(theme -> modelMapper.map(theme, ThemeDto.class))
+                .map(themeMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
