@@ -33,16 +33,16 @@
                 <mat-grid-tile-header class="card">
                     
                 </mat-grid-tile-header>
-                <!--<mat-card-subtitle>
-                    <app-owner-info [authorId]="article.author_id"></app-owner-info>
-                </mat-card-subtitle>-->
+                
                 <div class="da">
                     Titre:{{ article.title }}
                         <p class="date">
                         Date: {{article.created_at}}
                         </p>
 
-                        author:{{user?.name}}
+                        <mat-card-subtitle>
+                            <app-owner-info [authorId]="article.author_id"></app-owner-info>
+                        </mat-card-subtitle>
                 
                         <div class="content">
                         Contenu: {{ article.content }}

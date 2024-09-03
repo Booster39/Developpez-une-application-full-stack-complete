@@ -26,6 +26,8 @@ export class DetailComponent implements OnInit {
   newCommentText: string = '';
   public article: Article | undefined;
   public theme: Theme | undefined;
+  public authorName: string | undefined;
+  public themeName: string | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,11 +48,19 @@ export class DetailComponent implements OnInit {
       .detail(id)
       .subscribe((article: Article) => {
         this.article = article
+
+        this.userService.getUserById(article.author_id).subscribe((user: User) => {
+          this.authorName = user.name;
+        });
+
+        this.themesService.detail(article.theme_id.toString()).subscribe(theme => {
+          this.themeName = theme.name;
+        })
       });
 
-      this.themesService.detail(id).subscribe(theme => {
-        this.theme = theme;
-      })
+
+     
+
   }
 
   public back() {
