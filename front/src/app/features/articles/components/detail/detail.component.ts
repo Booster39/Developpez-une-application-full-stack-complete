@@ -90,37 +90,4 @@ export class DetailComponent implements OnInit {
     return this.sessionService.user;
   }
 
-
-  createComment(): void {
-    if (this.newCommentText.trim() !== '') {
-      const postId: number = this.post.id; // Get the ID of the current post
-      const content: string = this.newCommentText; // Get the content of the new comment
-
-      // Call the createComment method from CommentsService
-      this.commentsService.send({article_id: postId, author_id: this.user!.id, content: content, created_at: new Date()}).subscribe(
-        (newComment: any) => {
-          // Get authenticated user data from AuthSessionService
-          const authSession = this.sessionService.user;
-
-          // Ensure authSession is not null before accessing properties
-          if (authSession) {
-            // Update the comments array with the newly created comment and author information
-            this.comments.push({
-              commentAuthorUsername: authSession.name,
-              content: newComment.content
-            });
-          } else {
-            console.error('Error: Authenticated user data is null.');
-          }
-
-          // Clear input field
-          this.newCommentText = '';
-        },
-        (error: any) => {
-          console.error('Error creating comment:', error);
-        }
-      );
-    }
-  }
-
 }

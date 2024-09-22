@@ -42,26 +42,26 @@
     </mat-card>
 
     <div class="comments-section">
-        <!-- Vous pouvez également envelopper la section des commentaires dans un conteneur si nécessaire pour des styles ou une logique supplémentaires. -->
         <hr>
 
         <h2 class="title-comments">Commentaires</h2>
-        <mat-list>
+        <!--<mat-list>
           <mat-list-item *ngFor="let comment of comments">
             <div class="list-comment-card">
               <h4 mat-line>{{ comment.commentAuthorUsername }}</h4>
               <p class="list-comment-content" mat-line>{{ comment.content }}</p>
             </div>
           </mat-list-item>
-        </mat-list>
+        </mat-list>-->
       
         <mat-card-content class="create-comment-area">
-          <mat-form-field class="text-area-form-field">
-            <textarea [(ngModel)]="newCommentText" matInput placeholder="Ecrivez ici votre commentaire"></textarea>
-          </mat-form-field>
-          <button (click)="createComment()" class="create-button" mat-icon-button>
-            <mat-icon>send</mat-icon>
-          </button>
+          <form [formGroup]="messageForm" (ngSubmit)="sendMessage()" fxLayout="column">
+            <textarea matInput placeholder="Message for the owner" rows="6" formControlName="message"></textarea>
+            <div fxLayout="row" fxLayoutAlign="end center" class="mt2">
+                <button mat-raised-button color="primary" type="submit"
+                    [disabled]="messageForm.invalid"><mat-icon>send</mat-icon></button>
+            </div>
+        </form>
         </mat-card-content>
     </div>  
 </div>
