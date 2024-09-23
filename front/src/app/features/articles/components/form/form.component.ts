@@ -6,7 +6,7 @@ import { SessionService } from 'src/app/services/session.service';
 import { ArticleResponse } from '../../interfaces/api/articleResponse.interface';
 import { Article } from '../../interfaces/article.interface';
 import { ArticlesService } from '../../services/articles.service';
-import { ThemeService } from 'src/app/services/themes.service';
+import { TopicService } from 'src/app/services/topics.service';
 
 @Component({
   selector: 'app-form',
@@ -16,7 +16,7 @@ import { ThemeService } from 'src/app/services/themes.service';
 export class FormComponent implements OnInit {
   public onUpdate: boolean = false;
   public articleForm: FormGroup | undefined;
-  public themes$ = this.themeService.all();
+  public topics$ = this.topicService.all();
 
   private id: string | undefined;
 
@@ -25,7 +25,7 @@ export class FormComponent implements OnInit {
     private fb: FormBuilder,
     private matSnackBar: MatSnackBar,
     private articlesService: ArticlesService,
-    private themeService: ThemeService,
+    private topicService: TopicService,
     private router: Router,
     private sessionService: SessionService
   ) {}
@@ -51,7 +51,7 @@ export class FormComponent implements OnInit {
     const formData = new FormData();
     formData.append('title', this.articleForm!.get('title')?.value);
     formData.append('content', this.articleForm!.get('content')?.value);
-    formData.append('theme_id', this.articleForm!.get('theme_id')?.value);
+    formData.append('topic_id', this.articleForm!.get('topic_id')?.value);
     if (!this.onUpdate) {
       this.articlesService
         .create(article)
@@ -73,7 +73,7 @@ export class FormComponent implements OnInit {
     this.articleForm = this.fb.group({
       title: [article ? article.title : '', [Validators.required]],
       content: [article ? article.content : '', [Validators.required]],
-      theme_id: [article ? article.theme_id : '', [Validators.required]],
+      topic_id: [article ? article.topic_id : '', [Validators.required]],
     });
   }
 

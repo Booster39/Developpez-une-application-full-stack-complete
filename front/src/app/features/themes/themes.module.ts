@@ -1,6 +1,6 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ThemeRoutingModule } from './theme-routing.module';
+import { TopicRoutingModule } from './topic-routing.module';
 import { ListComponent } from './components/list/list.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -40,7 +40,7 @@ const materialModules = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ThemeRoutingModule,
+    TopicRoutingModule,
     SharedModule,
     ...materialModules
   ],
@@ -51,4 +51,4 @@ const materialModules = [
     },
   ],
 })
-export class ThemesModule { }
+export class TopicsModule { }

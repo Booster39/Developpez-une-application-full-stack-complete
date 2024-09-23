@@ -1,22 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Theme } from '../interfaces/theme.interface';
+import { Topic } from '../interfaces/topic.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ThemeService {
+export class TopicService {
 
-  private pathService = 'api/themes';
+  private pathService = 'api/topics';
 
   constructor(private httpClient: HttpClient) { }
 
-  public all(): Observable<Theme[]> {
-    return this.httpClient.get<Theme[]>(this.pathService);
+  public all(): Observable<Topic[]> {
+    return this.httpClient.get<Topic[]>(this.pathService);
   }
 
-  public detail(id: string): Observable<Theme> {
-    return this.httpClient.get<Theme>(`${this.pathService}/${id}`);
+  public detail(id: string): Observable<Topic> {
+    return this.httpClient.get<Topic>(`${this.pathService}/${id}`);
   }
 }

@@ -3,7 +3,7 @@
     
     <div class="buttons" fxLayout="row" fxLayoutAlign="space-between center">
         <span routerLink="/articles" class="link">Articles</span>
-        <span routerLink="/themes" class="link">Thèmes</span>
+        <span routerLink="/topics" class="link">Thèmes</span>
         <span  class="link">Compte</span>
       </div>
 </mat-toolbar>
@@ -11,16 +11,16 @@
 <hr />
         <div class="list" fxLayout="row" fxLayoutAlign="space-between center">
             <mat-grid-list cols="2" rowHeight="2:1">
-                <mat-grid-tile *ngFor="let theme of (themes$ | async)?.themes" >
+                <mat-grid-tile *ngFor="let topic of (topics$ | async)?.topics" >
                     <mat-card-actions>
-            <button class="theme">
+            <button class="topic">
                 <mat-grid-tile-header class="card">
-                    {{ theme.name }}
+                    {{ topic.name }}
                 </mat-grid-tile-header>
                 <div class="da">
                 
                         <div class="content">
-                        Contenu: {{ theme.description }}
+                        Contenu: {{ topic.description }}
                 </div>
                 <button mat-raised-button color="primary" routerLink="create">
                     <span class="ml1">S'abonner</span>

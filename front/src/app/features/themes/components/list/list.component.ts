@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from 'src/app/interfaces/user.interface';
-import { ThemesService } from '../../services/themes.service';
+import { TopicsService } from '../../services/topics.service';
 import { SessionService } from 'src/app/services/session.service';
 
 @Component({
@@ -10,11 +10,11 @@ import { SessionService } from 'src/app/services/session.service';
 })
 export class ListComponent {
 
-  public themes$ = this.themesService.all();
+  public topics$ = this.topicsService.all();
 
   constructor(
     private sessionService: SessionService,
-    private themesService: ThemesService
+    private topicsService: TopicsService
   ) { }
 
   get user(): User | undefined {

@@ -1,33 +1,33 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Theme } from 'src/app/features/themes/interfaces/theme.interface';
-import { ThemeResponse } from '../interfaces/api/themeResponse.interface';
-import { ThemesResponse } from '../interfaces/api/themesResponse.interface';
+import { Topic } from 'src/app/features/topics/interfaces/topic.interface';
+import { TopicResponse } from '../interfaces/api/topicResponse.interface';
+import { TopicsResponse } from '../interfaces/api/topicsResponse.interface';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ThemesService {
+export class TopicsService {
 
-  private pathService = 'api/themes';
+  private pathService = 'api/topics';
 
   constructor(private httpClient: HttpClient) { }
 
-  public all(): Observable<ThemesResponse> {
-    return this.httpClient.get<ThemesResponse>(this.pathService);
+  public all(): Observable<TopicsResponse> {
+    return this.httpClient.get<TopicsResponse>(this.pathService);
   }
 
-  public detail(id: string): Observable<Theme> {
-    return this.httpClient.get<Theme>(`${this.pathService}/${id}`);
+  public detail(id: string): Observable<Topic> {
+    return this.httpClient.get<Topic>(`${this.pathService}/${id}`);
   }
 
-  public create(form: FormData): Observable<ThemeResponse> {
-    return this.httpClient.post<ThemeResponse>(this.pathService, form);
+  public create(form: FormData): Observable<TopicResponse> {
+    return this.httpClient.post<TopicResponse>(this.pathService, form);
   }
 
-  public update(id: string, form: FormData): Observable<ThemeResponse> {
-    return this.httpClient.put<ThemeResponse>(`${this.pathService}/${id}`, form);
+  public update(id: string, form: FormData): Observable<TopicResponse> {
+    return this.httpClient.put<TopicResponse>(`${this.pathService}/${id}`, form);
   }
 }

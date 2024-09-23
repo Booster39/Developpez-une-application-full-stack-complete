@@ -1,5 +1,5 @@
-import { Theme } from "../theme.interface";
+import { Topic } from "../topic.interface";
 
-export interface ThemesResponse {
-    themes: Theme[];
+export interface TopicsResponse {
+    topics: Topic[];
 }

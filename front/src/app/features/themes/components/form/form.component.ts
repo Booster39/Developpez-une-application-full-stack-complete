@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SessionService } from 'src/app/services/session.service';
-import { ThemeResponse } from '../../interfaces/api/themeResponse.interface';
-import { Theme } from '../../interfaces/theme.interface';
-import { ThemesService } from '../../services/themes.service';
-import { ThemeService } from 'src/app/services/themes.service';
+import { TopicResponse } from '../../interfaces/api/topicResponse.interface';
+import { Topic } from '../../interfaces/topic.interface';
+import { TopicsService } from '../../services/topics.service';
+import { TopicService } from 'src/app/services/topics.service';
 
 @Component({
   selector: 'app-form',
@@ -15,8 +15,8 @@ import { ThemeService } from 'src/app/services/themes.service';
 })
 export class FormComponent implements OnInit {
   public onUpdate: boolean = false;
-  public themeForm: FormGroup | undefined;
-  public themes$ = this.themeService.all();
+  public topicForm: FormGroup | undefined;
+  public topics$ = this.topicService.all();
 
   private id: string | undefined;
 
@@ -24,8 +24,8 @@ export class FormComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private matSnackBar: MatSnackBar,
-    private themesService: ThemesService,
-    private themeService: ThemeService,
+    private topicsService: TopicsService,
+    private topicService: TopicService,
     private router: Router,
     private sessionService: SessionService
   ) {}
@@ -39,26 +39,26 @@ export class FormComponent implements OnInit {
   }
 
   public submit(): void {
-    const theme = this.themeForm?.value as FormData;
-    /* this.themesService
-    .create(theme)
-    .subscribe((_: Theme) => this.exitPage('Theme created !'));*/
+    const topic = this.topicForm?.value as FormData;
+    /* this.topicsService
+    .create(topic)
+    .subscribe((_: Topic) => this.exitPage('Topic created !'));*/
     const formData = new FormData();
-    formData.append('title', this.themeForm!.get('title')?.value);
-    formData.append('content', this.themeForm!.get('content')?.value);
-    formData.append('theme_id', this.themeForm!.get('theme_id')?.value);
+    formData.append('title', this.topicForm!.get('title')?.value);
+    formData.append('content', this.topicForm!.get('content')?.value);
+    formData.append('topic_id', this.topicForm!.get('topic_id')?.value);
     if (!this.onUpdate) {
-      this.themesService
-        .create(theme)
-        .subscribe((themeResponse: ThemeResponse) =>
-          this.exitPage(themeResponse)
+      this.topicsService
+        .create(topic)
+        .subscribe((topicResponse: TopicResponse) =>
+          this.exitPage(topicResponse)
         );
     }
   }
 
 
-  private exitPage(themeResponse: ThemeResponse): void {
-    this.matSnackBar.open(themeResponse.message, 'Close', { duration: 3000 });
-    this.router.navigate(['/themes']);
+  private exitPage(topicResponse: TopicResponse): void {
+    this.matSnackBar.open(topicResponse.message, 'Close', { duration: 3000 });
+    this.router.navigate(['/topics']);
   }
 }

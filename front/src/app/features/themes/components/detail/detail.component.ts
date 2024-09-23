@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { Theme } from 'src/app/features/themes/interfaces/theme.interface';
+import { Topic } from 'src/app/features/topics/interfaces/topic.interface';
 import { CommentRequest } from '../../interfaces/api/commentRequest.interface';
 import { MessageResponse } from '../../interfaces/api/messageResponse.interface';
 import { MessagesService } from '../../services/messages.service';
-import { ThemesService } from '../../services/themes.service';
+import { TopicsService } from '../../services/topics.service';
 import { SessionService } from 'src/app/services/session.service';
 import { User } from 'src/app/interfaces/user.interface';
 import { UserService } from 'src/app/services/user.service';
@@ -19,7 +19,7 @@ import { UserService } from 'src/app/services/user.service';
 export class DetailComponent implements OnInit {
 
   public messageForm!: FormGroup;
-  public theme: Theme | undefined;
+  public topic: Topic | undefined;
   public user: User | undefined;
 
   constructor(
@@ -27,7 +27,7 @@ export class DetailComponent implements OnInit {
     private fb: FormBuilder,
     private messagesService: MessagesService,
     private sessionService: SessionService,
-    private themesService: ThemesService,
+    private topicsService: TopicsService,
     private userService: UserService,
     private matSnackBar: MatSnackBar) {
     this.initMessageForm();
@@ -36,9 +36,9 @@ export class DetailComponent implements OnInit {
   public ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')!
 
-    this.themesService
+    this.topicsService
       .detail(id)
-      .subscribe((theme: Theme) => this.theme = theme);
+      .subscribe((topic: Topic) => this.topic = topic);
 
   }
 

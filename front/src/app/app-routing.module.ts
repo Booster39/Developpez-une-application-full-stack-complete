@@ -14,9 +14,9 @@ const routes: Routes = [
     loadChildren: () => import('./features/articles/articles.module').then(m => m.ArticlesModule)
   },
   {
-    path: 'themes',
+    path: 'topics',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./features/themes/themes.module').then(m => m.ThemesModule)
+    loadChildren: () => import('./features/topics/topics.module').then(m => m.TopicsModule)
   },
   {
     path: '',

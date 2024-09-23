@@ -8,8 +8,8 @@ import { CommentResponse } from '../../interfaces/api/commentResponse.interface'
 import { CommentsService } from '../../services/comments.service';
 import { ArticlesService } from '../../services/articles.service';
 import { SessionService } from 'src/app/services/session.service';
-import { Theme } from 'src/app/features/themes/interfaces/theme.interface';
-import { ThemesService } from 'src/app/features/themes/services/themes.service';
+import { Topic } from 'src/app/features/topics/interfaces/topic.interface';
+import { TopicsService } from 'src/app/features/topics/services/topics.service';
 import { User } from 'src/app/interfaces/user.interface';
 import { UserService } from 'src/app/services/user.service';
 import { Comment } from '../../interfaces/comment.interface';
@@ -24,7 +24,7 @@ export class DetailComponent implements OnInit {
   public messageForm!: FormGroup;
   public article: Article | undefined;
   public authorName: string | undefined;
-  public themeName: string | undefined;
+  public topicName: string | undefined;
 
   public comments$ = this.commentsService.all();
 
@@ -34,7 +34,7 @@ export class DetailComponent implements OnInit {
     private commentsService: CommentsService,
     private articlesService: ArticlesService,
     private sessionService: SessionService,
-    private themesService: ThemesService,
+    private topicsService: TopicsService,
     private userService: UserService,
     private matSnackBar: MatSnackBar) {
     this.initMessageForm();
@@ -52,8 +52,8 @@ export class DetailComponent implements OnInit {
           this.authorName = user.name;
         });
 
-        this.themesService.detail(article.theme_id.toString()).subscribe(theme => {
-          this.themeName = theme.name;
+        this.topicsService.detail(article.topic_id.toString()).subscribe(topic => {
+          this.topicName = topic.name;
         })
         
       });

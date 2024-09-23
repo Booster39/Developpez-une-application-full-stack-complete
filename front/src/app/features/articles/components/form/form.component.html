@@ -2,7 +2,7 @@
     <img class="img" src="/assets/logo_p6.png" routerLink="" alt="logo" />
     <div class="buttons" fxLayout="row" fxLayoutAlign="space-between center">
         <span routerLink="/articles" class="link">Articles</span>
-        <span routerLink="/themes" class="link">Thèmes</span>
+        <span routerLink="/topics" class="link">Thèmes</span>
         <span  class="link">Compte</span>
       </div>
 </mat-toolbar>
@@ -24,10 +24,10 @@
             <form class="mt2" class="example-form"  fxLayout="column" [formGroup]="articleForm" (ngSubmit)="submit()">
                 
                 <mat-form-field appearance="outline" class="example-full-width" fxFlex>
-                    <mat-label>Theme</mat-label>
-                    <mat-select ngDefaultControl formControlName="theme_id">
-                      <mat-option *ngFor="let theme of themes$ | async" [value]="theme.id">
-                        {{theme.id}}
+                    <mat-label>Topic</mat-label>
+                    <mat-select ngDefaultControl formControlName="topic_id">
+                      <mat-option *ngFor="let topic of topics$ | async" [value]="topic.id">
+                        {{topic.id}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>

@@ -1,3 +1,3 @@
-export interface ThemeResponse {
+export interface TopicResponse {
 	message: string;
 }

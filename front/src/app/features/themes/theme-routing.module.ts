@@ -4,11 +4,11 @@ import { ListComponent } from './components/list/list.component';
 
 
 const routes: Routes = [
-  { title: 'Themes', path: '', component: ListComponent },
+  { title: 'Topics', path: '', component: ListComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ThemeRoutingModule { }
+export class TopicRoutingModule { }
