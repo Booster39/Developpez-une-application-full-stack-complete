@@ -2,10 +2,10 @@ package com.openclassrooms.mddapi.mapper;
 
 import com.openclassrooms.mddapi.dtos.SubscriptionDto;
 import com.openclassrooms.mddapi.models.Subscription;
-import com.openclassrooms.mddapi.models.Theme;
+import com.openclassrooms.mddapi.models.Topic;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.repository.ArticleRepository;
-import com.openclassrooms.mddapi.repository.ThemeRepository;
+import com.openclassrooms.mddapi.repository.TopicRepository;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,7 +22,7 @@ public class SubscriptionMapper implements EntityMapper<SubscriptionDto, Subscri
     ArticleRepository articleRepository;
 
     @Autowired
-    ThemeRepository themeRepository;
+    TopicRepository topicRepository;
     @Override
     public Subscription toEntity(SubscriptionDto dto) {
         if (dto == null) {
@@ -30,12 +30,12 @@ public class SubscriptionMapper implements EntityMapper<SubscriptionDto, Subscri
         }
 
         User author = userRepository.findById(dto.getAuthor_id()).orElse(null);
-        Theme theme = themeRepository.findById(dto.getTheme_id()).orElse(null);
+        Topic topic = topicRepository.findById(dto.getTopic_id()).orElse(null);
 
         return Subscription.builder()
                 .id(dto.getId())
                 .author(author)
-                .theme(theme)
+                .topic(topic)
                 .build();
     }
 
@@ -48,7 +48,7 @@ public class SubscriptionMapper implements EntityMapper<SubscriptionDto, Subscri
         return SubscriptionDto.builder()
                 .id(entity.getId())
                 .author_id(entity.getAuthor().getId())
-                .theme_id(entity.getTheme().getId())
+                .topic_id(entity.getTopic().getId())
                 .build();
     }
 

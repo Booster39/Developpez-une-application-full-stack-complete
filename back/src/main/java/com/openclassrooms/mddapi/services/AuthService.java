@@ -8,7 +8,6 @@ import com.openclassrooms.mddapi.payloads.request.SignupRequest;
 import com.openclassrooms.mddapi.payloads.response.JwtResponse;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import com.openclassrooms.mddapi.security.jwt.JwtUtils;
-import com.openclassrooms.mddapi.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

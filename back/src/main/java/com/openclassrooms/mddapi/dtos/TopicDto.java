@@ -3,13 +3,17 @@ package com.openclassrooms.mddapi.dtos;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
+import javax.persistence.Column;
+import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SubscriptionDto {
+public class TopicDto {
     private Long id;
-    private Long author_id;
-    private Long topic_id;
+    private String name;
+    private String description;
 }
+

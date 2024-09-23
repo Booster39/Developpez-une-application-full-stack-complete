@@ -15,7 +15,7 @@ import java.util.List;
 public class ArticleDtoComment {
     private Long id;
     private Long author_id;
-    private Long theme_id;
+    private Long topic_id;
     private String title;
     private String content;
     private LocalDateTime created_at;

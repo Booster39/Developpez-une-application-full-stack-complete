@@ -40,8 +40,8 @@ public class Article {
     private User author;
 
     @ManyToOne
-    @JoinColumn(name = "theme_id")
-    private Theme theme;
+    @JoinColumn(name = "topic_id")
+    private Topic topic;
 
     @NonNull
     @Size(max = 255)

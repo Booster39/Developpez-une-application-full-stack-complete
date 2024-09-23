@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.security.jwt;
 
-import com.openclassrooms.mddapi.security.services.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

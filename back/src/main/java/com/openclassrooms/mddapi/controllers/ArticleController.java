@@ -1,7 +1,7 @@
 package com.openclassrooms.mddapi.controllers;
 
 import com.openclassrooms.mddapi.dtos.ArticleDto;
-import com.openclassrooms.mddapi.models.Theme;
+import com.openclassrooms.mddapi.models.Topic;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.payloads.response.StringResponse;
 import com.openclassrooms.mddapi.repository.UserRepository;
@@ -62,7 +62,7 @@ public class ArticleController {
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<StringResponse> createPost(
             @RequestParam("title") @NotBlank @Size(max = 63) String title,
-            @RequestParam("theme_id") @Min(0) Long theme_id,
+            @RequestParam("topic_id") @Min(0) Long topic_id,
             @RequestParam("content") @Size(max = 2000) String content,
             @RequestHeader(value = "Authorization", required = false) String jwt
     ) {
@@ -70,7 +70,7 @@ public class ArticleController {
             String username = jwtUtils.getUserNameFromJwtToken(jwt.substring(7));
             User author = this.userRepository.findByEmail(username)
                     .orElseThrow(() -> new RuntimeException("User not found"));
-            ArticleDto articleDto = articleService.createPost(title, theme_id, content, author);
+            ArticleDto articleDto = articleService.createPost(title, topic_id, content, author);
             return ResponseEntity.ok().body(new StringResponse("Article created !"));
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();

@@ -3,10 +3,10 @@ package com.openclassrooms.mddapi.services;
 import com.openclassrooms.mddapi.dtos.ArticleDto;
 import com.openclassrooms.mddapi.mapper.ArticleMapper;
 import com.openclassrooms.mddapi.models.Article;
-import com.openclassrooms.mddapi.models.Theme;
+import com.openclassrooms.mddapi.models.Topic;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.repository.ArticleRepository;
-import com.openclassrooms.mddapi.repository.ThemeRepository;
+import com.openclassrooms.mddapi.repository.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class ArticleService {
     private ArticleMapper articleMapper;
 
     @Autowired
-    private ThemeRepository themeRepository;
+    private TopicRepository topicRepository;
 
     public ArticleDto getPostById(Long id) {
         Article article = articleRepository.findById(id)
@@ -32,11 +32,11 @@ public class ArticleService {
         return articleMapper.toDto(article);
     }
 
-    public ArticleDto createPost(String title, Long theme_id, String content, User author) {
-        Theme theme = themeRepository.findById(theme_id).orElse(null);
+    public ArticleDto createPost(String title, Long topic_id, String content, User author) {
+        Topic topic = topicRepository.findById(topic_id).orElse(null);
         Article article = Article.builder()
                 .title(title)
-                .theme(theme)
+                .topic(topic)
                 .author(author)
                 .content(content)
                 .created_at(LocalDateTime.now())

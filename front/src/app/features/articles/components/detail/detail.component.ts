@@ -12,6 +12,7 @@ import { Theme } from 'src/app/features/themes/interfaces/theme.interface';
 import { ThemesService } from 'src/app/features/themes/services/themes.service';
 import { User } from 'src/app/interfaces/user.interface';
 import { UserService } from 'src/app/services/user.service';
+import { Comment } from '../../interfaces/comment.interface';
 
 @Component({
   selector: 'app-detail',
@@ -21,13 +22,11 @@ import { UserService } from 'src/app/services/user.service';
 export class DetailComponent implements OnInit {
 
   public messageForm!: FormGroup;
-  post: any = {};
-  comments: { commentAuthorUsername: string; content: string }[] = [];
-  newCommentText: string = '';
   public article: Article | undefined;
-  public theme: Theme | undefined;
   public authorName: string | undefined;
   public themeName: string | undefined;
+
+  public comments$ = this.commentsService.all();
 
   constructor(
     private route: ActivatedRoute,
@@ -56,11 +55,8 @@ export class DetailComponent implements OnInit {
         this.themesService.detail(article.theme_id.toString()).subscribe(theme => {
           this.themeName = theme.name;
         })
+        
       });
-
-
-     
-
   }
 
   public back() {
@@ -80,6 +76,7 @@ export class DetailComponent implements OnInit {
         this.matSnackBar.open(messageResponse.message, "Close", { duration: 3000 });
       });
   }
+
 
   private initMessageForm() {
     this.messageForm = this.fb.group({

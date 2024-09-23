@@ -2,15 +2,11 @@ package com.openclassrooms.mddapi.controllers;
 
 
 import com.openclassrooms.mddapi.dtos.UserDto;
-import com.openclassrooms.mddapi.models.User;
 
 import com.openclassrooms.mddapi.payloads.request.LoginRequest;
 import com.openclassrooms.mddapi.payloads.request.SignupRequest;
 import com.openclassrooms.mddapi.payloads.response.JwtResponse;
 import com.openclassrooms.mddapi.payloads.response.StringResponse;
-import com.openclassrooms.mddapi.repository.UserRepository;
-import com.openclassrooms.mddapi.security.jwt.JwtUtils;
-import com.openclassrooms.mddapi.security.services.UserDetailsImpl;
 import com.openclassrooms.mddapi.services.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -19,14 +15,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

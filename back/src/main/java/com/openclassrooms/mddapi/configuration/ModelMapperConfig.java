@@ -19,7 +19,7 @@ public class ModelMapperConfig {
             @Override
             protected void configure() {
                 map().setAuthor_id(source.getAuthor() != null ? source.getAuthor().getId() : null);
-                map().setTheme_id(source.getTheme() != null ? source.getTheme().getId() : null);
+                map().setTopic_id(source.getTopic() != null ? source.getTopic().getId() : null);
             }
         });*/
 
