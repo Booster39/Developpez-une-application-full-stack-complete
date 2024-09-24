@@ -15,7 +15,7 @@ import java.util.Set;
 @Entity
 @Data
 @Builder
-@Table(name = "THEMES")
+@Table(name = "TOPICS")
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
@@ -34,4 +34,6 @@ public class Topic {
     @Column(name = "description", insertable = true)
     private String description;
 
+
+    //like and dislike
 }

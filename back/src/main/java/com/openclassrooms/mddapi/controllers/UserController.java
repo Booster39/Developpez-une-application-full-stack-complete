@@ -34,7 +34,7 @@ public class UserController {
           @ApiResponse(responseCode = "404", description = "Utilisateur non trouvé",
                   content = @Content)
   })
-  @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+  @GetMapping(value = "/{me}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<UserDto> findById(@PathVariable("id") String id) {
     try {
       UserDto userDto = userService.getUserById(Long.valueOf(id));
@@ -47,4 +47,6 @@ public class UserController {
     }
   }
 
+  //@PutMapping(value = "/{me}")
+//à développer
 }

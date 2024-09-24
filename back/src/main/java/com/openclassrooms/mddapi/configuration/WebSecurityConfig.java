@@ -1,8 +1,7 @@
 package com.openclassrooms.mddapi.configuration;
 
 
-import com.openclassrooms.mddapi.security.jwt.AuthEntryPointJwt;
-import com.openclassrooms.mddapi.security.jwt.AuthTokenFilter;
+import com.openclassrooms.mddapi.security.jwt.JwtAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +19,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -30,13 +28,8 @@ public class WebSecurityConfig {
   @Autowired
   private UserDetailsService userDetailsService;
 
-  @Bean
-  public AuthTokenFilter authenticationJwtTokenFilter() {
-    return new AuthTokenFilter();
-  }
-
   @Autowired
-  private AuthEntryPointJwt authEntryPointJwt;
+  private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
   @Bean
   public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
@@ -63,7 +56,7 @@ public class WebSecurityConfig {
         .anyRequest().authenticated()
       )
       .exceptionHandling(exception -> exception
-        .authenticationEntryPoint(authEntryPointJwt));
+        .authenticationEntryPoint(jwtAuthenticationEntryPoint));
 
     return http.build();
   }
