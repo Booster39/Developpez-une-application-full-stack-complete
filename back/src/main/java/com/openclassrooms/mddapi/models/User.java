@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -13,8 +14,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
-
+import java.util.Objects;
 
 @Entity
 @Table(name = "USERS", uniqueConstraints = {
@@ -32,6 +34,10 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private static final long serialVersionUID = 1L;
+
+    private String username = null;//email
+
     @NonNull
     @Size(max = 255)
     @Email
@@ -42,6 +48,7 @@ public class User implements UserDetails {
     private String name;
 
     @NonNull
+    @JsonIgnore
     @Size(min = 8, max = 255)
     private String password;
 
@@ -56,32 +63,28 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
-    }
-
-    @Override
-    public String getUsername() {// à changer
-        return null;
+       // return List.of();
+        return new HashSet<GrantedAuthority>();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     @CreatedDate
@@ -91,4 +94,14 @@ public class User implements UserDetails {
     @UpdateTimestamp
     @Column(name = "updated_at", length = 8)
     private LocalDateTime updated_at;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id);
+    }
 }

@@ -35,7 +35,7 @@ public class UserController {
                   content = @Content)
   })
   @GetMapping(value = "/{me}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<UserDto> findById(@PathVariable("id") String id) {
+  public ResponseEntity<UserDto> findById(@PathVariable("me") String id) {
     try {
       UserDto userDto = userService.getUserById(Long.valueOf(id));
       if (userDto == null) {
@@ -47,6 +47,29 @@ public class UserController {
     }
   }
 
-  //@PutMapping(value = "/{me}")
-//à développer
+  @Operation(summary = "Mettre à jour un utilisateur", description = "Met à jour les détails d'un utilisateur existant basé sur l'ID fourni.")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Utilisateur mis à jour avec succès",
+                  content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))),
+          @ApiResponse(responseCode = "400", description = "Requête invalide",
+                  content = @Content),
+          @ApiResponse(responseCode = "404", description = "Utilisateur non trouvé",
+                  content = @Content)
+  })
+  @PutMapping(value = "/{me}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<UserDto> updateUser(@PathVariable("me") String id, @RequestBody UserDto userDto) {
+    try {
+      UserDto updatedUser = userService.updateUser(Long.valueOf(id), userDto);
+      return ResponseEntity.ok().body(updatedUser);
+    } catch (NumberFormatException e) {
+      log.error("Invalid ID format: {}", id, e);
+      return ResponseEntity.badRequest().build();
+    } catch (RuntimeException e) {
+      log.error("User not found with ID: {}", id, e);
+      return ResponseEntity.notFound().build();
+    } catch (Exception e) {
+      log.error("Error updating user with ID: {}", id, e);
+      return ResponseEntity.status(500).build();
+    }
+  }
 }
