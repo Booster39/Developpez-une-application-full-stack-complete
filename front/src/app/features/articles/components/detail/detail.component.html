@@ -46,15 +46,13 @@
         <h2 class="title-comments">Commentaires</h2>
 
         <div class="list" fxLayout="row" fxLayoutAlign="space-between center">
-          <mat-grid-list cols="2" rowHeight="2:1">
+          <mat-grid-list cols="1" rowHeight="15:1">
               <mat-grid-tile *ngFor="let comment of (comments$ | async)?.comments" >
                   <mat-card-actions *ngIf="comment.article_id === article!.id">
           <button class="comment" mat-raised-button>
-              <mat-grid-tile-header class="card">
-              </mat-grid-tile-header>
               <div class="da">
                       <p >
-                        Article: {{comment.article_id}}
+                        Author: {{comment.author_id}}
                         </p>
                         <p>
                             Comment:{{ comment.content }}

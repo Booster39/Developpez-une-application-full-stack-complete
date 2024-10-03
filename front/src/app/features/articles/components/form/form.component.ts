@@ -7,6 +7,7 @@ import { ArticleResponse } from '../../interfaces/api/articleResponse.interface'
 import { Article } from '../../interfaces/article.interface';
 import { ArticlesService } from '../../services/articles.service';
 import { TopicService } from 'src/app/services/topics.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -16,8 +17,9 @@ import { TopicService } from 'src/app/services/topics.service';
 export class FormComponent implements OnInit {
   public onUpdate: boolean = false;
   public articleForm: FormGroup | undefined;
-  public topics$ = this.topicService.all();
-
+  public topics$ = this.topicService.all().pipe(
+    map((response) => response.topics)
+  );
   private id: string | undefined;
 
   constructor(

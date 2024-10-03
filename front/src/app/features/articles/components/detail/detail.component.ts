@@ -66,7 +66,7 @@ export class DetailComponent implements OnInit {
   public sendMessage(): void {
     const message = {
       article_id: this.article!.id,
-      author_id: this.article!.author_id,
+      author_id: this.user!.id,
       content: this.messageForm.value.message
     } as CommentRequest;
 
