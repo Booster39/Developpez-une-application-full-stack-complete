@@ -22,8 +22,7 @@
     padding: 0;
 }
 
-mat-toolbar {
-    padding: 0;
+.app {
     .link {
         cursor: pointer;
         font-size: 16px;
@@ -34,17 +33,19 @@ mat-toolbar {
     .link + .link {
         margin-left: 10px;
     }
-}
-.img {
+  }
+  .img {
     width: 100px;
-}
-
-
-.buttons {
-    position:relative; 
-    display:inline-block; 
-    left:1600px;
-}
+  }
+  
+  
+  .buttons {
+  margin-left: auto;
+  }
+  
+  hr {
+    margin: 0;
+  }
 
 .da {
     display: block;

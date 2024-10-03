@@ -17,3 +17,28 @@
 .img:hover{
     cursor: pointer;
 }
+
+.app {
+  .link {
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: none;
+      
+  }
+  
+  .link + .link {
+      margin-left: 10px;
+  }
+}
+.img {
+  width: 100px;
+}
+
+
+.buttons {
+margin-left: auto;
+}
+
+hr {
+  margin: 0;
+}
