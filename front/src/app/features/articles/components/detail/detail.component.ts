@@ -13,6 +13,7 @@ import { TopicsService } from 'src/app/features/topics/services/topics.service';
 import { User } from 'src/app/interfaces/user.interface';
 import { UserService } from 'src/app/services/user.service';
 import { Comment } from '../../interfaces/comment.interface';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-detail',
@@ -25,6 +26,8 @@ export class DetailComponent implements OnInit {
   public article: Article | undefined;
   public authorName: string | undefined;
   public topicName: string | undefined;
+
+  public comments: Array<{comment: Comment, authorName: string}> = [];
 
   public comments$ = this.commentsService.all();
 
@@ -56,8 +59,30 @@ export class DetailComponent implements OnInit {
           this.topicName = topic.name;
         })
         
+
+        this.loadCommentsWithAuthors();
       });
   }
+
+  private loadCommentsWithAuthors(): void {
+    this.commentsService.all().subscribe(commentsResponse => {
+      const commentList = commentsResponse.comments.filter(comment => comment.article_id === this.article?.id);
+      
+      // Fetch all authors at once using forkJoin
+      const userObservables = commentList.map(comment => 
+        this.userService.getUserById(comment.author_id)
+      );
+
+      forkJoin(userObservables).subscribe(users => {
+        this.comments = commentList.map((comment, index) => ({
+          comment,
+          authorName: users[index].name
+        }));
+      });
+    });
+  }
+
+
 
   public back() {
     window.history.back();
