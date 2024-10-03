@@ -46,7 +46,7 @@
                 </mat-form-field>
 
                 <div fxLayout="row" fxLayoutAlign="center center">
-                    <button mat-raised-button color="primary" type="submit">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="articleForm.invalid">
                         Créer
                     </button>
                 </div>

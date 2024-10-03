@@ -46,17 +46,13 @@ export class FormComponent implements OnInit {
   }
 
   public submit(): void {
-    const article = this.articleForm?.value as FormData;
-    /* this.articlesService
-    .create(article)
-    .subscribe((_: Article) => this.exitPage('Article created !'));*/
     const formData = new FormData();
     formData.append('title', this.articleForm!.get('title')?.value);
     formData.append('content', this.articleForm!.get('content')?.value);
     formData.append('topic_id', this.articleForm!.get('topic_id')?.value);
     if (!this.onUpdate) {
       this.articlesService
-        .create(article)
+        .create(formData)
         .subscribe((articleResponse: ArticleResponse) =>
           this.exitPage(articleResponse)
         );
