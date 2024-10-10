@@ -18,6 +18,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
+
 @Entity
 @Table(name = "USERS", uniqueConstraints = {
         @UniqueConstraint(columnNames = "email")})

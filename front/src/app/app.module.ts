@@ -14,12 +14,18 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MeComponent } from './components/me/me.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar'; 
+import { ReactiveFormsModule } from '@angular/forms';
 
 const materialModule = [
   MatButtonModule,
   MatCardModule,
   MatIconModule,
   MatToolbarModule,
+  MatFormFieldModule,
+  MatSnackBarModule,
+  ReactiveFormsModule
 ]
 
 @NgModule({

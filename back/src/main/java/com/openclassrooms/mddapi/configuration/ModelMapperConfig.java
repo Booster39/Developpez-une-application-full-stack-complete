@@ -14,14 +14,6 @@ public class ModelMapperConfig {
     public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
 
-        // Mapping for Article to ArticleDto
-       /* modelMapper.addMappings(new PropertyMap<Article, ArticleDto>() {
-            @Override
-            protected void configure() {
-                map().setAuthor_id(source.getAuthor() != null ? source.getAuthor().getId() : null);
-                map().setTopic_id(source.getTopic() != null ? source.getTopic().getId() : null);
-            }
-        });*/
 
         return modelMapper;
     }

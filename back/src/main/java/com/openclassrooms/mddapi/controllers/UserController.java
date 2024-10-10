@@ -2,6 +2,7 @@ package com.openclassrooms.mddapi.controllers;
 
 
 import com.openclassrooms.mddapi.dtos.UserDto;
+import com.openclassrooms.mddapi.services.TopicService;
 import com.openclassrooms.mddapi.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,6 +24,9 @@ public class UserController {
 
   @Autowired
   private UserService userService;
+
+  @Autowired
+  private TopicService topicService;
 
 
   @Operation(summary = "Obtenir un utilisateur par ID", description = "Retourne un utilisateur spécifique basé sur l'ID fourni.")
@@ -56,6 +60,7 @@ public class UserController {
           @ApiResponse(responseCode = "404", description = "Utilisateur non trouvé",
                   content = @Content)
   })
+
   @PutMapping(value = "/{me}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<UserDto> updateUser(@PathVariable("me") String id, @RequestBody UserDto userDto) {
     try {
@@ -72,4 +77,33 @@ public class UserController {
       return ResponseEntity.status(500).build();
     }
   }
+
+
+
+
+ /**
+ * Like a topic by its id.
+ *
+ * @param id The id of the topic.
+ * @return Empty no content response.
+ follow
+**/
+@PutMapping("/users/me/topics/{id}")
+public ResponseEntity<?> likeTopic(@PathVariable long id) {
+        topicService.likeTopic(id);
+        return ResponseEntity.noContent().build();
+        }
+
+
+/**
+ * Dislike a topic by its id.
+ *
+ * @param id The id of the topic.
+ * @return Empty no content response.
+ **/
+@DeleteMapping("/users/me/topics/{id}")
+public ResponseEntity<?> dislikeTopic(@PathVariable long id) {
+        topicService.dislikeTopic(id);
+        return ResponseEntity.noContent().build();
+        }
 }

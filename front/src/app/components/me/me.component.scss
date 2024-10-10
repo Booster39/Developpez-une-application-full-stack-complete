@@ -1,0 +1,22 @@
+.me {
+    .link {
+        cursor: pointer;
+        font-size: 16px;
+        text-decoration: none;
+        
+    }
+    
+    .link + .link {
+        margin-left: 10px;
+    }
+  }
+  .img {
+    width: 100px;
+  }
+  
+  hr {
+    margin: 0;
+  }
+  .buttons {
+  margin-left: auto;
+  }

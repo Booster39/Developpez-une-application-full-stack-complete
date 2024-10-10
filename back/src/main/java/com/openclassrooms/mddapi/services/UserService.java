@@ -6,6 +6,10 @@ import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,5 +52,21 @@ public class UserService {
         return users.stream()
                 .map(userMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Récupère l'utilisateur actuellement authentifié.
+     *
+     * @return L'utilisateur authentifié.
+     * @throws RuntimeException si l'utilisateur n'est pas authentifié ou non trouvé.
+     */
+    public User me() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new RuntimeException("Utilisateur non authentifié");
+        }
+        String email = authentication.getName();
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
     }
 }

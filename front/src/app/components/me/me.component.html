@@ -1,23 +1,44 @@
 <div class="me">
-
+        <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
+            <img class="img" src="/assets/logo_p6.png" routerLink="" alt="logo" />
+            
+            <div class="buttons">
+                <span routerLink="/articles" class="link">Articles</span>
+                <span routerLink="/topics" class="link">Thèmes</span>
+                <span  routerLink="/me" class="link">Compte</span>
+              </div>
+        </mat-toolbar>
+    <hr />
     <mat-card class="">
         <mat-card-title>
 
-            <div fxLayout="row" fxLayoutAlign="start center">
-                <button mat-icon-button (click)="back()">
-                    <mat-icon>arrow_back</mat-icon>
-                </button>
-                <h1>User information</h1>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <h1>Profil Utilisateur</h1>
             </div>
             
         </mat-card-title>
-        <mat-card-content>
-            <div *ngIf="user" fxLayout="column" fxLayoutAlign="start center">
-                <p>Name: {{ user.name }}</p>
-                <p>Email: {{ user.email }}</p>
-                <p><i>Create at: </i> {{ user.created_at| date: 'longDate'}}</p>
-                <p><i>Last update: </i> {{ user.updated_at| date: 'longDate'}}</p>
- </div>
+        <mat-card-content *ngIf="meForm">
+            <form  [formGroup]="meForm" class="mt2" class="example-form"  fxLayout="column" (ngSubmit)="submit()">
+                
+
+                <mat-form-field appearance="outline" fxLayoutAlign="center center"  fxFlex>
+                    <mat-label>name</mat-label>
+                    <input matInput formControlName="name" placeholder="Nom de l'utilisateur">
+                </mat-form-field>
+
+
+                <mat-form-field appearance="outline" fxLayoutAlign="center center"  fxFlex>
+                    <mat-label>email</mat-label>
+                    <textarea matInput formControlName="email" placeholder="email de l'utilisateur"></textarea>
+                </mat-form-field>
+
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <mat-card-actions >
+                        <button mat-raised-button color="primary">Sauvegarder</button>
+                        <a mat-button color="warn" (click)="onLogoutClick()">Se déconnecter</a>
+                      </mat-card-actions>
+                </div>
+            </form>
         </mat-card-content>
     </mat-card>
 </div>
