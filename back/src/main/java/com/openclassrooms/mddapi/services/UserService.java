@@ -35,12 +35,18 @@ public class UserService {
         return userMapper.toDto(user);
     }
 
-    public UserDto updateUser(Long id, UserDto userDto) {
+    public UserDto updateUser(Long id, String name, String email) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-        userMapper.toEntity(userDto); // map the changes from DTO to the existing entity
-        userRepository.save(user);
-        return userMapper.toDto(user);
+        if (user != null) {
+            user.setName(name);
+            user.setEmail(email);
+            user.setUsername(email);
+            userRepository.save(user);
+            return userMapper.toDto(user);
+        }
+       // userMapper.toEntity(userDto); // map the changes from DTO to the existing entity
+        throw new RuntimeException("User not found");
     }
 
     public void deleteUser(Long id) {

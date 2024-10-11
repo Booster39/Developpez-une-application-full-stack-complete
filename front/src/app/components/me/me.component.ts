@@ -25,7 +25,7 @@ export class MeComponent implements OnInit {
     private fb: FormBuilder,
     private matSnackBar: MatSnackBar,
     private userService: UserService,
-    private sessionService: SessionService,
+    public sessionService: SessionService,
     private router: Router,
   ) { }
 
@@ -44,6 +44,7 @@ export class MeComponent implements OnInit {
     const formData = new FormData();
     formData.append('name', this.meForm!.get('name')?.value);
     formData.append('email', this.meForm!.get('email')?.value);
+    
     this.id = this.user?.id;
       this.userService
         .update(this.id!.toString(), formData)

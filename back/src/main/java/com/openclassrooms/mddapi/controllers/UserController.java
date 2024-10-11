@@ -61,10 +61,10 @@ public class UserController {
                   content = @Content)
   })
 
-  @PutMapping(value = "/{me}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<UserDto> updateUser(@PathVariable("me") String id, @RequestBody UserDto userDto) {
+  @PutMapping(value = "/{me}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<UserDto> updateUser(@PathVariable("me") String id, @RequestParam("name")  String name, @RequestParam("email")  String email) {
     try {
-      UserDto updatedUser = userService.updateUser(Long.valueOf(id), userDto);
+      UserDto updatedUser = userService.updateUser(Long.valueOf(id), name, email);
       return ResponseEntity.ok().body(updatedUser);
     } catch (NumberFormatException e) {
       log.error("Invalid ID format: {}", id, e);

@@ -23,13 +23,13 @@
 
                 <mat-form-field appearance="outline" fxLayoutAlign="center center"  fxFlex>
                     <mat-label>name</mat-label>
-                    <input matInput formControlName="name" placeholder="Nom de l'utilisateur">
+                    <input matInput formControlName="name" [(ngModel)]="sessionService.user!.name" placeholder="Nom de l'utilisateur">
                 </mat-form-field>
 
 
                 <mat-form-field appearance="outline" fxLayoutAlign="center center"  fxFlex>
                     <mat-label>email</mat-label>
-                    <textarea matInput formControlName="email" placeholder="email de l'utilisateur"></textarea>
+                    <textarea matInput formControlName="email" [(ngModel)]="sessionService.user!.email" placeholder="email de l'utilisateur"></textarea>
                 </mat-form-field>
 
                 <div fxLayout="row" fxLayoutAlign="center center">
