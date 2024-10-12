@@ -21,4 +21,13 @@ export class TopicService {
   public detail(id: string): Observable<Topic> {
     return this.httpClient.get<Topic>(`${this.pathService}/${id}`);
   }
+
+  public subscribeToTopic(topicId: number): Observable<void> {
+    return this.httpClient.put<void>(`${this.pathService}/${topicId}`, {});
+  }
+
+  // Désabonnement d'un topic
+  public unsubscribeFromTopic(topicId: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.pathService}/${topicId}`);
+  }
 }

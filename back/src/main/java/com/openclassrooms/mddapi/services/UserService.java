@@ -40,7 +40,7 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
         if (user != null) {
             user.setName(name);
-            user.setEmail(email);
+            user.setUsername(email);
             user.setUsername(email);
             userRepository.save(user);
             return userMapper.toDto(user);
@@ -72,7 +72,7 @@ public class UserService {
             throw new RuntimeException("Utilisateur non authentifié");
         }
         String email = authentication.getName();
-        return userRepository.findByEmail(email)
+        return userRepository.findByUsername(email)
                 .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
     }
 }

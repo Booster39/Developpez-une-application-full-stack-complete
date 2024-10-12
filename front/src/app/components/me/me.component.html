@@ -41,4 +41,30 @@
             </form>
         </mat-card-content>
     </mat-card>
+      <!-- Section pour gérer les abonnements aux sujets -->
+  <div class="user-topics">
+    <h3>Mes Sujets Abonnés</h3>
+    
+    <!-- Afficher les sujets suivis si l'utilisateur est chargé -->
+    <div *ngIf="user">
+      <div *ngIf="user.followedTopics.length > 0; else noFollowedTopics">
+        <ul>
+          <li *ngFor="let topic of user.followedTopics" class="topic-item">
+            <span>{{ topic.name }}</span>
+            
+            <!-- Bouton de désabonnement -->
+            <button 
+              (click)="unsubscribe(topic.id)" 
+              class="btn btn-danger btn-sm">
+              Se Désabonner
+            </button>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Message si aucun sujet n'est suivi -->
+      <ng-template #noFollowedTopics>
+        <p>Vous ne suivez aucun sujet pour le moment.</p>
+      </ng-template>
+    </div>
 </div>

@@ -1,7 +1,6 @@
 package com.openclassrooms.mddapi.controllers;
 
 import com.openclassrooms.mddapi.dtos.ArticleDto;
-import com.openclassrooms.mddapi.models.Topic;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.payloads.response.StringResponse;
 import com.openclassrooms.mddapi.repository.UserRepository;
@@ -68,7 +67,7 @@ public class ArticleController {
     ) {
         try {
             String username = jwtUtils.getUserNameFromJwtToken(jwt.substring(7));
-            User author = this.userRepository.findByEmail(username)
+            User author = this.userRepository.findByUsername(username)
                     .orElseThrow(() -> new RuntimeException("User not found"));
             ArticleDto articleDto = articleService.createPost(title, topic_id, content, author);
             return ResponseEntity.ok().body(new StringResponse("Article created !"));

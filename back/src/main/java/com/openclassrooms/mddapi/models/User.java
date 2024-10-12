@@ -21,7 +21,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "USERS", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "email")})
+        @UniqueConstraint(columnNames = "username")})
 @Data
 @Accessors(chain = true)
 @EntityListeners(AuditingEntityListener.class)
@@ -37,12 +37,10 @@ public class User implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
-    private String username = null;//email
-
     @NonNull
     @Size(max = 255)
     @Email
-    private String email;
+    private String username;
 
     @NonNull
     @Size(max = 255)

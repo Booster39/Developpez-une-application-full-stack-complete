@@ -23,12 +23,15 @@
                         <div class="content">
                         Contenu: {{ topic.description }}
                 </div>
-                <button mat-raised-button color="primary" routerLink="create">
+                <button mat-raised-button color="primary"  *ngIf="!isFollowing(topic.id)" (click)="subscribe(topic.id)">
                     <span class="ml1">S'abonner</span>
                 </button>
-                <button mat-raised-button color="primary" routerLink="delete">
-                    <span class="ml1">Se désabonner</span>
-                </button>
+
+                <button 
+                mat-raised-button color="primary" *ngIf="isFollowing(topic.id)" 
+            disabled>
+            Abonné
+          </button>
                 </div>
             </button>
             

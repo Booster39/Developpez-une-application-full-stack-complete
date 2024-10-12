@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { UserResponse } from 'src/app/features/topics/interfaces/api/userResponse.interface';
 import { User } from 'src/app/interfaces/user.interface';
 import { SessionService } from 'src/app/services/session.service';
+import { TopicService } from 'src/app/services/topics.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -25,6 +26,7 @@ export class MeComponent implements OnInit {
     private fb: FormBuilder,
     private matSnackBar: MatSnackBar,
     private userService: UserService,
+    private topicService: TopicService,
     public sessionService: SessionService,
     private router: Router,
   ) { }
@@ -44,7 +46,7 @@ export class MeComponent implements OnInit {
     const formData = new FormData();
     formData.append('name', this.meForm!.get('name')?.value);
     formData.append('email', this.meForm!.get('email')?.value);
-    
+
     this.id = this.user?.id;
       this.userService
         .update(this.id!.toString(), formData)
@@ -69,6 +71,19 @@ export class MeComponent implements OnInit {
   private exitPage(userResponse: UserResponse): void {
     this.matSnackBar.open(userResponse.message, 'Close', { duration: 3000 });
     this.router.navigate(['/articles']);
+  }
+
+  public unsubscribe(topicId: number): void {
+    this.topicService.unsubscribeFromTopic(topicId).subscribe(() => {
+      // Mettre à jour l'état local de l'utilisateur
+      if (this.user) {
+        this.user.followedTopics = this.user.followedTopics.filter(t => t.id !== topicId);
+      }
+      this.matSnackBar.open('Vous êtes désabonné de ce sujet.', 'Close', { duration: 3000 });
+    }, error => {
+      console.error('Erreur lors du désabonnement:', error);
+      this.matSnackBar.open('Erreur lors du désabonnement.', 'Close', { duration: 3000 });
+    });
   }
 
   onLogoutClick() {

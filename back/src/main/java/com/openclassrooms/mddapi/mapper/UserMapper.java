@@ -4,7 +4,6 @@ import com.openclassrooms.mddapi.dtos.UserDto;
 import com.openclassrooms.mddapi.models.User;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +20,7 @@ public class UserMapper implements EntityMapper<UserDto, User> {
 
         user.id( dto.getId() );
         user.name( dto.getName() );
-        user.email( dto.getEmail() );
+        user.username( dto.getEmail() );
         user.created_at(dto.getCreated_at());
         user.updated_at(dto.getUpdated_at());
 
@@ -38,7 +37,7 @@ public class UserMapper implements EntityMapper<UserDto, User> {
 
         userDto.setId( entity.getId() );
         userDto.setName( entity.getName() );
-        userDto.setEmail( entity.getEmail() );
+        userDto.setEmail( entity.getUsername() );
         userDto.setCreated_at(entity.getCreated_at());
         userDto.setUpdated_at(entity.getUpdated_at());
 

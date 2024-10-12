@@ -43,7 +43,7 @@ public class AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
         User userDetails = (User) authentication.getPrincipal();
-        User user = this.userRepository.findByEmail(userDetails.getUsername()).orElse(null);
+        User user = this.userRepository.findByUsername(userDetails.getUsername()).orElse(null);
 
         if (user == null) {
             throw new Exception("User not found");
@@ -53,7 +53,7 @@ public class AuthService {
     }
 
     public JwtResponse registerUser(SignupRequest signUpRequest) throws Exception {
-        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+        if (userRepository.existsByUsername(signUpRequest.getEmail())) {
             throw new Exception("User already exists");
         }
 
@@ -64,11 +64,11 @@ public class AuthService {
         );
 
         userRepository.save(user);
-        return new JwtResponse(jwtUtils.generateJwtToken(user.getEmail()));
+        return new JwtResponse(jwtUtils.generateJwtToken(user.getUsername()));
     }
 
     public Optional<UserDto> getCurrentUser(Authentication auth) {
-        final Optional<User> user = this.userRepository.findByEmail(auth.getName());
+        final Optional<User> user = this.userRepository.findByUsername(auth.getName());
         return user.map(userMapper::toDto);
     }
 }
