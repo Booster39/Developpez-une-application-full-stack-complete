@@ -9,11 +9,11 @@ import { CommentsService } from '../../services/comments.service';
 import { ArticlesService } from '../../services/articles.service';
 import { SessionService } from 'src/app/services/session.service';
 import { Topic } from 'src/app/features/topics/interfaces/topic.interface';
-import { TopicsService } from 'src/app/features/topics/services/topics.service';
 import { User } from 'src/app/interfaces/user.interface';
 import { UserService } from 'src/app/services/user.service';
 import { Comment } from '../../interfaces/comment.interface';
 import { forkJoin } from 'rxjs';
+import { TopicService } from 'src/app/services/topics.service';
 
 @Component({
   selector: 'app-detail',
@@ -37,7 +37,7 @@ export class DetailComponent implements OnInit {
     private commentsService: CommentsService,
     private articlesService: ArticlesService,
     private sessionService: SessionService,
-    private topicsService: TopicsService,
+    private topicsService: TopicService,
     private userService: UserService,
     private matSnackBar: MatSnackBar) {
     this.initMessageForm();

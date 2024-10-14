@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from 'src/app/interfaces/user.interface';
-import { TopicsService } from '../../services/topics.service';
 import { SessionService } from 'src/app/services/session.service';
 import { Topic } from 'src/app/interfaces/topic.interface';
 import { TopicService } from 'src/app/services/topics.service';
@@ -17,8 +16,7 @@ export class ListComponent implements OnInit {
   public followedTopicIds: number[] = [];
   constructor(
     private sessionService: SessionService,
-    private topicsService: TopicsService,
-    private topicService: TopicService
+    private topicsService: TopicService,
   ) { }
 
   ngOnInit(): void {
@@ -40,7 +38,7 @@ export class ListComponent implements OnInit {
   }
 
   public subscribe(topicId: number): void {
-    this.topicService.subscribeToTopic(topicId).subscribe(() => {
+    this.topicsService.subscribeToTopic(topicId).subscribe(() => {
       this.followedTopicIds.push(topicId);
       this.subscribeEvent.emit();
       alert('Vous êtes maintenant abonné à ce sujet.');

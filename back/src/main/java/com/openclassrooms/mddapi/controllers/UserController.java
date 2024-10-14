@@ -88,7 +88,7 @@ public class UserController {
  * @return Empty no content response.
  follow
 **/
-@PutMapping("/users/me/topics/{id}")
+@PutMapping("/me/topics/{id}")
 public ResponseEntity<?> likeTopic(@PathVariable long id) {
         topicService.likeTopic(id);
         return ResponseEntity.noContent().build();
@@ -101,7 +101,7 @@ public ResponseEntity<?> likeTopic(@PathVariable long id) {
  * @param id The id of the topic.
  * @return Empty no content response.
  **/
-@DeleteMapping("/users/me/topics/{id}")
+@DeleteMapping("/me/topics/{id}")
 public ResponseEntity<?> dislikeTopic(@PathVariable long id) {
         topicService.dislikeTopic(id);
         return ResponseEntity.noContent().build();

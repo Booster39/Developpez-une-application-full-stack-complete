@@ -11,6 +11,7 @@ import { TopicResponse } from '../features/topics/interfaces/api/topicResponse.i
 export class TopicService {
 
   private pathService = 'api/topics';
+  private userTopicsApiUrl = '/api/user/me/topics';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,12 +23,21 @@ export class TopicService {
     return this.httpClient.get<Topic>(`${this.pathService}/${id}`);
   }
 
-  public subscribeToTopic(topicId: number): Observable<void> {
-    return this.httpClient.put<void>(`${this.pathService}/${topicId}`, {});
+  public create(form: FormData): Observable<TopicResponse> {
+    return this.httpClient.post<TopicResponse>(this.pathService, form);
   }
 
-  // Désabonnement d'un topic
-  public unsubscribeFromTopic(topicId: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.pathService}/${topicId}`);
+  public update(id: string, form: FormData): Observable<TopicResponse> {
+    return this.httpClient.put<TopicResponse>(`${this.pathService}/${id}`, form);
+  }
+
+  // S'abonner à un sujet
+  public subscribeToTopic(id: number): Observable<void> {
+    return this.httpClient.put<void>(`${this.userTopicsApiUrl}/${id}`, {});
+  }
+
+  // Se désabonner d'un sujet
+  public unsubscribeFromTopic(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.userTopicsApiUrl}/${id}`);
   }
 }
