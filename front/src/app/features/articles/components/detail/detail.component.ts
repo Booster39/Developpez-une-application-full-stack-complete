@@ -12,7 +12,7 @@ import { Topic } from 'src/app/features/topics/interfaces/topic.interface';
 import { User } from 'src/app/interfaces/user.interface';
 import { UserService } from 'src/app/services/user.service';
 import { Comment } from '../../interfaces/comment.interface';
-import { forkJoin } from 'rxjs';
+import { forkJoin, interval, Subscription, switchMap } from 'rxjs';
 import { TopicService } from 'src/app/services/topics.service';
 
 @Component({
@@ -26,7 +26,7 @@ export class DetailComponent implements OnInit {
   public article: Article | undefined;
   public authorName: string | undefined;
   public topicName: string | undefined;
-
+  private pollingSubscription!: Subscription;
   public comments: Array<{comment: Comment, authorName: string}> = [];
 
   public comments$ = this.commentsService.all();
@@ -57,11 +57,39 @@ export class DetailComponent implements OnInit {
 
         this.topicsService.detail(article.topic_id.toString()).subscribe(topic => {
           this.topicName = topic.name;
-        })
-        
+        });
 
         this.loadCommentsWithAuthors();
       });
+
+    // Initialiser le polling après avoir chargé l'article
+    this.pollingSubscription = interval(5000) // Toutes les 5 secondes
+      .pipe(
+        switchMap(() => this.commentsService.all())
+      )
+      .subscribe(commentsResponse => {
+        if (this.article) {
+          const commentList = commentsResponse.comments.filter(comment => comment.article_id === this.article!.id);
+          
+          // Vérifier si de nouveaux commentaires existent
+          if (commentList.length !== this.comments.length) {
+            this.fetchAuthorsForComments(commentList);
+          }
+        }
+      });
+  }
+
+  private fetchAuthorsForComments(commentList: Comment[]): void {
+    const userObservables = commentList.map(comment => 
+      this.userService.getUserById(comment.author_id)
+    );
+
+    forkJoin(userObservables).subscribe(users => {
+      this.comments = commentList.map((comment, index) => ({
+        comment,
+        authorName: users[index].name
+      }));
+    });
   }
 
   private loadCommentsWithAuthors(): void {
@@ -82,7 +110,11 @@ export class DetailComponent implements OnInit {
     });
   }
 
-
+  public ngOnDestroy(): void {
+    if (this.pollingSubscription) {
+      this.pollingSubscription.unsubscribe();
+    }
+  }
 
   public back() {
     window.history.back();
