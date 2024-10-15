@@ -32,7 +32,7 @@
                 <div class="da">
                     
                         <p class="date">
-                        Date: {{article.created_at}}
+                        Date: {{ article.created_at | date: 'dd MMMM yyyy, HH:mm' }}
                         </p>
                 
                         <div class="content">

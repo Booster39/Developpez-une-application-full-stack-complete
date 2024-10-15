@@ -18,7 +18,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs'; 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatLineModule, MatOptionModule } from '@angular/material/core';
-import { CommentsComponent } from 'src/app/shared/components/comments/comments.component';
 import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
 

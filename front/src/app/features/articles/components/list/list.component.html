@@ -40,7 +40,7 @@
                 <div class="da">
                     Titre:{{ article.title }}
                         <p class="date">
-                        Date: {{article.created_at}}
+                        Date: {{ article.created_at | date: 'dd MMMM yyyy, HH:mm' }}
                         </p>
 
                         <mat-card-subtitle>
