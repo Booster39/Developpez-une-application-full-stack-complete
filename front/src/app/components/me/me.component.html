@@ -1,8 +1,6 @@
-<!-- me.component.html -->
 <div class="me">
   <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
     <img class="img" src="/assets/logo_p6.png" routerLink="" alt="logo" />
-
     <div class="buttons">
       <span routerLink="/articles" class="link">Articles</span>
       <span routerLink="/topics" class="link">Thèmes</span>
@@ -10,6 +8,7 @@
     </div>
   </mat-toolbar>
   <hr />
+  
   <mat-card>
     <mat-card-title>
       <div fxLayout="row" fxLayoutAlign="center center">
@@ -18,12 +17,12 @@
     </mat-card-title>
     <mat-card-content *ngIf="meForm">
       <form [formGroup]="meForm" class="mt2 example-form" fxLayout="column" (ngSubmit)="submit()">
-        <mat-form-field appearance="outline" fxLayoutAlign="center center" fxFlex>
+        <mat-form-field appearance="outline">
           <mat-label>Nom</mat-label>
           <input matInput formControlName="name" placeholder="{{user?.name}}">
         </mat-form-field>
 
-        <mat-form-field appearance="outline" fxLayoutAlign="center center" fxFlex>
+        <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput formControlName="email" placeholder="{{user?.email}}">
         </mat-form-field>
@@ -44,9 +43,9 @@
     <!-- Afficher les sujets suivis si l'utilisateur est chargé -->
     <div *ngIf="user">
       <div *ngIf="user.followedTopics.length > 0; else noFollowedTopics">
-        <mat-list>
-          <mat-list-item *ngFor="let topic of user.followedTopics" class="topic-item">
-            <mat-card>
+        <mat-grid-list cols="2" rowHeight="3:1" class="topic-list">
+          <mat-grid-tile *ngFor="let topic of user.followedTopics">
+            <mat-card class="topic-item">
               <span>{{ topic.name }}</span>
               <button 
                 mat-button 
@@ -55,8 +54,8 @@
                 Se Désabonner
               </button>
             </mat-card>
-          </mat-list-item>
-        </mat-list>
+          </mat-grid-tile>
+        </mat-grid-list>
       </div>
 
       <!-- Message si aucun sujet n'est suivi -->

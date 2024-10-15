@@ -1,51 +1,35 @@
 .me {
-    .link {
-        cursor: pointer;
-        font-size: 16px;
-        text-decoration: none;
-        
-    }
-    
-    .link + .link {
-        margin-left: 10px;
-    }
+  padding: 20px;
+  
+  .link {
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    margin-left: 10px;
   }
+
   .img {
     width: 100px;
+    height: 50px;
   }
-  
+
   hr {
     margin: 0;
   }
-  .buttons {
-  margin-left: auto;
-  }
 
-  .me {
-    padding: 20px;
-  }
-  
-  .img {
-    height: 50px;
-  }
-  
-  .buttons .link {
-    margin: 0 10px;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  
   .user-topics {
     margin-top: 20px;
   }
-  
+
+  .topic-list {
+    margin: 20px;
+    gap: 20px;
+  }
+
   .topic-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
   }
-  
-  .topic-item button {
-    margin-left: 10px;
-  }
-  
+}
