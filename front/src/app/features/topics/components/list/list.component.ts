@@ -3,6 +3,7 @@ import { User } from 'src/app/interfaces/user.interface';
 import { SessionService } from 'src/app/services/session.service';
 import { Topic } from 'src/app/interfaces/topic.interface';
 import { TopicService } from 'src/app/services/topics.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-list',
@@ -17,33 +18,39 @@ export class ListComponent implements OnInit {
   constructor(
     private sessionService: SessionService,
     private topicsService: TopicService,
+    private matSnackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
     this.loadFollowedTopics();
+    
+    // S'abonner aux changements des sujets suivis
+    this.sessionService.$followedTopics().subscribe((topics: Topic[]) => {
+      this.followedTopicIds = topics.map(topic => topic.id);
+    });
   }
-
-  get user(): User | undefined {
-    return this.sessionService.user;
-  }
-
+  
   private loadFollowedTopics(): void {
     if (this.user) {
       this.followedTopicIds = this.user.followedTopics.map(topic => topic.id);
     }
   }
+  
+  public subscribe(topicId: number): void {
+    this.topicsService.subscribeToTopic(topicId).subscribe(() => {
+      this.matSnackBar.open('Vous êtes abonné à ce sujet.', 'Close', { duration: 3000 });
+    }, error => {
+      console.error('Erreur lors de l\'abonnement:', error);
+      this.matSnackBar.open('Erreur lors de l\'abonnement.', 'Close', { duration: 3000 });
+    });
+  }
+  
+
+  get user(): User | undefined {
+    return this.sessionService.user;
+  }
 
   public isFollowing(topicId: number): boolean {
     return this.followedTopicIds.includes(topicId);
-  }
-
-  public subscribe(topicId: number): void {
-    this.topicsService.subscribeToTopic(topicId).subscribe(() => {
-      this.followedTopicIds.push(topicId);
-      this.subscribeEvent.emit();
-      alert('Vous êtes maintenant abonné à ce sujet.');
-    }, error => {
-      alert('Erreur lors de l\'abonnement: ' + error.message);
-    });
   }
 }

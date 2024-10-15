@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Topic } from '../interfaces/topic.interface';
 import { TopicsResponse } from '../features/topics/interfaces/api/topicsResponse.interface';
 import { TopicResponse } from '../features/topics/interfaces/api/topicResponse.interface';
+import { User } from '../interfaces/user.interface';
+import { SessionService } from './session.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,9 @@ export class TopicService {
   private pathService = 'api/topics';
   private userTopicsApiUrl = '/api/user/me/topics';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+    private sessionService: SessionService
+  ) { }
 
   public all(): Observable<TopicsResponse> {
     return this.httpClient.get<TopicsResponse>(this.pathService);
@@ -31,7 +35,7 @@ export class TopicService {
     return this.httpClient.put<TopicResponse>(`${this.pathService}/${id}`, form);
   }
 
-  // S'abonner à un sujet
+ /* // S'abonner à un sujet
   public subscribeToTopic(id: number): Observable<void> {
     return this.httpClient.put<void>(`${this.userTopicsApiUrl}/${id}`, {});
   }
@@ -39,5 +43,25 @@ export class TopicService {
   // Se désabonner d'un sujet
   public unsubscribeFromTopic(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.userTopicsApiUrl}/${id}`);
+  }*/
+
+  public subscribeToTopic(id: number): Observable<void> {
+    return this.httpClient.put<void>(`${this.userTopicsApiUrl}/${id}`, {}).pipe(
+      tap(() => this.updateUserFollowedTopics())
+    );
   }
+
+  public unsubscribeFromTopic(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.userTopicsApiUrl}/${id}`).pipe(
+      tap(() => this.updateUserFollowedTopics())
+    );
+  }
+
+  // Mettre à jour les sujets suivis après abonnement/désabonnement
+  private updateUserFollowedTopics(): void {
+    this.httpClient.get<User>(`/api/auth/me`).subscribe((user: User) => {
+      this.sessionService.updateFollowedTopics(user.followedTopics);
+    });
+  }
+
 }

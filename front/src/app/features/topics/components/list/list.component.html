@@ -1,43 +1,42 @@
+<!-- list.component.html -->
 <div class="app">
     <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
-        <img class="img" src="/assets/logo_p6.png" routerLink="" alt="logo" />
-        
-        <div class="buttons">
-            <span routerLink="/articles" class="link">Articles</span>
-            <span routerLink="/topics" class="link">Thèmes</span>
-            <span routerLink="/me" class="link">Compte</span>
-          </div>
+      <img class="img" src="/assets/logo_p6.png" routerLink="" alt="logo" />
+  
+      <div class="buttons">
+        <span routerLink="/articles" class="link">Articles</span>
+        <span routerLink="/topics" class="link">Thèmes</span>
+        <span routerLink="/me" class="link">Compte</span>
+      </div>
     </mat-toolbar>
-
-<hr />
-        <div class="list" fxLayout="row" fxLayoutAlign="space-between center">
-            <mat-grid-list cols="2" rowHeight="2:1">
-                <mat-grid-tile *ngFor="let topic of (topics$ | async)?.topics" >
-                    <mat-card-actions>
-            <button class="topic">
-                <mat-grid-tile-header class="card">
-                    {{ topic.name }}
-                </mat-grid-tile-header>
-                <div class="da">
-                
-                        <div class="content">
-                        Contenu: {{ topic.description }}
-                </div>
-                <button mat-raised-button color="primary"  *ngIf="!isFollowing(topic.id)" (click)="subscribe(topic.id)">
-                    <span class="ml1">S'abonner</span>
-                </button>
-
-                <button 
-                mat-raised-button color="primary" *ngIf="isFollowing(topic.id)" 
-            disabled>
-            Abonné
-          </button>
-                </div>
-            </button>
-            
-        </mat-card-actions>
-
+  
+    <hr />
+    <div class="list" fxLayout="row" fxLayoutAlign="space-between center">
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile *ngFor="let topic of (topics$ | async)?.topics">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>{{ topic.name }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Contenu: {{ topic.description }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button color="primary" *ngIf="!isFollowing(topic.id)" (click)="subscribe(topic.id)">
+                <span class="ml1">S'abonner</span>
+              </button>
+  
+              <button 
+                mat-raised-button 
+                color="primary" 
+                *ngIf="isFollowing(topic.id)" 
+                disabled>
+                Abonné
+              </button>
+            </mat-card-actions>
+          </mat-card>
         </mat-grid-tile>
-    </mat-grid-list>
-</div>
-</div>
+      </mat-grid-list>
+    </div>
+  </div>
+  

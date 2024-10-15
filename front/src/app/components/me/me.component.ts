@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { UserResponse } from 'src/app/features/topics/interfaces/api/userResponse.interface';
+import { Topic } from 'src/app/interfaces/topic.interface';
 import { User } from 'src/app/interfaces/user.interface';
 import { SessionService } from 'src/app/services/session.service';
 import { TopicService } from 'src/app/services/topics.service';
@@ -34,8 +35,15 @@ export class MeComponent implements OnInit {
   public ngOnInit(): void {
     this.authService.me().subscribe(
       (user: User) => this.user = user
-    )
+    );
     this.initForm();
+  
+    // S'abonner aux changements des sujets suivis
+    this.sessionService.$followedTopics().subscribe((topics: Topic[]) => {
+      if (this.user) {
+        this.user.followedTopics = topics;
+      }
+    });
   }
 
   public back() {
@@ -72,13 +80,8 @@ export class MeComponent implements OnInit {
     this.matSnackBar.open(userResponse.message, 'Close', { duration: 3000 });
     this.router.navigate(['/articles']);
   }
-
   public unsubscribe(topicId: number): void {
     this.topicService.unsubscribeFromTopic(topicId).subscribe(() => {
-      // Mettre à jour l'état local de l'utilisateur
-      if (this.user) {
-        this.user.followedTopics = this.user.followedTopics.filter(t => t.id !== topicId);
-      }
       this.matSnackBar.open('Vous êtes désabonné de ce sujet.', 'Close', { duration: 3000 });
     }, error => {
       console.error('Erreur lors du désabonnement:', error);
@@ -86,9 +89,9 @@ export class MeComponent implements OnInit {
     });
   }
 
+
   onLogoutClick() {
     this.sessionService.logOut();
-
     this.router.navigateByUrl('/');
   }
 }

@@ -1,56 +1,52 @@
+<!-- me.component.html -->
 <div class="me">
-        <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
-            <img class="img" src="/assets/logo_p6.png" routerLink="" alt="logo" />
-            
-            <div class="buttons">
-                <span routerLink="/articles" class="link">Articles</span>
-                <span routerLink="/topics" class="link">Thèmes</span>
-                <span  routerLink="/me" class="link">Compte</span>
-              </div>
-        </mat-toolbar>
-    <hr />
-    <mat-card class="">
-        <mat-card-title>
+  <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
+    <img class="img" src="/assets/logo_p6.png" routerLink="" alt="logo" />
 
-            <div fxLayout="row" fxLayoutAlign="center center">
-                <h1>Profil Utilisateur</h1>
-            </div>
-            
-        </mat-card-title>
-        <mat-card-content *ngIf="meForm">
-            <form  [formGroup]="meForm" class="mt2" class="example-form"  fxLayout="column" (ngSubmit)="submit()">
-                
+    <div class="buttons">
+      <span routerLink="/articles" class="link">Articles</span>
+      <span routerLink="/topics" class="link">Thèmes</span>
+      <span routerLink="/me" class="link">Compte</span>
+    </div>
+  </mat-toolbar>
+  <hr />
+  <mat-card>
+    <mat-card-title>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <h1>Profil Utilisateur</h1>
+      </div>
+    </mat-card-title>
+    <mat-card-content *ngIf="meForm">
+      <form [formGroup]="meForm" class="mt2 example-form" fxLayout="column" (ngSubmit)="submit()">
+        <mat-form-field appearance="outline" fxLayoutAlign="center center" fxFlex>
+          <mat-label>Nom</mat-label>
+          <input matInput formControlName="name" placeholder="{{user?.name}}">
+        </mat-form-field>
 
-                <mat-form-field appearance="outline" fxLayoutAlign="center center"  fxFlex>
-                    <mat-label>name</mat-label>
-                    <input matInput formControlName="name" placeholder={{sessionService.user!.name}}>
-                </mat-form-field>
+        <mat-form-field appearance="outline" fxLayoutAlign="center center" fxFlex>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="{{user?.email}}">
+        </mat-form-field>
 
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <mat-card-actions>
+            <button mat-raised-button color="primary">Sauvegarder</button>
+            <button mat-button color="warn" type="button" (click)="onLogoutClick()">Se déconnecter</button>
+          </mat-card-actions>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 
-                <mat-form-field appearance="outline" fxLayoutAlign="center center"  fxFlex>
-                    <mat-label>email</mat-label>
-                    <textarea matInput formControlName="email" placeholder={{sessionService.user!.email}}></textarea>
-                </mat-form-field>
+  <div class="user-topics">
+    <h3>Mes Sujets Abonnés</h3>
 
-                <div fxLayout="row" fxLayoutAlign="center center">
-                    <mat-card-actions >
-                        <button mat-raised-button color="primary">Sauvegarder</button>
-                        <a mat-button color="warn" (click)="onLogoutClick()">Se déconnecter</a>
-                      </mat-card-actions>
-                </div>
-            </form>
-        </mat-card-content>
-    </mat-card>
-    
-    <div class="user-topics">
-      <h3>Mes Sujets Abonnés</h3>
-      
-      <!-- Afficher les sujets suivis si l'utilisateur est chargé -->
-      <div *ngIf="sessionService.user">
-        <div *ngIf="sessionService.user.followedTopics.length > 0; else noFollowedTopics">
-          <mat-list>
-            <mat-list-item *ngFor="let topic of sessionService.user.followedTopics" class="topic-item">
-              <mat-card>
+    <!-- Afficher les sujets suivis si l'utilisateur est chargé -->
+    <div *ngIf="user">
+      <div *ngIf="user.followedTopics.length > 0; else noFollowedTopics">
+        <mat-list>
+          <mat-list-item *ngFor="let topic of user.followedTopics" class="topic-item">
+            <mat-card>
               <span>{{ topic.name }}</span>
               <button 
                 mat-button 
@@ -59,14 +55,14 @@
                 Se Désabonner
               </button>
             </mat-card>
-            </mat-list-item>
-          </mat-list>
-        </div>
-        
-        <!-- Message si aucun sujet n'est suivi -->
-        <ng-template #noFollowedTopics>
-          <p>Vous ne suivez aucun sujet pour le moment.</p>
-        </ng-template>
+          </mat-list-item>
+        </mat-list>
       </div>
+
+      <!-- Message si aucun sujet n'est suivi -->
+      <ng-template #noFollowedTopics>
+        <p>Vous ne suivez aucun sujet pour le moment.</p>
+      </ng-template>
     </div>
+  </div>
 </div>
