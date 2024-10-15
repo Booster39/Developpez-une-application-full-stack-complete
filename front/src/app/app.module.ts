@@ -17,6 +17,8 @@ import { MeComponent } from './components/me/me.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar'; 
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatListModule } from '@angular/material/list';
+import { MatInputModule } from '@angular/material/input';
 
 const materialModule = [
   MatButtonModule,
@@ -25,7 +27,9 @@ const materialModule = [
   MatToolbarModule,
   MatFormFieldModule,
   MatSnackBarModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  MatListModule,
+  MatInputModule
 ]
 
 @NgModule({

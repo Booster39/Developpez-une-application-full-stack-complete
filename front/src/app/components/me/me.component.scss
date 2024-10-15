@@ -20,3 +20,32 @@
   .buttons {
   margin-left: auto;
   }
+
+  .me {
+    padding: 20px;
+  }
+  
+  .img {
+    height: 50px;
+  }
+  
+  .buttons .link {
+    margin: 0 10px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .user-topics {
+    margin-top: 20px;
+  }
+  
+  .topic-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .topic-item button {
+    margin-left: 10px;
+  }
+  

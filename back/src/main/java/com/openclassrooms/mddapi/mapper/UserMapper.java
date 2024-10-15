@@ -23,6 +23,7 @@ public class UserMapper implements EntityMapper<UserDto, User> {
         user.username( dto.getEmail() );
         user.created_at(dto.getCreated_at());
         user.updated_at(dto.getUpdated_at());
+        user.followedTopics(dto.getFollowedTopics());
 
         return user.build();
     }
@@ -40,6 +41,7 @@ public class UserMapper implements EntityMapper<UserDto, User> {
         userDto.setEmail( entity.getUsername() );
         userDto.setCreated_at(entity.getCreated_at());
         userDto.setUpdated_at(entity.getUpdated_at());
+        userDto.setFollowedTopics(entity.getFollowedTopics());
 
 
         return userDto;

@@ -23,13 +23,13 @@
 
                 <mat-form-field appearance="outline" fxLayoutAlign="center center"  fxFlex>
                     <mat-label>name</mat-label>
-                    <input matInput formControlName="name" [(ngModel)]="sessionService.user!.name" placeholder="Nom de l'utilisateur">
+                    <input matInput formControlName="name" placeholder={{sessionService.user!.name}}>
                 </mat-form-field>
 
 
                 <mat-form-field appearance="outline" fxLayoutAlign="center center"  fxFlex>
                     <mat-label>email</mat-label>
-                    <textarea matInput formControlName="email" [(ngModel)]="sessionService.user!.email" placeholder="email de l'utilisateur"></textarea>
+                    <textarea matInput formControlName="email" placeholder={{sessionService.user!.email}}></textarea>
                 </mat-form-field>
 
                 <div fxLayout="row" fxLayoutAlign="center center">
@@ -41,30 +41,32 @@
             </form>
         </mat-card-content>
     </mat-card>
-      <!-- Section pour gérer les abonnements aux sujets -->
-  <div class="user-topics">
-    <h3>Mes Sujets Abonnés</h3>
     
-    <!-- Afficher les sujets suivis si l'utilisateur est chargé -->
-    <div *ngIf="user">
-      <div *ngIf="user.followedTopics.length > 0; else noFollowedTopics">
-        <ul>
-          <li *ngFor="let topic of user.followedTopics" class="topic-item">
-            <span>{{ topic.name }}</span>
-            
-            <!-- Bouton de désabonnement -->
-            <button 
-              (click)="unsubscribe(topic.id)" 
-              class="btn btn-danger btn-sm">
-              Se Désabonner
-            </button>
-          </li>
-        </ul>
-      </div>
+    <div class="user-topics">
+      <h3>Mes Sujets Abonnés</h3>
       
-      <!-- Message si aucun sujet n'est suivi -->
-      <ng-template #noFollowedTopics>
-        <p>Vous ne suivez aucun sujet pour le moment.</p>
-      </ng-template>
+      <!-- Afficher les sujets suivis si l'utilisateur est chargé -->
+      <div *ngIf="sessionService.user">
+        <div *ngIf="sessionService.user.followedTopics.length > 0; else noFollowedTopics">
+          <mat-list>
+            <mat-list-item *ngFor="let topic of sessionService.user.followedTopics" class="topic-item">
+              <mat-card>
+              <span>{{ topic.name }}</span>
+              <button 
+                mat-button 
+                color="warn" 
+                (click)="unsubscribe(topic.id)">
+                Se Désabonner
+              </button>
+            </mat-card>
+            </mat-list-item>
+          </mat-list>
+        </div>
+        
+        <!-- Message si aucun sujet n'est suivi -->
+        <ng-template #noFollowedTopics>
+          <p>Vous ne suivez aucun sujet pour le moment.</p>
+        </ng-template>
+      </div>
     </div>
 </div>

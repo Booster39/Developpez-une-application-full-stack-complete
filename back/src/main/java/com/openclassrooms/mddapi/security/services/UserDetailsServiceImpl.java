@@ -26,6 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
       .name(user.getName())
             .username(user.getUsername())
       .username(user.getUsername())
+            .followedTopics(user.getFollowedTopics())
       .build();
   }
 }
