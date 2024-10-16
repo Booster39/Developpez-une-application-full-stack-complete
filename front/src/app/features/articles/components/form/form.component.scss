@@ -29,6 +29,25 @@
   .link + .link {
       margin-left: 10px;
   }
+  /* Cacher le menu desktop pour les petits écrans */
+  .desktop-menu {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .desktop-menu {
+      display: none;
+    }
+
+    .mobile-menu {
+      display: block;
+      margin-left: auto;
+    }
+  }
 }
 .img {
   width: 100px;
@@ -42,3 +61,4 @@ margin-left: auto;
 hr {
   margin: 0;
 }
+

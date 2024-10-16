@@ -27,12 +27,34 @@
         cursor: pointer;
         font-size: 16px;
         text-decoration: none;
-        
-    }
+        margin-left: 10px;
+      }
     
     .link + .link {
         margin-left: 10px;
     }
+
+    
+  /* Cacher le menu desktop pour les petits écrans */
+  .desktop-menu {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: none;
+    margin-left: auto;
+  }
+
+  @media (max-width: 768px) {
+    .desktop-menu {
+      display: none;
+    }
+
+    .mobile-menu {
+      display: block;
+    }
+  }
+
   }
   .img {
     width: 100px;
@@ -66,3 +88,4 @@ mat-grid-tile-header.card {
 hr {
     margin: 0;
 }
+

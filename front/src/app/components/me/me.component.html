@@ -1,11 +1,22 @@
 <div class="me">
   <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
     <img class="img" src="/assets/logo_p6.png" routerLink="" alt="logo" />
-    <div class="buttons">
+    <!-- Menu pour les grandes tailles d'écran -->
+    <div class="buttons desktop-menu">
       <span routerLink="/articles" class="link">Articles</span>
       <span routerLink="/topics" class="link">Thèmes</span>
       <span routerLink="/me" class="link">Compte</span>
     </div>
+
+    <!-- Burger menu pour petites tailles d'écran -->
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="mobile-menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/articles">Articles</button>
+      <button mat-menu-item routerLink="/topics">Thèmes</button>
+      <button mat-menu-item routerLink="/me">Compte</button>
+    </mat-menu>
   </mat-toolbar>
   <hr />
   

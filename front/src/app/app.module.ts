@@ -19,6 +19,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
+import {MatMenuModule} from '@angular/material/menu';
 
 const materialModule = [
   MatButtonModule,
@@ -29,7 +30,8 @@ const materialModule = [
   MatSnackBarModule,
   ReactiveFormsModule,
   MatListModule,
-  MatInputModule
+  MatInputModule,
+  MatMenuModule
 ]
 
 @NgModule({

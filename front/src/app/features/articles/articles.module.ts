@@ -20,6 +20,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatLineModule, MatOptionModule } from '@angular/material/core';
 import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
+import {MatMenuModule} from '@angular/material/menu';
 
 registerLocaleData(localeFr);
 
@@ -37,7 +38,8 @@ const materialModules = [
   MatLineModule,
   MatListModule,
   MatSelectModule,
-  FormsModule
+  FormsModule,
+  MatMenuModule
 ];
 
 @NgModule({

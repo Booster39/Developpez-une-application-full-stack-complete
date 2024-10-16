@@ -1,6 +1,6 @@
 .me {
   padding: 20px;
-  
+
   .link {
     cursor: pointer;
     font-size: 16px;
@@ -31,5 +31,24 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+  }
+
+  /* Cacher le menu desktop pour les petits écrans */
+  .desktop-menu {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .desktop-menu {
+      display: none;
+    }
+
+    .mobile-menu {
+      display: block;
+    }
   }
 }

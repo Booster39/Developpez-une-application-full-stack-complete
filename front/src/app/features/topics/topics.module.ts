@@ -16,6 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs'; 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatOptionModule } from '@angular/material/core';
+import {MatMenuModule} from '@angular/material/menu';
 
 registerLocaleData(localeFr);
 
@@ -29,7 +30,8 @@ const materialModules = [
   MatToolbarModule,
   MatTabsModule,
   MatGridListModule,
-  MatOptionModule
+  MatOptionModule,
+  MatMenuModule
 ];
 
 @NgModule({
