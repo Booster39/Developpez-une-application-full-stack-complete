@@ -3,10 +3,6 @@
 }
 .login {
     margin-top: 300px;
-   /* mat-card {
-        margin: 20px;
-        max-width: 600px;
-    }*/
     position: absolute;
     top: 50%;
     left: 50%;
@@ -21,4 +17,17 @@
 
 .img:hover{
     cursor: pointer;
+}
+
+.mat-raised-button.mat-primary {
+    background-color: #7763C5;
+    color: white;
+}
+
+.mat-card-title {
+    margin-bottom: 60px;
+}
+
+.button {
+    margin-top: 50px;
 }

@@ -17,3 +17,17 @@
     left: 50%;
     transform: translate(-50%,-50%);
 }
+
+.button {
+  background-color: white;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: 600;
+}
+
+.button + .button {
+  margin-left: 40px;
+}

@@ -5,8 +5,8 @@
     <!-- Menu pour les grandes tailles d'écran -->
     <div class="buttons desktop-menu">
       <span routerLink="/articles" class="link">Articles</span>
-      <span routerLink="/topics" class="link">Thèmes</span>
-      <span routerLink="/me" class="link">Compte</span>
+      <span routerLink="/topics" class="link themes">Thèmes</span>
+      <span routerLink="/me" class="link"><mat-icon class="login-icon">person</mat-icon></span>
     </div>
 
     <!-- Burger menu pour petites tailles d'écran -->
@@ -16,7 +16,7 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item routerLink="/articles">Articles</button>
       <button mat-menu-item routerLink="/topics">Thèmes</button>
-      <button mat-menu-item routerLink="/me">Compte</button>
+      <button mat-menu-item routerLink="/me"><mat-icon class="login-icon">person</mat-icon></button>
     </mat-menu>
   </mat-toolbar>
   
