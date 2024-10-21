@@ -21,6 +21,7 @@
         
     }
     
+  
     .link + .link {
         margin-left: 10px;
     }
@@ -122,4 +123,9 @@ hr {
     color: black;
     -webkit-border-radius: 50%;
     border-radius: 50%;
+  }
+
+  .sort {
+    float: right;
+    margin-top: 15px;
   }

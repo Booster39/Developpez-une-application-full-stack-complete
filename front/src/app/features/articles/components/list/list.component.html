@@ -20,20 +20,16 @@
       </mat-toolbar>
 
 <hr />
+<div fxLayout="row" fxLayoutAlign="end center">
+  <span class="sort">Trier par <mat-icon >{{ 'arrow_upward' && 'arrow_downward' }}</mat-icon></span>
+</div>
 
-
-<div class="list" fxLayout="row" fxLayoutAlign="space-between center">
-
-
+        <div class="list" fxLayout="row" fxLayoutAlign="space-between center">
             <button mat-raised-button color="primary" routerLink="create">
                 <mat-icon>add</mat-icon>
                 <span class="ml1">Créer un article</span>
             </button>
         </div>
-        <div >
-            <span>Trier par</span>
-            <mat-icon>{{ 'arrow_upward' && 'arrow_downward' }}</mat-icon>
-          </div>
           <!--<div *ngIf="posts.length >1" class="sort-section" (click)="toggleSortOrder()">
             <span>Trier par</span>
             <mat-icon>{{ isAscending ? 'arrow_upward' : 'arrow_downward' }}</mat-icon>
