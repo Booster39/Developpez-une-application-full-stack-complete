@@ -19,34 +19,19 @@
       <button mat-menu-item routerLink="/me"><mat-icon class="login-icon">person</mat-icon></button>
     </mat-menu>
   </mat-toolbar>
-  
-    <hr />
-    <div class="list" fxLayout="row" fxLayoutAlign="space-between center">
-      <mat-grid-list cols="2" rowHeight="2:1">
-        <mat-grid-tile *ngFor="let topic of (topics$ | async)?.topics">
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>{{ topic.name }}</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <p>Contenu: {{ topic.description }}</p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-raised-button color="primary" *ngIf="!isFollowing(topic.id)" (click)="subscribe(topic.id)">
-                <span class="ml1">S'abonner</span>
-              </button>
-  
-              <button 
-                mat-raised-button 
-                color="primary" 
-                *ngIf="isFollowing(topic.id)" 
-                disabled>
-                Abonné
-              </button>
-            </mat-card-actions>
-          </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
+
+  <hr />
+
+  <div class="list-container">
+    <div class="card" *ngFor="let topic of (topics$ | async)?.topics">
+      <h3 class="card-title">{{ topic.name }}</h3>
+      <p class="card-description">Description: {{ topic.description }}</p>
+      <button mat-raised-button color="primary" class="subscribe-button" *ngIf="!isFollowing(topic.id)" (click)="subscribe(topic.id)">
+        S'abonner
+      </button>
+      <button mat-raised-button color="primary" class="subscribe-button" *ngIf="isFollowing(topic.id)" disabled>
+        Abonné
+      </button>
     </div>
   </div>
-  
+</div>
