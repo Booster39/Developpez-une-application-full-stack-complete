@@ -27,7 +27,7 @@
       </div>
     </mat-card-title>
     <mat-card-content *ngIf="meForm">
-      <form [formGroup]="meForm" class="mt2 example-form" fxLayout="column" (ngSubmit)="submit()">
+      <form [formGroup]="meForm" class="mt2 example-form" fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="submit()">
         <mat-form-field appearance="outline">
           <mat-label>Nom</mat-label>
           <input matInput formControlName="name" placeholder="{{user?.name}}">
@@ -38,10 +38,10 @@
           <input matInput formControlName="email" placeholder="{{user?.email}}">
         </mat-form-field>
 
-        <div fxLayout="row" fxLayoutAlign="center center">
-          <mat-card-actions>
-            <button mat-raised-button color="primary">Sauvegarder</button>
-            <button mat-button color="warn" type="button" (click)="onLogoutClick()">Se déconnecter</button>
+        <div >
+          <mat-card-actions fxLayout="column" fxLayoutAlign="space-between center" fxFlex>
+            <button mat-raised-button color="primary" class="mt2">Sauvegarder</button>
+            <button mat-button color="warn" type="button"class="mt2 disconnect" (click)="onLogoutClick()">Se déconnecter</button>
           </mat-card-actions>
         </div>
       </form>

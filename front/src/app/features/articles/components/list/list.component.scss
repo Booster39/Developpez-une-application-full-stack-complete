@@ -1,62 +1,40 @@
-.list {
-    margin: 20px;
-
-    .items {
-        gap: 20rem;
-    }
-}
-
-.article {
-    width: 700px;
-    height: 300px;
-    background: rgb(236, 236, 236);
-    border-radius: 10px;
-
-}
-.article-content {
-  margin: 15px;
-}
-
-.line {
-  display: flex;
-  
-}
+/* Styles généraux */
 .app {
-    .link {
-        cursor: pointer;
-        font-size: 16px;
-        text-decoration: none;
-        
-    }
-    
-  
-    .link + .link {
-        margin-left: 10px;
-    }
-    /* Cacher le menu desktop pour les petits écrans */
+  .link {
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: none;
+  }
+
+  .link + .link {
+      margin-left: 10px;
+  }
+
   .desktop-menu {
-    display: flex;
+      display: flex;
   }
 
   .mobile-menu {
-    display: none;
-    margin-left: auto;
+      display: none;
+      margin-left: auto;
   }
 
   @media (max-width: 768px) {
-    .desktop-menu {
-      display: none;
-    }
+      .desktop-menu {
+          display: none;
+      }
 
-    .mobile-menu {
-      display: block;
-      margin-left: auto;
-    }
+      .mobile-menu {
+          display: block;
+          margin-left: auto;
+      }
   }
 }
+
 .img {
-    width: 100px;
+  width: 100px;
 }
+
 .mat-raised-button.mat-primary {
   background-color: #7763C5;
 }
@@ -64,81 +42,106 @@
 .buttons {
   margin-left: auto;
 }
+
 b {
   font-size: large;
 }
+
 .title {
   margin-right: 200px;
 }
+
 .date {
   margin-bottom: 20px;
-    margin-right: 50px;
+  margin-right: 50px;
 }
 
-
 mat-grid-tile-header.card {
-    color: black;
-    font-weight: 600;
-    font-size: large;
-    background: rgb(236, 236, 236);
+  color: black;
+  font-weight: 600;
+  font-size: large;
+  background: rgb(236, 236, 236);
 }
 
 hr {
-    margin: 0;
+  margin: 0;
+}
+
+/* Styles de la liste et des articles */
+.list {
+  margin: 20px;
+}
+
+.article {
+  width: 700px; /* Largeur originale pour les articles */
+  height: 250px; /* Permet à la hauteur de s'ajuster automatiquement */
+  background: rgb(236, 236, 236);
+  border-radius: 10px;
+}
+
+.article-content {
+  margin: 15px;
+}
+
+.line {
+  display: flex;
 }
 
 .article-grid {
-    padding: 15px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto;
-    //gap: 16px; /* C'est l'espace entre les articles. Ajustez cette valeur selon vos besoins. */
-    column-gap: 40px;
-    row-gap: 28px;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 articles par colonne par défaut */
+  gap: 28px; /* Espace entre les articles */
+}
+
+.sort {
+  float: right;
+  margin-top: 15px;
+
+  @media (max-width: 768px) {
+      float: none; /* Enlève le flottement sur les petits écrans */
+      text-align: center; /* Centre le tri sur les petits écrans */
   }
-  
-  .top-left {
-    grid-column: 1;
+}
+
+.articles {
+  color: #7763C5;
+}
+
+.login-icon {
+  background: #D9D9D9;
+  color: black;
+  border-radius: 50%;
+}
+
+.top-left {
+  grid-column: 1;
+}
+
+.top-right {
+  grid-column: 2;
+  justify-self: right;
+
+  display: flex;
+  align-items: center; /* Aligne verticalement le contenu au centre */
+  gap: 8px; /* Espace entre les éléments à l'intérieur du flex container */
+}
+
+@media (max-width: 500px) {
+  .article-grid {
+      grid-template-columns: 1fr; /* 1 article par colonne sur les petits écrans */
   }
-  
+
   .top-right {
-    grid-column: 2;
-    justify-self: right;
-  
-    display: flex;
-    align-items: center; /* aligne verticalement le contenu au centre */
-    gap: 8px; /* espace entre les éléments à l'intérieur du flex container, vous pouvez ajuster selon vos besoins */
-  }
-  
-  @media (max-width: 500px) {
-    /* Ajustez cette valeur de breakpoint selon vos besoins */
-    .article-grid {
-      grid-template-columns: 1fr;
-    }
-  
-    .top-right {
       grid-column: 1; /* Pour le mettre dans sa propre ligne sous l'élément de gauche */
       justify-self: center;
-    }
-  
-    .top-left {
+  }
+
+  .top-left {
       justify-self: center;
-    }
   }
 
-  .articles {
-    color: #7763C5;
+  .article {
+      width: 100%; /* Permet aux articles de s'ajuster à la largeur de l'écran sur les petits appareils */
   }
-  .login-icon {
-    background: #D9D9D9;
-    color: black;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-  }
-
-  .sort {
-    float: right;
-    margin-top: 15px;
-  }
-
- 
+}
