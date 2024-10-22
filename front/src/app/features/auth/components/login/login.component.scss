@@ -25,9 +25,19 @@
 }
 
 .mat-card-title {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
 }
 
 .button {
-    margin-top: 50px;
+    margin-top: 30px;
 }
+
+.email, .pass {
+    background-color: white;
+      cursor: pointer;
+      text-decoration: none;
+      border-radius: 5px;
+      padding: 10px;
+      border: 2px;
+      border-style: solid;
+  }
