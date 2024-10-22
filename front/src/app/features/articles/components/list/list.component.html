@@ -34,33 +34,19 @@
             <span>Trier par</span>
             <mat-icon>{{ isAscending ? 'arrow_upward' : 'arrow_downward' }}</mat-icon>
           </div>-->
-        <div class="list" fxLayout="row" fxLayoutAlign="space-between center">
-            <mat-grid-list cols="2" rowHeight="2:1">
-                <mat-grid-tile *ngFor="let article of (articles$ | async)?.articles" >
-                    <mat-card-actions>
-            <button class="article" mat-raised-button [routerLink]="['detail',article.id]">
-                <mat-grid-tile-header class="card">
-                    
-                </mat-grid-tile-header>
-                
-                <div class="da">
-                    Titre:{{ article.title }}
-                        <p class="date">
-                        Date: {{ article.created_at | date: 'dd MMMM yyyy, HH:mm' }}
-                        </p>
 
-                        <mat-card-subtitle>
-                            <app-owner-info [authorId]="article.author_id"></app-owner-info>
-                        </mat-card-subtitle>
-                
-                        <div class="content">
-                        Contenu: {{ article.content }}
-                </div>
-                </div>
-            </button>
-        </mat-card-actions>
 
-        </mat-grid-tile>
-    </mat-grid-list>
+<div class="list article-grid">
+  <div *ngFor="let article of (articles$ | async)?.articles" class="article" [routerLink]="['detail',article.id]">
+      <div class="article-content">
+          <b class="title">{{ article.title }}</b>
+          <div class="line">
+            <p class="title">{{ article.created_at | date: 'dd MMMM yyyy, HH:mm' }}</p>
+          <app-owner-info [authorId]="article.author_id"></app-owner-info>
+          </div>
+          
+          <p class="content">{{ article.content | slice: 0:100 }}...</p>
+      </div>
+  </div>
 </div>
 </div>

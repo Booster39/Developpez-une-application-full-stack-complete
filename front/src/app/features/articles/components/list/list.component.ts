@@ -3,6 +3,7 @@ import { User } from 'src/app/interfaces/user.interface';
 import { ArticlesService } from '../../services/articles.service';
 import { SessionService } from 'src/app/services/session.service';
 
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -20,4 +21,5 @@ export class ListComponent {
   get user(): User | undefined {
     return this.sessionService.user;
   }
+
 }

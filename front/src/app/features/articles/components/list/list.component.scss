@@ -7,12 +7,20 @@
 }
 
 .article {
-    width: 900px;
-    height: 450px;
+    width: 700px;
+    height: 300px;
     background: rgb(236, 236, 236);
-    padding: 0;
+    border-radius: 10px;
+
+}
+.article-content {
+  margin: 15px;
 }
 
+.line {
+  display: flex;
+  
+}
 .app {
     .link {
         cursor: pointer;
@@ -55,12 +63,14 @@
 .buttons {
   margin-left: auto;
 }
-
-.da {
-    display: block;
+b {
+  font-size: large;
 }
-
+.title {
+  margin-right: 200px;
+}
 .date {
+  margin-bottom: 20px;
     margin-right: 50px;
 }
 
@@ -129,3 +139,5 @@ hr {
     float: right;
     margin-top: 15px;
   }
+
+ 
