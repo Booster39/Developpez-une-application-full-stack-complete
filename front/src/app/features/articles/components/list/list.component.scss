@@ -8,6 +8,16 @@
 .mat-toolbar {
   background: white;
 }
+
+app-owner-info{
+  display: inline;
+}
+.line {
+display: inline;
+  p + p {
+    margin-left: 15px;
+  }
+}
 .mat-raised-button.mat-primary {
   background-color: #7763C5;
 }

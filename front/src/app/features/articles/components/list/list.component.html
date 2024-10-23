@@ -49,10 +49,8 @@
       <div *ngFor="let article of (articles$ | async)?.articles" class="article" [routerLink]="['detail', article.id]">
           <div class="article-content">
               <b class="title">{{ article.title }}</b>
-              <div class="line" >
                   <p class="title">{{ article.created_at | date: 'dd MMMM yyyy, HH:mm' }}</p>
-                  <app-owner-info [authorId]="article.author_id"></app-owner-info>
-              </div>
+                  <app-owner-info [authorId]="article.author_id" class="title line"></app-owner-info>
               <p class="content">{{ article.content | slice: 0:100 }}</p>
           </div>
       </div>
