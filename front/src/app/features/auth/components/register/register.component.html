@@ -10,16 +10,25 @@
                 <div>
                 <mat-form-field fxFlex>
                     <input class="name" matInput placeholder="Nom d'utilisateur" formControlName="name">
+                    <mat-error *ngIf="form.get('name')?.hasError('required')">Le nom est requis</mat-error>
+        <mat-error *ngIf="form.get('name')?.hasError('minlength')">Le nom doit comporter au moins 3 caractères</mat-error>
                 </mat-form-field>
             </div>
                 <div>
                 <mat-form-field fxFlex>
                     <input class="mail" matInput placeholder="Adresse e-mail" formControlName="email">
+                    <mat-error *ngIf="form.get('email')?.hasError('required')">L'e-mail est requis</mat-error>
+                    <mat-error *ngIf="form.get('email')?.hasError('email')">E-mail invalide</mat-error>
+                 
                 </mat-form-field>
             </div>
                 <div>
                 <mat-form-field fxFlex>
                     <input class="pass" matInput placeholder="Mot de passe" formControlName="password">
+                    <mat-error *ngIf="form.get('password')?.hasError('required')">Le mot de passe est requis</mat-error>
+        <mat-error *ngIf="form.get('password')?.hasError('strongPassword')">
+          Le mot de passe doit contenir au moins 8 caractères, avec un chiffre, une lettre minuscule, une lettre majuscule, et un caractère spécial.
+        </mat-error>
                 </mat-form-field>
             </div>
             </mat-card-content>
