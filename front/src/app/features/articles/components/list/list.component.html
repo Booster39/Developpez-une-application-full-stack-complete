@@ -19,8 +19,24 @@
 
   <hr />
   <div fxLayout="row" fxLayoutAlign="end center">
-      <span class="sort">Trier par <mat-icon>{{ 'arrow_upward' && 'arrow_downward' }}</mat-icon></span>
+    <!-- Clic pour activer/désactiver l'affichage du menu de tri -->
+    <span class="sort" (click)="toggleSortVisibility()">Trier par</span>
+  
+    <!-- Affichage conditionnel du formulaire de tri -->
+    <ng-container *ngIf="isSortVisible">
+      <mat-form-field appearance="fill">
+          <mat-label>Choisir un critère</mat-label>
+          <mat-select [(value)]="sortCriteria" (selectionChange)="sortArticles()">
+              <mat-option value="date">Date</mat-option>
+              <mat-option value="title">Titre</mat-option>
+          </mat-select>
+      </mat-form-field>
+      <button mat-icon-button (click)="toggleSortDirection()">
+          <mat-icon>{{ sortDirection === 'asc' ? 'arrow_upward' : 'arrow_downward' }}</mat-icon>
+      </button>
+    </ng-container>
   </div>
+  
 
   <div class="list" fxLayout="row" fxLayoutAlign="space-between center">
       <button mat-raised-button color="primary" routerLink="create">
@@ -33,7 +49,7 @@
       <div *ngFor="let article of (articles$ | async)?.articles" class="article" [routerLink]="['detail', article.id]">
           <div class="article-content">
               <b class="title">{{ article.title }}</b>
-              <div class="line">
+              <div class="line" >
                   <p class="title">{{ article.created_at | date: 'dd MMMM yyyy, HH:mm' }}</p>
                   <app-owner-info [authorId]="article.author_id"></app-owner-info>
               </div>

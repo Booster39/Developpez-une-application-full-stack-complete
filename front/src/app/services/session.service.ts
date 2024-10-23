@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { AuthService } from '../features/auth/services/auth.service';
 import { User } from '../interfaces/user.interface';
-import { Topic } from '../interfaces/topic.interface';
+import { Topic } from '../features/topics/interfaces/topic.interface';
 
 @Injectable({
   providedIn: 'root'

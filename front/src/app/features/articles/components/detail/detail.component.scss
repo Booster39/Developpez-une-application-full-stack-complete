@@ -1,8 +1,15 @@
 .detail {
     margin: 20px;
 }
-
-
+.mat-toolbar {
+  background: white;
+}
+.articles {
+  color: #7763C5;
+}
+.h1 {
+  text-align: center;
+}
 .owner {
     margin-left: 40px;
 }
@@ -71,10 +78,7 @@
 
 .da {
     display: block;
-}
-
-.date {
-    margin-right: 50px;
+    text-align: center;
 }
 
 

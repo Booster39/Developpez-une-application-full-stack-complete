@@ -1,4 +1,5 @@
-import { Topic } from "./topic.interface";
+import { Topic } from "../features/topics/interfaces/topic.interface";
+
 
 export interface User {
 	id: number,

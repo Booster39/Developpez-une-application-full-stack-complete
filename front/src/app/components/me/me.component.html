@@ -21,11 +21,7 @@
   <hr />
   
   <mat-card>
-    <mat-card-title>
-      <div fxLayout="row" fxLayoutAlign="center center">
-        <h1>Profil Utilisateur</h1>
-      </div>
-    </mat-card-title>
+        <h1 fxLayout="row" fxLayoutAlign="center center">Profil Utilisateur</h1>
     <mat-card-content *ngIf="meForm">
       <form [formGroup]="meForm" class="mt2 example-form" fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="submit()">
         <mat-form-field appearance="outline">
@@ -49,13 +45,13 @@
   </mat-card>
 
   
-    <h3 fxLayoutAlign="center center">Abonnements</h3>
+    <h2 fxLayoutAlign="center center">Abonnements</h2>
 
     <!-- Afficher les sujets suivis si l'utilisateur est chargé -->
       <div *ngIf="user && user.followedTopics.length > 0; else noFollowedTopics" fxLayoutAlign="center center" class="list-container">
           <div *ngFor="let topic of user.followedTopics" class="card">
               <h3 class="card-title">{{ topic.name }}</h3>
-              <p class="card-description">Description: {{ topic.name }}</p>
+              <p class="card-description">Description: {{ topic.description }}</p>
               <button 
                 mat-button 
                 color="warn" 

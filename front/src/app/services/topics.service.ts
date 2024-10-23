@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { Topic } from '../interfaces/topic.interface';
 import { TopicsResponse } from '../features/topics/interfaces/api/topicsResponse.interface';
 import { TopicResponse } from '../features/topics/interfaces/api/topicResponse.interface';
 import { User } from '../interfaces/user.interface';
 import { SessionService } from './session.service';
+import { Topic } from '../features/topics/interfaces/topic.interface';
 
 @Injectable({
   providedIn: 'root'

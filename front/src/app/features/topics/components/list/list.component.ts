@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from 'src/app/interfaces/user.interface';
 import { SessionService } from 'src/app/services/session.service';
-import { Topic } from 'src/app/interfaces/topic.interface';
 import { TopicService } from 'src/app/services/topics.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Topic } from '../../interfaces/topic.interface';
 
 @Component({
   selector: 'app-list',

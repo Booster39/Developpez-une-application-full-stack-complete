@@ -3,7 +3,7 @@
         <img class="img" src="/assets/logo_p6.png" routerLink="" alt="logo" />
         <!-- Menu pour les grandes tailles d'écran -->
         <div class="buttons desktop-menu">
-          <span routerLink="/articles" class="link">Articles</span>
+          <span routerLink="/articles" class="link articles">Articles</span>
           <span routerLink="/topics" class="link">Thèmes</span>
           <span routerLink="/me" class="link"><mat-icon class="login-icon">person</mat-icon></span>
         </div>
@@ -19,37 +19,25 @@
         </mat-menu>
       </mat-toolbar>
 <hr />
-<div class="detail">
-    <mat-card *ngIf="article">
-        <mat-card-title>
+<div class="detail" >
+    <mat-card *ngIf="article" >
             <div fxLayout="row" fxLayoutAlign="space-between center">
-                <div fxLayout="row" fxLayoutAlign="start center">
+                <div fxLayout="row" fxLayoutAlign="center center">
                     <button mat-icon-button (click)="back()">
-                        <mat-icon>arrow_back</mat-icon>
+                        <h1 class="h1"><mat-icon>arrow_back</mat-icon>{{article.title | titlecase}}</h1>
                     </button>
-                    <h1>{{article.title | titlecase}}</h1>
                 </div>
             </div>
-        </mat-card-title>
-        <mat-card-content >
-            <div class="my2" fxLayout="row" fxLayoutAlign="space-between center">
-                <div fxLayout="center">
-                    <p>Author: {{authorName}}</p>
-
-                    <span class="ml1">Thème : {{topicName}}</span>
-                </div>
-            </div>
-                <div class="da">
-                    
+                <div class="da " fxLayout="row" fxLayoutAlign="space-around center">
                         <p class="date">
-                        Date: {{ article.created_at | date: 'dd MMMM yyyy, HH:mm' }}
+                        {{ article.created_at | date: 'dd MMMM yyyy, HH:mm' }}
                         </p>
-                
+                        <p>Author: {{authorName}}</p>
+                        <span class="ml1">Thème : {{topicName}}</span>
                         <div class="content">
-                        Contenu: {{ article.content }}
+                            Contenu: {{ article.content }}
+                    </div>
                 </div>
-                </div>
-        </mat-card-content>
     </mat-card>
 
     <div class="comments-section">

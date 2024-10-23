@@ -21,18 +21,18 @@
 <hr />
 <div class="create m3" fxLayout="row" fxLayoutAlign="center center" fxFlex>
 
-    <mat-card>
+    <mat-card >
         <mat-card-title>
             <div fxLayout="row" fxLayoutAlign="center center">
                 <button mat-icon-button routerLink="/articles">
-                    <mat-icon>arrow_back</mat-icon>
+                  <h1><mat-icon>arrow_back</mat-icon>Créer un nouvel article</h1>
                 </button>
-                <h1>Créer un nouvel article</h1>
+                
             </div>
         </mat-card-title>
 
     
-        <mat-card-content *ngIf="articleForm">
+        <mat-card-content *ngIf="articleForm" >
             <form class="mt2" class="example-form"  fxLayout="column" [formGroup]="articleForm" (ngSubmit)="submit()">
                 
                 <mat-form-field appearance="outline" class="example-full-width" fxFlex>

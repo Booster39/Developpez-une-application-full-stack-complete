@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { UserResponse } from 'src/app/features/topics/interfaces/api/userResponse.interface';
-import { Topic } from 'src/app/interfaces/topic.interface';
+import { Topic } from 'src/app/features/topics/interfaces/topic.interface';
 import { User } from 'src/app/interfaces/user.interface';
 import { SessionService } from 'src/app/services/session.service';
 import { TopicService } from 'src/app/services/topics.service';
