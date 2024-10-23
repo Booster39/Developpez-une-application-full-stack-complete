@@ -48,31 +48,26 @@
     </mat-card-content>
   </mat-card>
 
-  <div class="user-topics">
-    <h3>Mes Sujets Abonnés</h3>
+  
+    <h3 fxLayoutAlign="center center">Abonnements</h3>
 
     <!-- Afficher les sujets suivis si l'utilisateur est chargé -->
-    <div *ngIf="user">
-      <div *ngIf="user.followedTopics.length > 0; else noFollowedTopics">
-        <mat-grid-list cols="2" rowHeight="3:1" class="topic-list">
-          <mat-grid-tile *ngFor="let topic of user.followedTopics">
-            <mat-card class="topic-item">
-              <span>{{ topic.name }}</span>
+      <div *ngIf="user && user.followedTopics.length > 0; else noFollowedTopics" fxLayoutAlign="center center" class="list-container">
+          <div *ngFor="let topic of user.followedTopics" class="card">
+              <h3 class="card-title">{{ topic.name }}</h3>
+              <p class="card-description">Description: {{ topic.name }}</p>
               <button 
                 mat-button 
                 color="warn" 
                 (click)="unsubscribe(topic.id)">
                 Se Désabonner
               </button>
-            </mat-card>
-          </mat-grid-tile>
-        </mat-grid-list>
+          </div>
       </div>
 
       <!-- Message si aucun sujet n'est suivi -->
       <ng-template #noFollowedTopics>
-        <p>Vous ne suivez aucun sujet pour le moment.</p>
+        <p fxLayoutAlign="center ceter">Vous ne suivez aucun sujet pour le moment.</p>
       </ng-template>
     </div>
-  </div>
-</div>
+
