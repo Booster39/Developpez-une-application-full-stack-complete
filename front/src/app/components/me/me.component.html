@@ -25,13 +25,13 @@
     <mat-card-content *ngIf="meForm">
       <form [formGroup]="meForm" class="mt2 example-form" fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="submit()">
         <mat-form-field appearance="outline">
-          <mat-label>Nom</mat-label>
-          <input matInput formControlName="name" placeholder="{{user?.name}}">
+          <mat-label>{{user?.name}}</mat-label>
+          <input matInput formControlName="name" placeholder="name">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" placeholder="{{user?.email}}">
+          <mat-label>{{user?.email}}</mat-label>
+          <input matInput formControlName="email" placeholder="email">
         </mat-form-field>
 
         <div >
