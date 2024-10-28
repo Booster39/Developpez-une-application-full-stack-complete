@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatFormFieldControl } from '@angular/material/form-field';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
@@ -23,7 +22,6 @@ export class MeComponent implements OnInit {
   public id: Number | undefined;
 
   constructor(private authService: AuthService,
-    private route: ActivatedRoute,
     private fb: FormBuilder,
     private matSnackBar: MatSnackBar,
     private userService: UserService,

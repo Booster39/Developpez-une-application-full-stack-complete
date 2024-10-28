@@ -17,18 +17,45 @@ export class ListComponent {
   public sortCriteria: string = 'date';
   public sortDirection: string = 'desc';
   public isSortVisible: boolean = false; 
+  private followedTopicIds: number[] = []; // Ajout pour stocker les topics suivis de l'utilisateur
+
   constructor(
     private sessionService: SessionService,
     private articlesService: ArticlesService
   ) { 
-    this.articles$ = this.articlesService.all();
+    this.loadFollowedTopics();
+    this.articles$ = this.getFollowedTopicsArticles();
+    //this.articles$ = this.articlesService.all();
   }
 
   get user(): User | undefined {
     return this.sessionService.user;
   }
+
+// Nouvelle méthode pour charger les topics suivis
+private loadFollowedTopics(): void {
+  if (this.user) {
+    this.followedTopicIds = this.user.followedTopics.map(topic => topic.id);
+  }
+}
+
+// Filtrer les articles par les topics suivis
+private getFollowedTopicsArticles(): Observable<any> {
+  return this.articlesService.all().pipe(
+    map(data => ({
+      ...data,
+      articles: data.articles.filter((article: any) =>
+        this.followedTopicIds.includes(article.topic_id)
+      )
+    }))
+  );
+}
+
+
+
+
   sortArticles() {
-    this.articles$ = this.articlesService.all().pipe(
+    this.articles$ = this.getFollowedTopicsArticles().pipe(
       map(data => ({
         ...data,
         articles: this.sortByCriteria(data.articles)
@@ -41,16 +68,16 @@ export class ListComponent {
       const valueA = this.sortCriteria === 'date' ? new Date(a.created_at).getTime() : a.title.toLowerCase();
       const valueB = this.sortCriteria === 'date' ? new Date(b.created_at).getTime() : b.title.toLowerCase();
 
-      if (this.sortDirection === 'asc') {
-        return valueA > valueB ? 1 : -1;
-      } else {
+      if (this.sortDirection === 'desc') {
         return valueA < valueB ? 1 : -1;
+      } else {
+        return valueA > valueB ? 1 : -1;
       }
     });
   }
 
   toggleSortDirection() {
-    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    this.sortDirection = this.sortDirection === 'desc' ? 'asc' : 'desc';
     this.sortArticles();
   }
   toggleSortVisibility() {
