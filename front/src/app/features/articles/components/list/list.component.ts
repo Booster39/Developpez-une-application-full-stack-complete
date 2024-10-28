@@ -44,8 +44,10 @@ private getFollowedTopicsArticles(): Observable<any> {
   return this.articlesService.all().pipe(
     map(data => ({
       ...data,
-      articles: data.articles.filter((article: any) =>
-        this.followedTopicIds.includes(article.topic_id)
+      articles: this.sortByCriteria(
+        data.articles.filter((article: any) =>
+          this.followedTopicIds.includes(article.topic_id)
+        )
       )
     }))
   );
@@ -55,12 +57,7 @@ private getFollowedTopicsArticles(): Observable<any> {
 
 
   sortArticles() {
-    this.articles$ = this.getFollowedTopicsArticles().pipe(
-      map(data => ({
-        ...data,
-        articles: this.sortByCriteria(data.articles)
-      }))
-    );
+    this.articles$ = this.getFollowedTopicsArticles();
   }
 
   sortByCriteria(articles: any[]): any[] {
@@ -68,16 +65,16 @@ private getFollowedTopicsArticles(): Observable<any> {
       const valueA = this.sortCriteria === 'date' ? new Date(a.created_at).getTime() : a.title.toLowerCase();
       const valueB = this.sortCriteria === 'date' ? new Date(b.created_at).getTime() : b.title.toLowerCase();
 
-      if (this.sortDirection === 'desc') {
-        return valueA < valueB ? 1 : -1;
-      } else {
+      if (this.sortDirection === 'asc') {
         return valueA > valueB ? 1 : -1;
+      } else {
+        return valueA < valueB ? 1 : -1;
       }
     });
   }
 
   toggleSortDirection() {
-    this.sortDirection = this.sortDirection === 'desc' ? 'asc' : 'desc';
+    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
     this.sortArticles();
   }
   toggleSortVisibility() {
