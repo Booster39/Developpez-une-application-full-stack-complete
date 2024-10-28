@@ -208,3 +208,35 @@ button.mat-raised-button {
       margin-left: 5px;
   }
 }
+
+/* Fenêtre de tri à côté du bouton "Trier par" */
+.sort-options {
+    display: flex;
+    align-items: center;
+    margin-left: 10px; /* Ajuste l'espacement entre "Trier par" et le menu */
+}
+
+/* Adaptation de la taille pour écrans mobiles */
+@media (max-width: 768px) {
+    .sort-options {
+        flex-direction: column; /* Positionne les éléments sous "Trier par" en affichage mobile */
+        align-items: flex-start;
+    }
+}
+/* Conteneur de tri pour référence de positionnement */
+.sort-container {
+  position: relative; /* Conteneur pour positionner le pop-up */
+  margin-top: 20px;
+}
+
+/* Fenêtre de tri en pop-up sous le bouton "Trier par" */
+.sort-popup {
+  position: absolute;
+  right: 6%;
+  width: 200px; /* Ajustez la taille selon les besoins */
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour l'effet de pop-up */
+  border-radius: 5px;
+  z-index: 1000;
+}
