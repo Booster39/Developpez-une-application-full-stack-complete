@@ -15,6 +15,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of the ArticleService interface that provides methods
+ * for managing articles.
+ */
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
@@ -27,6 +31,13 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private TopicRepository topicRepository;
 
+    /**
+     * Retrieves an article by its ID.
+     *
+     * @param id the ID of the article to retrieve
+     * @return an ArticleDto containing the article details
+     * @throws RuntimeException if the article is not found
+     */
     @Override
     public ArticleDto getPostById(Long id) {
         Article article = articleRepository.findById(id)
@@ -34,6 +45,15 @@ public class ArticleServiceImpl implements ArticleService {
         return articleMapper.toDto(article);
     }
 
+    /**
+     * Creates a new article.
+     *
+     * @param title   the title of the article
+     * @param topicId the ID of the topic associated with the article
+     * @param content the content of the article
+     * @param author  the user who is the author of the article
+     * @return an ArticleDto containing the created article details
+     */
     @Override
     public ArticleDto createPost(String title, Long topicId, String content, User author) {
         Topic topic = topicRepository.findById(topicId).orElse(null);
@@ -48,6 +68,11 @@ public class ArticleServiceImpl implements ArticleService {
         return articleMapper.toDto(article);
     }
 
+    /**
+     * Retrieves all articles.
+     *
+     * @return a list of ArticleDto containing details of all articles
+     */
     @Override
     public List<ArticleDto> getAllPosts() {
         List<Article> articles = articleRepository.findAll();

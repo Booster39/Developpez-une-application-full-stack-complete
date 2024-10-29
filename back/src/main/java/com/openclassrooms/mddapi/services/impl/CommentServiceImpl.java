@@ -14,6 +14,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of the CommentService interface for handling comment-related operations.
+ */
 @Service
 public class CommentServiceImpl implements CommentService {
 
@@ -29,6 +32,15 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private CommentMapper commentMapper;
 
+    /**
+     * Creates a new comment associated with a specific article and author.
+     *
+     * @param authorId  the ID of the author creating the comment
+     * @param articleId the ID of the article to which the comment is associated
+     * @param content   the content of the comment
+     * @return a CommentDto representing the created comment
+     * @throws RuntimeException if the specified article or author is not found
+     */
     @Override
     public CommentDto createComment(Long authorId, Long articleId, String content) {
         Comment comment = Comment.builder()
@@ -43,6 +55,11 @@ public class CommentServiceImpl implements CommentService {
         return commentMapper.toDto(comment);
     }
 
+    /**
+     * Retrieves all comments from the repository.
+     *
+     * @return a list of CommentDto representing all comments
+     */
     @Override
     public List<CommentDto> getAllComments() {
         List<Comment> comments = commentRepository.findAll();

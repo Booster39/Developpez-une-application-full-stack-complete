@@ -19,6 +19,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * Implementation of the AuthService interface for handling user authentication and registration.
+ */
 @Service
 public class AuthServiceImpl implements AuthService {
 
@@ -37,6 +40,13 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private UserMapper userMapper;
 
+    /**
+     * Authenticates a user using their email and password.
+     *
+     * @param loginRequest the login request containing the user's email and password
+     * @return a JwtResponse containing the generated JWT token
+     * @throws Exception if authentication fails or the user is not found
+     */
     @Override
     public JwtResponse authenticateUser(LoginRequest loginRequest) throws Exception {
         Authentication authentication = authenticationManager.authenticate(
@@ -54,6 +64,13 @@ public class AuthServiceImpl implements AuthService {
         return new JwtResponse(jwt);
     }
 
+    /**
+     * Registers a new user in the system.
+     *
+     * @param signUpRequest the signup request containing user details
+     * @return a JwtResponse containing the generated JWT token
+     * @throws Exception if the user already exists
+     */
     @Override
     public JwtResponse registerUser(SignupRequest signUpRequest) throws Exception {
         if (userRepository.existsByUsername(signUpRequest.getEmail())) {
@@ -70,6 +87,12 @@ public class AuthServiceImpl implements AuthService {
         return new JwtResponse(jwtUtils.generateJwtToken(user.getUsername()));
     }
 
+    /**
+     * Retrieves the current authenticated user.
+     *
+     * @param auth the authentication object containing user details
+     * @return an Optional containing the current user's details as UserDto
+     */
     @Override
     public Optional<UserDto> getCurrentUser(Authentication auth) {
         final Optional<User> user = this.userRepository.findByUsername(auth.getName());

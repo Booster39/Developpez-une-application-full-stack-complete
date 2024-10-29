@@ -22,16 +22,57 @@ import { TopicService } from 'src/app/services/topics.service';
 })
 export class DetailComponent implements OnInit {
 
+  /**
+   * Form group for managing the comment message input.
+   */
   public messageForm!: FormGroup;
-  public article: Article | undefined;
-  public authorName: string | undefined;
-  public topicName: string | undefined;
-  private pollingSubscription!: Subscription;
-  public isSideMenuOpen: boolean = false;
-  public comments: Array<{comment: Comment, authorName: string}> = [];
 
+  /**
+   * Current article being displayed.
+   */
+  public article: Article | undefined;
+
+  /**
+   * Name of the article's author.
+   */
+  public authorName: string | undefined;
+
+  /**
+   * Name of the topic associated with the article.
+   */
+  public topicName: string | undefined;
+
+  /**
+   * Subscription to handle polling for new comments.
+   */
+  private pollingSubscription!: Subscription;
+
+  /**
+   * Tracks the visibility state of the side menu.
+   */
+  public isSideMenuOpen: boolean = false;
+
+  /**
+   * List of comments and corresponding author names for the article.
+   */
+  public comments: Array<{ comment: Comment, authorName: string }> = [];
+
+  /**
+   * Observable for all comments, used for initial comment load and polling.
+   */
   public comments$ = this.commentsService.all();
 
+  /**
+   * Initializes services and form builder, sets up route handling.
+   * @param route - ActivatedRoute instance for accessing route parameters.
+   * @param fb - FormBuilder instance for creating the comment form.
+   * @param commentsService - Service for managing comments.
+   * @param articlesService - Service for retrieving article data.
+   * @param sessionService - Manages user session data and authentication.
+   * @param topicsService - Service for retrieving topics.
+   * @param userService - Service for managing user data.
+   * @param matSnackBar - Material Snackbar for displaying messages.
+   */
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
@@ -40,17 +81,22 @@ export class DetailComponent implements OnInit {
     private sessionService: SessionService,
     private topicsService: TopicService,
     private userService: UserService,
-    private matSnackBar: MatSnackBar) {
+    private matSnackBar: MatSnackBar
+  ) {
     this.initMessageForm();
   }
 
+  /**
+   * Lifecycle hook to initialize the component.
+   * Loads the article, retrieves author and topic names, and initializes comment polling.
+   */
   public ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id')!
+    const id = this.route.snapshot.paramMap.get('id')!;
 
     this.articlesService
       .detail(id)
       .subscribe((article: Article) => {
-        this.article = article
+        this.article = article;
         this.userService.getUserById(article.author_id).subscribe((user: User) => {
           this.authorName = user.name;
         });
@@ -60,15 +106,16 @@ export class DetailComponent implements OnInit {
         });
         this.loadCommentsWithAuthors();
       });
-    // Initialiser le polling après avoir chargé l'article
-    this.pollingSubscription = interval(5000) // Toutes les 5 secondes
+
+    // Start polling for comments every 5 seconds
+    this.pollingSubscription = interval(5000)
       .pipe(
         switchMap(() => this.commentsService.all())
       )
       .subscribe(commentsResponse => {
         if (this.article) {
           const commentList = commentsResponse.comments.filter(comment => comment.article_id === this.article!.id);
-          // Vérifier si de nouveaux commentaires existent
+          // Check for new comments
           if (commentList.length !== this.comments.length) {
             this.fetchAuthorsForComments(commentList);
           }
@@ -76,6 +123,10 @@ export class DetailComponent implements OnInit {
       });
   }
 
+  /**
+   * Retrieves author names for a list of comments and stores them in the comments array.
+   * @param commentList - List of comments to retrieve authors for.
+   */
   private fetchAuthorsForComments(commentList: Comment[]): void {
     const userObservables = commentList.map(comment => 
       this.userService.getUserById(comment.author_id)
@@ -89,11 +140,13 @@ export class DetailComponent implements OnInit {
     });
   }
 
+  /**
+   * Loads comments for the article and retrieves author names for each comment.
+   */
   private loadCommentsWithAuthors(): void {
     this.commentsService.all().subscribe(commentsResponse => {
       const commentList = commentsResponse.comments.filter(comment => comment.article_id === this.article?.id);
       
-      // Fetch all authors at once using forkJoin
       const userObservables = commentList.map(comment => 
         this.userService.getUserById(comment.author_id)
       );
@@ -107,18 +160,32 @@ export class DetailComponent implements OnInit {
     });
   }
 
+  /**
+   * Unsubscribes from the polling subscription when the component is destroyed.
+   */
   public ngOnDestroy(): void {
     if (this.pollingSubscription) {
       this.pollingSubscription.unsubscribe();
     }
   }
 
-  public back() {
+  /**
+   * Navigates back to the previous page.
+   */
+  public back(): void {
     window.history.back();
   }
-  toggleSideMenu() {
+
+  /**
+   * Toggles the visibility of the side menu.
+   */
+  toggleSideMenu(): void {
     this.isSideMenuOpen = !this.isSideMenuOpen;
   }
+
+  /**
+   * Sends a comment message, then reinitializes the form and shows a success message.
+   */
   public sendMessage(): void {
     const message = {
       article_id: this.article!.id,
@@ -133,12 +200,18 @@ export class DetailComponent implements OnInit {
       });
   }
 
-
-  private initMessageForm() {
+  /**
+   * Initializes the comment message form with validation rules.
+   */
+  private initMessageForm(): void {
     this.messageForm = this.fb.group({
       message: ['', [Validators.required, Validators.min(10)]],
     });
   }
+
+  /**
+   * Retrieves the current user from the session service.
+   */
   get user(): User | undefined {
     return this.sessionService.user;
   }
