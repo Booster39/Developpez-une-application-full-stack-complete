@@ -27,6 +27,7 @@ export class DetailComponent implements OnInit {
   public authorName: string | undefined;
   public topicName: string | undefined;
   private pollingSubscription!: Subscription;
+  public isSideMenuOpen: boolean = false;
   public comments: Array<{comment: Comment, authorName: string}> = [];
 
   public comments$ = this.commentsService.all();
@@ -50,7 +51,6 @@ export class DetailComponent implements OnInit {
       .detail(id)
       .subscribe((article: Article) => {
         this.article = article
-
         this.userService.getUserById(article.author_id).subscribe((user: User) => {
           this.authorName = user.name;
         });
@@ -58,10 +58,8 @@ export class DetailComponent implements OnInit {
         this.topicsService.detail(article.topic_id.toString()).subscribe(topic => {
           this.topicName = topic.name;
         });
-
         this.loadCommentsWithAuthors();
       });
-
     // Initialiser le polling après avoir chargé l'article
     this.pollingSubscription = interval(5000) // Toutes les 5 secondes
       .pipe(
@@ -70,7 +68,6 @@ export class DetailComponent implements OnInit {
       .subscribe(commentsResponse => {
         if (this.article) {
           const commentList = commentsResponse.comments.filter(comment => comment.article_id === this.article!.id);
-          
           // Vérifier si de nouveaux commentaires existent
           if (commentList.length !== this.comments.length) {
             this.fetchAuthorsForComments(commentList);
@@ -119,7 +116,9 @@ export class DetailComponent implements OnInit {
   public back() {
     window.history.back();
   }
-
+  toggleSideMenu() {
+    this.isSideMenuOpen = !this.isSideMenuOpen;
+  }
   public sendMessage(): void {
     const message = {
       article_id: this.article!.id,

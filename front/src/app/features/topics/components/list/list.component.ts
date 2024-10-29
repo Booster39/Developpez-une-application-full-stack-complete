@@ -15,6 +15,8 @@ export class ListComponent implements OnInit {
   @Output() subscribeEvent = new EventEmitter<void>();
   public topics$ = this.topicsService.all();
   public followedTopicIds: number[] = [];
+  public isSideMenuOpen: boolean = false;
+  
   constructor(
     private sessionService: SessionService,
     private topicsService: TopicService,
@@ -29,7 +31,9 @@ export class ListComponent implements OnInit {
       this.followedTopicIds = topics.map(topic => topic.id);
     });
   }
-  
+  toggleSideMenu() {
+    this.isSideMenuOpen = !this.isSideMenuOpen;
+  }
   private loadFollowedTopics(): void {
     if (this.user) {
       this.followedTopicIds = this.user.followedTopics.map(topic => topic.id);

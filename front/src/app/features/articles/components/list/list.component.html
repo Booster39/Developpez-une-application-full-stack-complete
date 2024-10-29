@@ -7,16 +7,21 @@
           <span routerLink="/me" class="link"><mat-icon class="login-icon">person</mat-icon></span>
       </div>
 
-      <button mat-icon-button [matMenuTriggerFor]="menu" class="mobile-menu">
+      <button mat-icon-button (click)="toggleSideMenu()" class="mobile-menu">
           <mat-icon>menu</mat-icon>
       </button>
-      <mat-menu #menu="matMenu">
-          <button mat-menu-item routerLink="/articles">Articles</button>
-          <button mat-menu-item routerLink="/topics">Thèmes</button>
-          <button mat-menu-item routerLink="/me"><mat-icon class="login-icon">person</mat-icon></button>
-      </mat-menu>
   </mat-toolbar>
+<!-- Menu latéral pour mobile -->
+<div class="side-menu" [class.open]="isSideMenuOpen">
+    <button mat-icon-button (click)="toggleSideMenu()">
+        <mat-icon>close</mat-icon>
+    </button>
+    <button mat-menu-item routerLink="/articles">Articles</button>
+    <button mat-menu-item routerLink="/topics">Thèmes</button>
 
+    <!-- Bouton compte utilisateur en bas du panneau -->
+    <span routerLink="/me" class="account-link"><mat-icon class="login-icon">person</mat-icon></span>
+</div>
   <hr />
   <div fxLayout="row" fxLayoutAlign="end center" class="sort-container">
     <!-- Clic pour activer/désactiver l'affichage du menu de tri -->

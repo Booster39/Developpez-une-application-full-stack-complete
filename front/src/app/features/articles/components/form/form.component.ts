@@ -17,6 +17,7 @@ import { map } from 'rxjs';
 export class FormComponent implements OnInit {
   public onUpdate: boolean = false;
   public articleForm: FormGroup | undefined;
+  public isSideMenuOpen: boolean = false;
   public topics$ = this.topicService.all().pipe(
     map((response) => response.topics)
   );
@@ -44,7 +45,9 @@ export class FormComponent implements OnInit {
       this.initForm();
     }
   }
-
+  toggleSideMenu() {
+    this.isSideMenuOpen = !this.isSideMenuOpen;
+  }
   public submit(): void {
     const formData = new FormData();
     formData.append('title', this.articleForm!.get('title')?.value);

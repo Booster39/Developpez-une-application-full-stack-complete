@@ -20,7 +20,8 @@ export class MeComponent implements OnInit {
   public user: User | undefined;
   public meForm: FormGroup |  undefined;
   public id: Number | undefined;
-
+  public isSideMenuOpen: boolean = false;
+  
   constructor(private authService: AuthService,
     private fb: FormBuilder,
     private matSnackBar: MatSnackBar,
@@ -43,7 +44,9 @@ export class MeComponent implements OnInit {
       }
     });
   }
-
+  toggleSideMenu() {
+    this.isSideMenuOpen = !this.isSideMenuOpen;
+  }
   public back() {
     window.history.back();
   }

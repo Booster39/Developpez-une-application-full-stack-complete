@@ -17,6 +17,7 @@ export class ListComponent {
   public sortCriteria: string = 'date';
   public sortDirection: string = 'desc';
   public isSortVisible: boolean = false; 
+  public isSideMenuOpen: boolean = false;
   private followedTopicIds: number[] = []; // Ajout pour stocker les topics suivis de l'utilisateur
 
   constructor(
@@ -25,7 +26,6 @@ export class ListComponent {
   ) { 
     this.loadFollowedTopics();
     this.articles$ = this.getFollowedTopicsArticles();
-    //this.articles$ = this.articlesService.all();
   }
 
   get user(): User | undefined {
@@ -80,4 +80,9 @@ private getFollowedTopicsArticles(): Observable<any> {
   toggleSortVisibility() {
     this.isSortVisible = !this.isSortVisible;
   }
+
+  toggleSideMenu() {
+    this.isSideMenuOpen = !this.isSideMenuOpen;
+  }
+
 }

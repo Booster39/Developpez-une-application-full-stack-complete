@@ -9,27 +9,33 @@
     </div>
 
     <!-- Burger menu pour petites tailles d'écran -->
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="mobile-menu">
+    <button mat-icon-button (click)="toggleSideMenu()" class="mobile-menu">
       <mat-icon>menu</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/articles">Articles</button>
-      <button mat-menu-item routerLink="/topics">Thèmes</button>
-      <button mat-menu-item routerLink="/me"><mat-icon class="login-icon">person</mat-icon></button>
-    </mat-menu>
+  </button> 
   </mat-toolbar>
+  <!-- Burger menu pour petites tailles d'écran -->
+  <div class="side-menu" [class.open]="isSideMenuOpen">
+    <button mat-icon-button (click)="toggleSideMenu()">
+        <mat-icon>close</mat-icon>
+    </button>
+    <button mat-menu-item routerLink="/articles">Articles</button>
+    <button mat-menu-item routerLink="/topics">Thèmes</button>
+
+    <!-- Bouton compte utilisateur en bas du panneau -->
+    <span routerLink="/me" class="account-link"><mat-icon class="login-icon">person</mat-icon></span>
+</div>
   <hr />
   
   <mat-card>
         <h1 fxLayout="row" fxLayoutAlign="center center">Profil Utilisateur</h1>
     <mat-card-content *ngIf="meForm">
       <form [formGroup]="meForm" class="mt2 example-form" fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="submit()">
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" hideRequiredMarker>
           <mat-label>{{user?.name}}</mat-label>
           <input matInput formControlName="name" placeholder="name">
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" hideRequiredMarker>
           <mat-label>{{user?.email}}</mat-label>
           <input matInput formControlName="email" placeholder="email">
         </mat-form-field>

@@ -99,3 +99,68 @@ hr {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
+
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 70%;
+  height: 95%;
+  background-color: white;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  z-index: 1000;
+  transition: right 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Place le contenu au début et l'icône du compte en bas */
+}
+
+.side-menu.open {
+  right: 0;
+}
+
+/* Styles spécifiques pour le lien du compte utilisateur en bas */
+.account-link {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+   /* Pousse le lien en bas */
+  cursor: pointer;
+}
+
+.mobile-menu {
+  display: block;
+}
+
+
+.side-menu.open {
+  right: 0;
+}
+
+@media (max-width: 768px) {
+  .desktop-menu {
+      display: none;
+  }
+
+  .mobile-menu {
+      display: block;
+  }
+}
+
+.sort-popup {
+  position: absolute;
+  right: 6%;
+  width: 200px;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+button.mat-focus-indicator.mat-menu-item {
+  border-width: 0px;
+}
