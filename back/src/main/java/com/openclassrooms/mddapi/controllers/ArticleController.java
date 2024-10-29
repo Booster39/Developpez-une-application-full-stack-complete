@@ -6,6 +6,10 @@ import com.openclassrooms.mddapi.payloads.response.StringResponse;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import com.openclassrooms.mddapi.security.jwt.JwtUtils;
 import com.openclassrooms.mddapi.services.ArticleService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +23,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/articles")
+@Tag(name = "Articles", description = "API pour la gestion des articles")
 public class ArticleController {
 
     @Autowired
@@ -30,7 +35,11 @@ public class ArticleController {
     @Autowired
     private UserRepository userRepository;
 
-
+    @Operation(summary = "Obtenir tous les articles", description = "Récupère la liste de tous les articles.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Liste des articles récupérée avec succès"),
+            @ApiResponse(responseCode = "400", description = "Erreur lors de la récupération des articles")
+    })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<HashMap<String, List<ArticleDto>>> getAllPosts()
     {
@@ -43,7 +52,12 @@ public class ArticleController {
             return ResponseEntity.badRequest().build();
         }
     }
-
+    @Operation(summary = "Obtenir un article par ID", description = "Récupère un article spécifique en utilisant son identifiant.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Article récupéré avec succès"),
+            @ApiResponse(responseCode = "400", description = "Erreur de format de requête"),
+            @ApiResponse(responseCode = "404", description = "Article non trouvé")
+    })
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ArticleDto> getPost(@PathVariable String id)
     {
@@ -58,6 +72,11 @@ public class ArticleController {
         }
     }
 
+    @Operation(summary = "Créer un nouvel article", description = "Crée un nouvel article en utilisant les informations fournies.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Article créé avec succès"),
+            @ApiResponse(responseCode = "400", description = "Erreur lors de la création de l'article")
+    })
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<StringResponse> createPost(
             @RequestParam("title") @NotBlank @Size(max = 63) String title,

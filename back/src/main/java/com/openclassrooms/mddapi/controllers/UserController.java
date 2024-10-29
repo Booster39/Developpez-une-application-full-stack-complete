@@ -88,6 +88,11 @@ public class UserController {
  * @return Empty no content response.
  follow
 **/
+ @Operation(summary = "Aimer un sujet", description = "Permet à un utilisateur de liker un sujet.")
+ @ApiResponses(value = {
+         @ApiResponse(responseCode = "204", description = "Sujet liké avec succès"),
+         @ApiResponse(responseCode = "404", description = "Sujet non trouvé")
+ })
 @PutMapping("/me/topics/{id}")
 public ResponseEntity<?> likeTopic(@PathVariable long id) {
         topicService.likeTopic(id);
@@ -101,6 +106,11 @@ public ResponseEntity<?> likeTopic(@PathVariable long id) {
  * @param id The id of the topic.
  * @return Empty no content response.
  **/
+@Operation(summary = "Ne plus aimer un sujet", description = "Permet à un utilisateur de retirer son like d'un sujet.")
+@ApiResponses(value = {
+        @ApiResponse(responseCode = "204", description = "Like retiré avec succès"),
+        @ApiResponse(responseCode = "404", description = "Sujet non trouvé")
+})
 @DeleteMapping("/me/topics/{id}")
 public ResponseEntity<?> dislikeTopic(@PathVariable long id) {
         topicService.dislikeTopic(id);
